@@ -1,4 +1,5 @@
 import React from "react"
+import { RichText } from "prismic-reactjs"
 import { Link } from "gatsby"
 import { linkResolver } from "../utils/linkResolver"
 
@@ -55,7 +56,7 @@ export default ({ data }) => {
       {home.map(({ node: page }) => {
         return (
           <div>
-            <h1>{page.page_title[0].text}</h1>
+            <h1>{RichText.asText(page.page_title)}</h1>
             {page.introduction.map(el => {
               return <p>{el.text}</p>
             })}
@@ -64,7 +65,9 @@ export default ({ data }) => {
       })}
 
       {bio.map(({ node: n }) => {
-        return <Link to={linkResolver(n._meta)}>{n.title[0].text}</Link>
+        return (
+          <Link to={linkResolver(n._meta)}>{RichText.asText(n.title)}</Link>
+        )
       })}
 
       {projects.map(({ node: project }) => {
@@ -74,7 +77,7 @@ export default ({ data }) => {
               <div style={{ maxWidth: `300px` }}>
                 <Image data={project} />
               </div>
-              <span>{project.project_title[0].text}</span>
+              <span>{RichText.asText(project.project_title)}</span>
             </div>
           </Link>
         )

@@ -31,6 +31,16 @@ module.exports = {
       resolve: `gatsby-source-prismic-graphql`,
       options: {
         repositoryName: "joelle-bitton",
+        path: "/preview",
+        previews: true,
+        pages: [
+          {
+            type: "Project",
+            match: "/projects/:uid",
+            path: "/project-preview",
+            component: require.resolve("./src/templates/project.js"),
+          },
+        ],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
