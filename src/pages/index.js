@@ -4,13 +4,13 @@ import { Link } from "gatsby"
 import { linkResolver } from "../utils/linkResolver"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
+import Projectshowcase from "../components/projectshowcase"
 
 export const query = graphql`
   {
     prismic {
-      allProjects {
+      allProjects(sortBy: meta_firstPublicationDate_DESC) {
         edges {
           node {
             _meta {
@@ -70,25 +70,7 @@ export default ({ data }) => {
         )
       })}
 
-      {projects.map(({ node: project }) => {
-        return (
-          <Link to={linkResolver(project._meta)}>
-            <div>
-              <div style={{ maxWidth: `300px` }}>
-                <Image data={project} />
-              </div>
-              <span>{RichText.asText(project.project_title)}</span>
-            </div>
-          </Link>
-        )
-      })}
-
-      {/* <Link to="/page-2/">
-        <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-          <Image />
-        </div>
-        <span>Crazy text</span>
-      </Link> */}
+      <Projectshowcase data={projects} />
     </Layout>
   )
 }
