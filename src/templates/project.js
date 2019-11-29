@@ -17,7 +17,7 @@ export const query = graphql`
             cover_image
             project_title
             project_text
-            infoCreditsTitle
+            info_credits_title
             info_credits {
               leftColumn
               rightColumn
@@ -49,7 +49,7 @@ export default ({ data }) => {
                 return <p>{el.text}</p>
               })}
               <div>
-                <h3>{RichText.asText(p.infoCreditsTitle)}</h3>
+                <h3>{RichText.asText(p.info_credits_title)}</h3>
                 {p.info_credits.map(el => {
                   return (
                     <div>
