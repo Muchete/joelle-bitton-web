@@ -41,7 +41,11 @@ class Projectshowcase extends Component {
         </div>
         {projects.map(({ node: project }) => {
           return (
-            <div className="project" key={project._meta.id}>
+            <div
+              className="project"
+              key={project._meta.id}
+              style={{ marginTop: "20px" }}
+            >
               <Link to={linkResolver(project._meta)}>
                 <div>
                   <div style={{ maxWidth: `300px` }}>
