@@ -1,7 +1,6 @@
 import React from "react"
 import { RichText } from "prismic-reactjs"
-import { Link } from "gatsby"
-// import { linkResolver } from "../utils/linkResolver"
+import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
 
@@ -46,15 +45,27 @@ export default ({ data }) => {
             <h1>{RichText.asText(p.project_title)}</h1>
             <div className="project-description">
               {p.project_text.map(el => {
-                return <p>{el.text}</p>
+                if (el.type === "paragraph") {
+                  return <p>{el.text}</p>
+                } else if (el.type === "embed") {
+                  return (
+                    <div dangerouslySetInnerHTML={{ __html: el.oembed.html }} />
+                  )
+                } else {
+                  return null
+                }
               })}
               <div>
                 <h3>{RichText.asText(p.info_credits_title)}</h3>
                 {p.info_credits.map(el => {
                   return (
                     <div>
-                      <p>{RichText.asText(el.leftColumn)}</p>
-                      <p>{RichText.asText(el.rightColumn)}</p>
+                      <p className="leftColumn">
+                        {RichText.asText(el.leftColumn)}
+                      </p>
+                      <p className="rightColumn">
+                        {RichText.asText(el.rightColumn)}
+                      </p>
                     </div>
                   )
                 })}

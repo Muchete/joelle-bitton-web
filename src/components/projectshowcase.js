@@ -19,8 +19,6 @@ class Projectshowcase extends Component {
     })
   }
 
-  setFilter() {}
-
   render() {
     let projects = this.props.data
 
@@ -47,7 +45,7 @@ class Projectshowcase extends Component {
               <Link to={linkResolver(project._meta)}>
                 <div>
                   <div style={{ maxWidth: `300px` }}>
-                    <Image data={project} />
+                    <Image data={project} colors={this.props.colors} />
                   </div>
                   <span>{RichText.asText(project.project_title)}</span>
                 </div>

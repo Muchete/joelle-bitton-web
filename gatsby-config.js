@@ -3,6 +3,12 @@ module.exports = {
     title: `Gatsby Default Starter`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
+    colors: {
+      Red: `#F37291`,
+      Violet: `#A48EE7`,
+      Turquoise: `#9EEADD`,
+      Yellow: `#FBE36A`,
+    },
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -39,6 +45,12 @@ module.exports = {
             match: "/projects/:uid",
             path: "/project-preview",
             component: require.resolve("./src/templates/project.js"),
+          },
+          {
+            type: "Bio",
+            match: "/bio/",
+            path: "/bio-preview",
+            component: require.resolve("./src/templates/bio.js"),
           },
         ],
       },

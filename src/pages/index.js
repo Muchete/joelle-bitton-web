@@ -1,6 +1,6 @@
 import React from "react"
 import { RichText } from "prismic-reactjs"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
 import { linkResolver } from "../utils/linkResolver"
 
 import Layout from "../components/layout"
@@ -9,6 +9,16 @@ import Projectshowcase from "../components/projectshowcase"
 
 export const query = graphql`
   {
+    site {
+      siteMetadata {
+        colors {
+          Red
+          Turquoise
+          Violet
+          Yellow
+        }
+      }
+    }
     prismic {
       allProjects(sortBy: meta_firstPublicationDate_DESC) {
         edges {
@@ -19,6 +29,7 @@ export const query = graphql`
               type
             }
             cover_image
+            cover_color
             project_title
           }
         }
@@ -49,6 +60,7 @@ export default ({ data }) => {
   const home = data.prismic.allHomes.edges
   const bio = data.prismic.allBios.edges
   const projects = data.prismic.allProjects.edges
+  const colors = data.site.siteMetadata.colors
 
   return (
     <Layout>
@@ -70,7 +82,7 @@ export default ({ data }) => {
         )
       })}
 
-      <Projectshowcase data={projects} />
+      <Projectshowcase data={projects} colors={colors} />
     </Layout>
   )
 }
