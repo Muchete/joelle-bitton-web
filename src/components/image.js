@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 // import Img from "gatsby-image"
 
-class Image extends Component {
+class ProjectImage extends Component {
   // constructor(props) {
   //   super(props)
   // }
@@ -19,7 +19,9 @@ class Image extends Component {
           alt={this.props.data.cover_image.alt}
           src={this.props.data.cover_image.url}
           style={{
-            opacity: 0.5,
+            opacity: 0.7,
+            // mixBlendMode: "multiply",
+            filter: "grayscale(100%)",
           }}
         ></img>
       </div>
@@ -27,4 +29,4 @@ class Image extends Component {
   }
 }
 
-export default Image
+export default ProjectImage

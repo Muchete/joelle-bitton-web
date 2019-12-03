@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 import { RichText } from "prismic-reactjs"
 
 import { linkResolver } from "../utils/linkResolver"
-import Image from "../components/image"
+import ProjectImage from "../components/image"
 let tagList = []
 
 class Projectshowcase extends Component {
@@ -49,7 +49,7 @@ class Projectshowcase extends Component {
               <Link to={linkResolver(project._meta)}>
                 <div>
                   <div style={{ maxWidth: `300px` }}>
-                    <Image data={project} colors={this.props.colors} />
+                    <ProjectImage data={project} colors={this.props.colors} />
                   </div>
                   <span>{RichText.asText(project.project_title)}</span>
                 </div>
