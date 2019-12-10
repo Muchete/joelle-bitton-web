@@ -1,9 +1,9 @@
 import React, { Component } from "react"
 import { Link } from "gatsby"
 import { RichText } from "prismic-reactjs"
+import Img from "gatsby-image"
 
 import { linkResolver } from "../utils/linkResolver"
-import ProjectImage from "../components/image"
 let tagList = []
 
 class Projectshowcase extends Component {
@@ -48,8 +48,24 @@ class Projectshowcase extends Component {
             >
               <Link to={linkResolver(project._meta)}>
                 <div>
-                  <div style={{ maxWidth: `300px` }}>
-                    <ProjectImage data={project} colors={this.props.colors} />
+                  <div className="cover-images">
+                    <div
+                      style={{
+                        backgroundColor: this.props.colors[project.cover_color],
+                        lineHeight: 0,
+                        width: "500px",
+                      }}
+                    >
+                      <Img
+                        fluid={project.cover_imageSharp.childImageSharp.fluid}
+                        alt={project.cover_image.alt}
+                        style={{
+                          // mixBlendMode: "multiply",
+                          opacity: 0.7,
+                          filter: "grayscale(100%)",
+                        }}
+                      />
+                    </div>
                   </div>
                   <span>{RichText.asText(project.project_title)}</span>
                 </div>

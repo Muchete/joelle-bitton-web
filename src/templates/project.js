@@ -1,6 +1,7 @@
 import React from "react"
 import { RichText } from "prismic-reactjs"
 import { Link, graphql } from "gatsby"
+import Img from "gatsby-image"
 
 import Layout from "../components/layout"
 
@@ -13,7 +14,6 @@ export const query = graphql`
             _meta {
               id
             }
-            cover_image
             project_title
             project_text
             info_credits_title
@@ -23,6 +23,16 @@ export const query = graphql`
             }
             images {
               project_image
+              project_imageSharp {
+                childImageSharp {
+                  fluid {
+                    srcSet
+                    src
+                    base64
+                    aspectRatio
+                  }
+                }
+              }
             }
           }
         }
@@ -71,13 +81,13 @@ export default ({ data }) => {
                 })}
               </div>
             </div>
-            <div className="gallery">
-              {p.images.map(img => {
+
+            <div className="proj-images images">
+              {p.images.map(({ project_imageSharp: i }) => {
                 return (
-                  <img
-                    src={img.project_image.url}
-                    alt={img.project_image.alt}
-                  />
+                  <div className="image">
+                    <Img fluid={i.childImageSharp.fluid} />
+                  </div>
                 )
               })}
             </div>

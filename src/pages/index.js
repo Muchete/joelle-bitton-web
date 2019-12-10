@@ -29,6 +29,16 @@ export const query = graphql`
               type
             }
             cover_image
+            cover_imageSharp {
+              childImageSharp {
+                fluid {
+                  srcSet
+                  src
+                  base64
+                  aspectRatio
+                }
+              }
+            }
             cover_color
             project_title
           }

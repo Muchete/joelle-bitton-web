@@ -1,6 +1,7 @@
 import React from "react"
 import { RichText } from "prismic-reactjs"
 import { Link, graphql } from "gatsby"
+import Img from "gatsby-image"
 // import { linkResolver } from "../utils/linkResolver"
 
 import Layout from "../components/layout"
@@ -23,6 +24,16 @@ export const query = graphql`
             }
             images {
               image
+              imageSharp {
+                childImageSharp {
+                  fluid {
+                    srcSet
+                    src
+                    base64
+                    aspectRatio
+                  }
+                }
+              }
             }
             links {
               link
@@ -64,6 +75,15 @@ export default ({ data }) => {
               <h3>{RichText.asText(bio.cv_title)}</h3>
             </div>
             <CV data={bio.cv} />
+            <div className="bio-images images">
+              {bio.images.map(({ imageSharp: i }) => {
+                return (
+                  <div className="image">
+                    <Img fluid={i.childImageSharp.fluid} />
+                  </div>
+                )
+              })}
+            </div>
           </div>
         )
       })}
