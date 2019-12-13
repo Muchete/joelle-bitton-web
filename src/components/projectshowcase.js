@@ -5,12 +5,12 @@ import Img from "gatsby-image"
 
 import { linkResolver } from "../utils/linkResolver"
 let tagList = []
+let projects
 
 class Projectshowcase extends Component {
   constructor(props) {
     super(props)
     this.state = { currentFilter: "Main Works" }
-    // this.state = { currentFilter: "Interaction Design" }
 
     this.props.data.forEach(({ node: p }) => {
       p._meta.tags.forEach(tag => {
@@ -20,12 +20,12 @@ class Projectshowcase extends Component {
   }
 
   render() {
-    let projects = this.props.data
-
     if (this.state.currentFilter) {
-      projects = projects.filter(({ node: project }) => {
+      projects = this.props.data.filter(({ node: project }) => {
         return project._meta.tags.indexOf(this.state.currentFilter) !== -1
       })
+    } else {
+      projects = this.props.data
     }
 
     return (

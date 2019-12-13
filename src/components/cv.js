@@ -2,29 +2,31 @@ import React, { Component } from "react"
 import { RichText } from "prismic-reactjs"
 
 let categoryList = []
+let entries
 
 class CV extends Component {
   constructor(props) {
     super(props)
-    // this.state = {}
 
     this.props.data.forEach(entry => {
       if (categoryList.indexOf(entry.category) === -1)
         categoryList.push(entry.category)
     })
 
-    this.state = { currentFilter: categoryList[0] }
+    if (categoryList) {
+      this.state = { currentFilter: categoryList[0] }
+    }
   }
 
   setFilter(newFilter) {}
 
   render() {
-    let entries = this.props.data
-
     if (this.state.currentFilter) {
-      entries = entries.filter(entry => {
+      entries = this.props.data.filter(entry => {
         return entry.category.indexOf(this.state.currentFilter) !== -1
       })
+    } else {
+      entries = this.props.data
     }
 
     return (
