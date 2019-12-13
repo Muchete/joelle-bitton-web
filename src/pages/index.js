@@ -74,7 +74,7 @@ export default ({ data }) => {
 
   return (
     <Layout>
-      <SEO title="Home" />
+      {/* <SEO title="Home" /> */}
       {home.map(({ node: page }) => {
         return (
           <div>
