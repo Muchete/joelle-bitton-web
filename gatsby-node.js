@@ -48,7 +48,7 @@ exports.onPostBuild = async ({ graphql, reporter }) => {
       let filepaths = find.fileSync(new RegExp(filename), "./public/static/")
       filepaths.map(file => {
         let buffer = fs.readFileSync(file)
-        fs.writeFileSync(file, ditherjs.dither(buffer, options), () => {})
+        fs.writeFileSync(file, ditherjs.dither(buffer, options))
       })
     })
 

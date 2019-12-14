@@ -1,7 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: `Joëlle Bitton`,
-    description: `Showing the work of Joëlle Bitton`,
+    author: `Joëlle Bitton`,
+    description: `Works of Joëlle Bitton`,
     colors: {
       Red: `#F37291`,
       Violet: `#A48EE7`,
