@@ -19,21 +19,29 @@ class Projectshowcase extends Component {
     })
   }
 
+  setFilter(newFilter) {
+    this.setState({ currentFilter: newFilter })
+  }
+
   render() {
     if (this.state.currentFilter) {
       projects = this.props.data.filter(({ node: project }) => {
         return project._meta.tags.indexOf(this.state.currentFilter) !== -1
       })
-    } else {
-      projects = this.props.data
     }
+    // else {
+    //   projects = this.props.data
+    // }
 
     return (
-      <div className="projects">
-        <div className="tags">
+      <div className="">
+        <div className="projects-categories filter-set">
           {tagList.map(tag => {
             return (
-              <button onClick={() => this.setState({ currentFilter: tag })}>
+              <button
+                className="filter-button"
+                onClick={() => this.setFilter(tag)}
+              >
                 {tag}
               </button>
             )
@@ -46,28 +54,29 @@ class Projectshowcase extends Component {
               key={project._meta.id}
               style={{ marginTop: "20px" }}
             >
-              <Link to={linkResolver(project._meta)}>
-                <div>
-                  <div className="cover-images">
-                    <div
+              <Link className="project-link" to={linkResolver(project._meta)}>
+                <div className="project-image">
+                  <div
+                    className="project-image-background"
+                    style={{
+                      backgroundColor: this.props.colors[project.cover_color],
+                      lineHeight: 0,
+                      width: "500px",
+                    }}
+                  >
+                    <Img
+                      fluid={project.cover_imageSharp.childImageSharp.fluid}
+                      alt={project.cover_image.alt}
                       style={{
-                        backgroundColor: this.props.colors[project.cover_color],
-                        lineHeight: 0,
-                        width: "500px",
+                        // mixBlendMode: "multiply",
+                        opacity: 0.7,
+                        filter: "grayscale(100%)",
                       }}
-                    >
-                      <Img
-                        fluid={project.cover_imageSharp.childImageSharp.fluid}
-                        alt={project.cover_image.alt}
-                        style={{
-                          // mixBlendMode: "multiply",
-                          opacity: 0.7,
-                          filter: "grayscale(100%)",
-                        }}
-                      />
-                    </div>
+                    />
                   </div>
-                  <span>{RichText.asText(project.project_title)}</span>
+                  <span className="project-title">
+                    {RichText.asText(project.project_title)}
+                  </span>
                 </div>
               </Link>
             </div>

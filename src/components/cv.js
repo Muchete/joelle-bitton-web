@@ -18,7 +18,9 @@ class CV extends Component {
     }
   }
 
-  setFilter(newFilter) {}
+  setFilter(newFilter) {
+    this.setState({ currentFilter: newFilter })
+  }
 
   render() {
     if (this.state.currentFilter) {
@@ -31,18 +33,19 @@ class CV extends Component {
 
     return (
       <div className="cv">
-        <div className="categories">
+        <div className="cv-categories filter-set">
           {categoryList.map(category => {
             return (
               <button
-                onClick={() => this.setState({ currentFilter: category })}
+                className="filter-button"
+                onClick={() => this.setFilter(category)}
               >
                 {category}
               </button>
             )
           })}
         </div>
-        <div className="cv-entries">
+        <div className="cv-content">
           <h4 className="cv-category-title">{this.state.currentFilter}</h4>
           {entries.map(entry => {
             return (
