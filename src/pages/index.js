@@ -75,23 +75,27 @@ export default ({ data }) => {
   return (
     <Layout>
       {/* <SEO title="Home" /> */}
-      {home.map(({ node: page }) => {
-        return (
-          <div>
-            <h1>{RichText.asText(page.page_title)}</h1>
-            {page.introduction.map(el => {
-              return <p>{el.text}</p>
-            })}
-          </div>
-        )
-      })}
+      <section className="info">
+        {home.map(({ node: page }) => {
+          return (
+            <div>
+              <h1>{RichText.asText(page.page_title)}</h1>
+              <RichText
+                render={page.introduction}
+                linkResolver={linkResolver}
+                Component="div"
+                className="introduction"
+              />
+            </div>
+          )
+        })}
 
-      {bio.map(({ node: n }) => {
-        return (
-          <Link to={linkResolver(n._meta)}>{RichText.asText(n.title)}</Link>
-        )
-      })}
-
+        {bio.map(({ node: n }) => {
+          return (
+            <Link to={linkResolver(n._meta)}>{RichText.asText(n.title)}</Link>
+          )
+        })}
+      </section>
       <Projectshowcase data={projects} colors={colors} />
     </Layout>
   )

@@ -4,6 +4,7 @@ import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
 
 import Layout from "../components/layout"
+import { linkResolver } from "../utils/linkResolver"
 
 export const query = graphql`
   query ProjectQuery($uid: String) {
@@ -51,38 +52,36 @@ export default ({ data }) => {
       <Link to="/">BACK TO HOME</Link>
       {project.map(({ node: p }) => {
         return (
-          <div className="project" key={p._meta.id}>
-            <h1>{RichText.asText(p.project_title)}</h1>
-            <div className="project-description">
-              {p.project_text.map(el => {
-                if (el.type === "paragraph") {
-                  return <p>{el.text}</p>
-                } else if (el.type === "embed") {
-                  return (
-                    <div dangerouslySetInnerHTML={{ __html: el.oembed.html }} />
-                  )
-                } else {
-                  return null
-                }
-              })}
-              <div>
-                <h3>{RichText.asText(p.info_credits_title)}</h3>
-                {p.info_credits.map(el => {
-                  return (
-                    <div>
-                      <p className="leftColumn">
-                        {RichText.asText(el.leftColumn)}
-                      </p>
-                      <p className="rightColumn">
-                        {RichText.asText(el.rightColumn)}
-                      </p>
-                    </div>
-                  )
-                })}
+          <>
+            <section className="project info" key={p._meta.id}>
+              <h1>{RichText.asText(p.project_title)}</h1>
+              <div className="project-description">
+                <RichText render={p.project_text} linkResolver={linkResolver} />
+                <div className="project-description-info">
+                  <h3>{RichText.asText(p.info_credits_title)}</h3>
+                  {p.info_credits.map(el => {
+                    return (
+                      <>
+                        <RichText
+                          render={el.leftColumn}
+                          linkResolver={linkResolver}
+                          className="leftColumn"
+                          Component="span"
+                        />
+                        <RichText
+                          render={el.rightColumn}
+                          linkResolver={linkResolver}
+                          className="rightColumn"
+                          Component="span"
+                        />
+                      </>
+                    )
+                  })}
+                </div>
               </div>
-            </div>
+            </section>
 
-            <div className="proj-images images">
+            <section className="proj-images images">
               {p.images.map(({ project_imageSharp: i }) => {
                 return (
                   <div className="image">
@@ -90,8 +89,8 @@ export default ({ data }) => {
                   </div>
                 )
               })}
-            </div>
-          </div>
+            </section>
+          </>
         )
       })}
     </Layout>

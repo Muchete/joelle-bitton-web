@@ -2,10 +2,10 @@ import React from "react"
 import { RichText } from "prismic-reactjs"
 import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
-// import { linkResolver } from "../utils/linkResolver"
 
 import Layout from "../components/layout"
 import CV from "../components/cv"
+import { linkResolver } from "../utils/linkResolver"
 
 export const query = graphql`
   query Bio {
@@ -55,36 +55,29 @@ export default ({ data }) => {
       <Link to="/">BACK TO HOME</Link>
       {bio_data.map(({ node: bio }) => {
         return (
-          <div>
-            <h1>{RichText.asText(bio.title)}</h1>
-            <div className="bio-description">
-              {bio.about_text.map(el => {
-                return <p>{el.text}</p>
-              })}
-            </div>
-            <div className="links">
-              {bio.links.map(({ link: l }) => {
-                return (
-                  <div className="link">
-                    <a href={l[0].spans[0].data.url}>{l[0].text}</a>
-                  </div>
-                )
-              })}
-            </div>
-            <div className="cv">
-              <h3>{RichText.asText(bio.cv_title)}</h3>
-            </div>
-            <CV data={bio.cv} />
-            <div className="bio-images images">
+          <>
+            <section className="bio info">
+              <h1>{RichText.asText(bio.title)}</h1>
+              <div className="bio-description">
+                <RichText render={bio.about_text} linkResolver={linkResolver} />
+              </div>
+              <div className="bio-links">
+                {bio.links.map(({ link: l }) => {
+                  return <RichText render={l} linkResolver={linkResolver} />
+                })}
+              </div>
+            </section>
+            <CV data={bio.cv} title={RichText.asText(bio.cv_title)} />
+            <section className="bio-images images">
               {bio.images.map(({ imageSharp: i }) => {
                 return (
-                  <div className="image">
+                  <div className="bio-image image">
                     <Img fluid={i.childImageSharp.fluid} />
                   </div>
                 )
               })}
-            </div>
-          </div>
+            </section>
+          </>
         )
       })}
     </Layout>

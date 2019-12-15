@@ -23,6 +23,12 @@ class Projectshowcase extends Component {
     this.setState({ currentFilter: newFilter })
   }
 
+  activeHandler(tag) {
+    let classnames = "filter-button"
+    if (this.state.currentFilter === tag) classnames += " active"
+    return classnames
+  }
+
   render() {
     if (this.state.currentFilter) {
       projects = this.props.data.filter(({ node: project }) => {
@@ -34,12 +40,12 @@ class Projectshowcase extends Component {
     // }
 
     return (
-      <div className="">
+      <section className="showcase">
         <div className="projects-categories filter-set">
           {tagList.map(tag => {
             return (
               <button
-                className="filter-button"
+                className={this.activeHandler(tag)}
                 onClick={() => this.setFilter(tag)}
               >
                 {tag}
@@ -82,7 +88,7 @@ class Projectshowcase extends Component {
             </div>
           )
         })}
-      </div>
+      </section>
     )
   }
 }

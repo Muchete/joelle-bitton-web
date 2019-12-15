@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { RichText } from "prismic-reactjs"
+import { linkResolver } from "../utils/linkResolver"
 
 let categoryList = []
 let entries
@@ -22,6 +23,12 @@ class CV extends Component {
     this.setState({ currentFilter: newFilter })
   }
 
+  activeHandler(tag) {
+    let classnames = "filter-button"
+    if (this.state.currentFilter === tag) classnames += " active"
+    return classnames
+  }
+
   render() {
     if (this.state.currentFilter) {
       entries = this.props.data.filter(entry => {
@@ -32,12 +39,13 @@ class CV extends Component {
     }
 
     return (
-      <div className="cv">
+      <section className="cv">
+        <h3 className="cv-title">{this.props.title}</h3>
         <div className="cv-categories filter-set">
           {categoryList.map(category => {
             return (
               <button
-                className="filter-button"
+                className={this.activeHandler(category)}
                 onClick={() => this.setFilter(category)}
               >
                 {category}
@@ -50,15 +58,23 @@ class CV extends Component {
           {entries.map(entry => {
             return (
               <div className="cv-entry">
-                <div>
-                  <p className="leftColumn">{RichText.asText(entry.year)}</p>
-                  <p className="rightColumn">{RichText.asText(entry.text)}</p>
-                </div>
+                <RichText
+                  render={entry.year}
+                  linkResolver={linkResolver}
+                  className="leftColumn"
+                  Component="span"
+                />
+                <RichText
+                  render={entry.text}
+                  linkResolver={linkResolver}
+                  className="rightColumn"
+                  Component="span"
+                />
               </div>
             )
           })}
         </div>
-      </div>
+      </section>
     )
   }
 }
