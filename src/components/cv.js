@@ -24,8 +24,8 @@ class CV extends Component {
   }
 
   activeHandler(tag) {
-    let classnames = "filter-button"
-    if (this.state.currentFilter === tag) classnames += " active"
+    let classnames = "filter__item"
+    if (this.state.currentFilter === tag) classnames += " filter__item--active"
     return classnames
   }
 

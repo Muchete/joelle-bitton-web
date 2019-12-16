@@ -58,7 +58,12 @@ class Projects extends Component {
             <div className="project" key={project._meta.id}>
               <Link className="project__link" to={linkResolver(project._meta)}>
                 <div className="project__image">
-                  <div className="project__image-background" style={{ backgroundColor: this.props.colors[project.cover_color] }}>
+                  <div
+                    className="project__image-background"
+                    style={{
+                      backgroundColor: this.props.colors[project.cover_color],
+                    }}
+                  >
                     <Img
                       fluid={project.cover_imageSharp.childImageSharp.fluid}
                       alt={project.cover_image.alt}

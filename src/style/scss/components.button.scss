@@ -1,68 +1,81 @@
-$c: 'button';
-$c-b-btn-padding-vertical: 0.5em;
-$c-b-btn-padding-horizontal: 1em;
+$c: "filter__item";
+$c-b-btn-padding-vertical: 8px;
+$c-b-btn-padding-horizontal: 10px;
 $c-b-btn-border-radius: 0px;
 $c-b-btn-color: transparent;
-$c-b-btn-color-border: white;
-$c-b-btn-color-text: white;
+$c-b-btn-color-border: black;
+$c-b-btn-color-text: black;
+
+$c-b-btn-active-color: black;
+$c-b-btn-active-color-text: white;
+
 .#{$c} {
-    @include hocus-focus($type: textcolor, $color: $c-b-btn-color-text);
-    @include reset-button;
-    @include typo-body;
-    display: inline-block;
-    width: auto;
-    max-width: 100%;
-    text-align: center;
-    padding: $c-b-btn-padding-vertical $c-b-btn-padding-horizontal;
+  //   @include hocus-focus($type: textcolor, $color: $c-b-btn-color-text);
+  @include reset-button;
+  @include typo-body;
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  text-align: center;
+  padding: $c-b-btn-padding-vertical $c-b-btn-padding-horizontal;
+  color: $c-b-btn-color-text;
+  text-decoration: none;
+  background-color: $c-b-btn-color;
+  border-radius: $c-b-btn-border-radius;
+  border: 1px solid $c-b-btn-color-border;
+
+  //@include mq($from: desktop) {
+  //    border: 3px solid $c-b-btn-color-border;
+  //}
+
+  //   @include spacing(bottom, small);
+  //add spacing manually
+  margin-right: 10px;
+  margin-bottom: 10px;
+
+  &--active {
+    background-color: $c-b-btn-active-color;
+    color: $c-b-btn-active-color-text;
+  }
+
+  &.is-disabled {
+    cursor: not-allowed;
+    color: lighten(grayscale($c-b-btn-color-text), 25%);
+    background-color: lighten(grayscale($c-b-btn-color), 20%);
+
+    &:hover {
+      color: lighten(grayscale($c-b-btn-color-text), 75%);
+    }
+  }
+
+  // A naked button
+  &.is-naked {
     color: $c-b-btn-color-text;
+    text-align: center;
+    padding: 0;
     text-decoration: none;
-    background-color: $c-b-btn-color;
-    border-radius: $c-b-btn-border-radius;
-    border: 2px solid $c-b-btn-color-border;
-    @include spacing(bottom, small);
+    background-color: transparent;
+    border: 0;
 
-    //@include mq($from: desktop) {
-    //    border: 3px solid $c-b-btn-color-border;
-    //}
-
-    &.is-disabled {
-        cursor: not-allowed;
-        color: lighten(grayscale($c-b-btn-color-text), 25%);
-        background-color: lighten(grayscale($c-b-btn-color), 20%);
-
-        &:hover {
-            color: lighten(grayscale($c-b-btn-color-text), 75%);
-        }
+    &:hover {
+      color: $c-b-btn-color;
     }
 
-    // A naked button
-    &.is-naked {
-        color: $c-b-btn-color-text;
-        text-align: center;
-        padding: 0;
-        text-decoration: none;
-        background-color: transparent;
-        border: 0;
+    & a {
+      color: $c-b-btn-color-text;
 
-        &:hover {
-            color: $c-b-btn-color;
-        }
-
-        & a {
-            color: $c-b-btn-color-text;
-
-            &:hover {
-                color: $c-b-btn-color;
-            }
-        }
-
-        &.is-disabled,
-        &:disabled {
-            color: lighten(grayscale($c-b-btn-color-text), 50%);
-
-            &:hover {
-                color: lighten(grayscale($c-b-btn-color-text), 50%);
-            }
-        }
+      &:hover {
+        color: $c-b-btn-color;
+      }
     }
+
+    &.is-disabled,
+    &:disabled {
+      color: lighten(grayscale($c-b-btn-color-text), 50%);
+
+      &:hover {
+        color: lighten(grayscale($c-b-btn-color-text), 50%);
+      }
+    }
+  }
 }
