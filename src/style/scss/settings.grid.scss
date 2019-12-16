@@ -3,7 +3,6 @@
  * grid
  * -----------------------------------------------------------------------
  *
- * Settings for the Y7K Implementation of susy grid.
  */
 
 
@@ -23,16 +22,11 @@
  * any kind of unit.
  */
 $grid-gutters: (
-    phone: 2.2vw,
-    phablet: 2vw,
-    tablet: 1.8vw,
-    desktop: 1.6vw,
-    big-desktop: 1.4vw
-    //phone: 2.2vw,
-    //phablet: 1.5vw,
-    //tablet: 1.3vw,
-    //desktop: 1vw,
-    //big-desktop: 1vw
+    phone: 3px,
+    phablet: 3px,
+    tablet: 3px,
+    desktop: 3px,
+    big-desktop: 3px
 );
 
 
