@@ -24,8 +24,8 @@ $global-font-size: 16px;
 $global-line-height: 20px;
 
 // Font Families
-$font-default: Studio Grotesk, Helvetica, Arial, sans-serif;
-$font-heading: Studio Grotesk, Helvetica, Arial, sans-serif;
+$font-default: Gt-America-Regular, Helvetica, Arial, sans-serif;
+$font-heading: Gt-America-Regular, Helvetica, Arial, sans-serif;
 
 // Example Typography definitions
 @mixin typo-small() {
@@ -35,8 +35,7 @@ $font-heading: Studio Grotesk, Helvetica, Arial, sans-serif;
 }
 
 @mixin typo-body() {
-    @include font-size(18px);
-    @include resp(font-size,(phone: 18px, phone-plus: 20px, tablet: 22px, desktop: 24px));
+    @include font-size(16px);
     font-family: $font-default;
 }
 
@@ -50,7 +49,7 @@ $font-heading: Studio Grotesk, Helvetica, Arial, sans-serif;
     font-weight: normal;
 }
 
-@mixin typo-heading() {
+@mixin typo-heading-4() {
     // Fluid font size
     @include font-size(48px, $line-height: 1.15);
     @include resp(font-size, (phone: 26px, phone-plus: 30px, phablet: 36px, tablet: 42px, desktop: 48px));
@@ -60,10 +59,27 @@ $font-heading: Studio Grotesk, Helvetica, Arial, sans-serif;
     font-weight: normal;
 }
 
+@mixin typo-heading-3() {
+    @include font-size(48px, $line-height: 1.15);
+    @include resp(font-size, (phone: 26px, phone-plus: 30px, phablet: 36px, tablet: 42px, desktop: 48px));
+
+    font-family: $font-heading;
+    letter-spacing: -0.01em;
+    font-weight: normal;
+}
+
+@mixin typo-heading() {
+    @include font-size(19px, $line-height: 1.1);
+    font-family: $font-heading;
+    letter-spacing: -0.01em;
+    font-weight: normal;
+    @include mq($from: tablet) {
+        @include font-size(21px, $line-height: 1.1);
+    }
+}
+
 @mixin typo-heading-large() {
-    // Fluid font size
-    @include font-size(72px, $line-height: 1.1);
-    @include resp(font-size, (phone: 36px, phablet: 45px, tablet: 54px, desktop: 72px));
+    @include font-size(29px, $line-height: 1.1);
 
     font-family: $font-heading;
     letter-spacing: -0.01em;
