@@ -7,13 +7,12 @@
  * Avoid google fonts if possible, due to privacy concerns
  */
 
-
 // @include font-face(MuseoSans100, "/build/fonts/museosans/museosans_100-webfont");
 
 @font-face {
-  font-family: 'Studio Grotesk';
-  src: url('/build/fonts/studiogrotesk/studiogrotesk-regular-webfont.woff2') format('woff2'),
-  url('/build/fonts/studiogrotesk/studiogrotesk-regular-webfont.woff') format('woff');
+  font-family: "GT-America-Regular";
+  src: url("../fonts/GT-America-Regular.woff2") format("woff2"),
+    url("../fonts/GT-America-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
