@@ -7,7 +7,7 @@ import { linkResolver } from "../utils/linkResolver"
 let tagList = []
 let projects
 
-class Projectshowcase extends Component {
+class Projects extends Component {
   constructor(props) {
     super(props)
     this.state = { currentFilter: "Main Works" }
@@ -24,8 +24,8 @@ class Projectshowcase extends Component {
   }
 
   activeHandler(tag) {
-    let classnames = "filter-button"
-    if (this.state.currentFilter === tag) classnames += " active"
+    let classnames = "filter__item"
+    if (this.state.currentFilter === tag) classnames += " filter__item--active"
     return classnames
   }
 
@@ -40,8 +40,8 @@ class Projectshowcase extends Component {
     // }
 
     return (
-      <section className="showcase">
-        <div className="projects-categories filter-set">
+      <section className="projects">
+        <div className="filter">
           {tagList.map(tag => {
             return (
               <button
@@ -55,32 +55,17 @@ class Projectshowcase extends Component {
         </div>
         {projects.map(({ node: project }) => {
           return (
-            <div
-              className="project"
-              key={project._meta.id}
-              style={{ marginTop: "20px" }}
-            >
-              <Link className="project-link" to={linkResolver(project._meta)}>
-                <div className="project-image">
-                  <div
-                    className="project-image-background"
-                    style={{
-                      backgroundColor: this.props.colors[project.cover_color],
-                      lineHeight: 0,
-                      width: "500px",
-                    }}
-                  >
+            <div className="project" key={project._meta.id}>
+              <Link className="project__link" to={linkResolver(project._meta)}>
+                <div className="project__image">
+                  <div className="project__image-background" style={{ backgroundColor: this.props.colors[project.cover_color] }}>
                     <Img
                       fluid={project.cover_imageSharp.childImageSharp.fluid}
                       alt={project.cover_image.alt}
-                      style={{
-                        // mixBlendMode: "multiply",
-                        opacity: 0.7,
-                        filter: "grayscale(100%)",
-                      }}
+                      style={{ opacity: 0.7, filter: "grayscale(100%)" }}
                     />
                   </div>
-                  <span className="project-title">
+                  <span className="project__title">
                     {RichText.asText(project.project_title)}
                   </span>
                 </div>
@@ -93,4 +78,4 @@ class Projectshowcase extends Component {
   }
 }
 
-export default Projectshowcase
+export default Projects

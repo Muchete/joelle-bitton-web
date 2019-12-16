@@ -5,7 +5,7 @@ import { linkResolver } from "../utils/linkResolver"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Projectshowcase from "../components/projectshowcase"
+import Projects from "../components/projects"
 
 export const query = graphql`
   query home {
@@ -99,7 +99,7 @@ export default ({ data }) => {
           )
         })}
       </section>
-      <Projectshowcase data={projects} colors={colors} />
+      <Projects data={projects} colors={colors} />
     </Layout>
   )
 }
