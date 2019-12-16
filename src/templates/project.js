@@ -4,10 +4,18 @@ import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
 
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 import { linkResolver } from "../utils/linkResolver"
 
 export const query = graphql`
-  query ProjectQuery($uid: String) {
+  query projectQuery($uid: String) {
+    site {
+      siteMetadata {
+        title
+        description
+        author
+      }
+    }
     prismic {
       allProjects(uid: $uid) {
         edges {
@@ -49,11 +57,12 @@ export default ({ data }) => {
 
   return (
     <Layout>
-      <Link to="/">BACK TO HOME</Link>
       {project.map(({ node: p }) => {
         return (
           <>
+            <SEO title={RichText.asText(p.project_title)} site={data.site} />
             <section className="project info" key={p._meta.id}>
+              <Link to="/">BACK TO HOME</Link>
               <h1>{RichText.asText(p.project_title)}</h1>
               <div className="project-description">
                 <RichText render={p.project_text} linkResolver={linkResolver} />

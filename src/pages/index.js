@@ -8,9 +8,12 @@ import SEO from "../components/seo"
 import Projectshowcase from "../components/projectshowcase"
 
 export const query = graphql`
-  {
+  query home {
     site {
       siteMetadata {
+        title
+        description
+        author
         colors {
           Red
           Turquoise
@@ -74,11 +77,11 @@ export default ({ data }) => {
 
   return (
     <Layout>
-      {/* <SEO title="Home" /> */}
+      <SEO title="Home" site={data.site} />
       <section className="info">
         {home.map(({ node: page }) => {
           return (
-            <div>
+            <>
               <h1>{RichText.asText(page.page_title)}</h1>
               <RichText
                 render={page.introduction}
@@ -86,7 +89,7 @@ export default ({ data }) => {
                 Component="div"
                 className="introduction"
               />
-            </div>
+            </>
           )
         })}
 

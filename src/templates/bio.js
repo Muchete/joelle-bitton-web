@@ -5,10 +5,18 @@ import Img from "gatsby-image"
 
 import Layout from "../components/layout"
 import CV from "../components/cv"
+import SEO from "../components/seo"
 import { linkResolver } from "../utils/linkResolver"
 
 export const query = graphql`
-  query Bio {
+  query bio {
+    site {
+      siteMetadata {
+        title
+        description
+        author
+      }
+    }
     prismic {
       allBios {
         edges {
@@ -52,11 +60,12 @@ export default ({ data }) => {
 
   return (
     <Layout>
-      <Link to="/">BACK TO HOME</Link>
       {bio_data.map(({ node: bio }) => {
         return (
           <>
+            <SEO title={RichText.asText(bio.title)} site={data.site} />
             <section className="bio info">
+              <Link to="/">BACK TO HOME</Link>
               <h1>{RichText.asText(bio.title)}</h1>
               <div className="bio-description">
                 <RichText render={bio.about_text} linkResolver={linkResolver} />
