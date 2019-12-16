@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { RichText } from "prismic-reactjs"
 import { linkResolver } from "../utils/linkResolver"
+import Arrowsign from "../components/arrowsign"
 
 let categoryList = []
 let entries
@@ -49,6 +50,7 @@ class CV extends Component {
                 onClick={() => this.setFilter(category)}
               >
                 {category}
+                <Arrowsign />
               </button>
             )
           })}
