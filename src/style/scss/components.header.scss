@@ -4,8 +4,20 @@
   @include spacing(left, small);
   margin-bottom: 14px;
 
+  h1 {
+    margin-top: 0;
+  }
+
   &__homeLink {
     padding-left: 5px;
     padding-right: 8px;
+  }
+
+  @include mq($from: phablet) {
+    max-width: 200px;
+
+    h1 {
+      float: left;
+    }
   }
 }

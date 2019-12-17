@@ -1,0 +1,33 @@
+.bio {
+  @include spacing(right, small);
+  @include spacing(left, small);
+  @include spacing(bottom, medium);
+
+  &__description {
+    margin-bottom: 20px;
+
+    p {
+      margin-bottom: 24px;
+    }
+    p:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    margin-right: 18px;
+  }
+
+  @include mq($from: phablet) {
+    &__description {
+      padding-top: 5px;
+      margin-left: 205px;
+      max-width: 695px;
+    }
+    &__links {
+      margin-left: 205px;
+      max-width: 695px;
+    }
+  }
+}

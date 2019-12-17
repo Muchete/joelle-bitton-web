@@ -1,0 +1,5 @@
+.bio__images {
+  @include spacing(right, small);
+  @include spacing(left, small);
+  @include spacing(bottom, medium);
+}

@@ -78,18 +78,20 @@ export default ({ data }) => {
   return (
     <Layout>
       <SEO title="Home" site={data.site} />
+      <section className="header">
+        {home.map(({ node: page }) => {
+          return <h1>{RichText.asText(page.page_title)}</h1>
+        })}
+      </section>
       <section className="info">
         {home.map(({ node: page }) => {
           return (
-            <>
-              <h1>{RichText.asText(page.page_title)}</h1>
-              <RichText
-                render={page.introduction}
-                linkResolver={linkResolver}
-                Component="div"
-                className="introduction"
-              />
-            </>
+            <RichText
+              render={page.introduction}
+              linkResolver={linkResolver}
+              Component="div"
+              className="introduction"
+            />
           )
         })}
 

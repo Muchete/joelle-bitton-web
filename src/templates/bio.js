@@ -79,7 +79,11 @@ export default ({ data }) => {
               </div>
               <div className="bio__links">
                 {bio.links.map(({ link: l }) => {
-                  return <RichText render={l} linkResolver={linkResolver} />
+                  return (
+                    <span className="bio__link">
+                      <RichText render={l} linkResolver={linkResolver} />
+                    </span>
+                  )
                 })}
               </div>
             </section>

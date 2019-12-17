@@ -5,21 +5,13 @@ section.info {
   @include spacing(right, small);
   @include spacing(bottom, medium);
 
-  h1 {
-    margin-top: 0;
-  }
-
   .introduction {
     margin-bottom: 20px;
   }
 
   @include mq($from: phablet) {
-    h1 {
-      float: left;
-    }
-
     .introduction {
-      margin-top: 5px;
+      padding-top: 5px;
     }
 
     .introduction,

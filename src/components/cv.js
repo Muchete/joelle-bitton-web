@@ -41,8 +41,8 @@ class CV extends Component {
 
     return (
       <section className="cv">
-        <h3 className="cv-title">{this.props.title}</h3>
-        <div className="cv-categories filter-set">
+        <h3 className="cv__title">{this.props.title}</h3>
+        <div className="cv__categories">
           {categoryList.map(category => {
             return (
               <button
@@ -55,21 +55,21 @@ class CV extends Component {
             )
           })}
         </div>
-        <div className="cv-content">
-          <h4 className="cv-category-title">{this.state.currentFilter}</h4>
+        <div className="cv__content">
+          <h4 className="cv__content__category">{this.state.currentFilter}</h4>
           {entries.map(entry => {
             return (
-              <div className="cv-entry">
+              <div className="cv__content__entry">
                 <RichText
                   render={entry.year}
                   linkResolver={linkResolver}
-                  className="leftColumn"
+                  className="--left"
                   Component="span"
                 />
                 <RichText
                   render={entry.text}
                   linkResolver={linkResolver}
-                  className="rightColumn"
+                  className="--right"
                   Component="span"
                 />
               </div>
