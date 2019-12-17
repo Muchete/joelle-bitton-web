@@ -65,13 +65,15 @@ export default ({ data }) => {
         return (
           <>
             <SEO title={RichText.asText(bio.title)} site={data.site} />
-            <section className="bio__info">
+            <section className="header">
               <h1>
-                <Link to="/">
+                <Link className="header__homeLink" to="/">
                   <ArrowHome />
                 </Link>
                 {RichText.asText(bio.title)}
               </h1>
+            </section>
+            <section className="bio">
               <div className="bio__description">
                 <RichText render={bio.about_text} linkResolver={linkResolver} />
               </div>
@@ -81,7 +83,6 @@ export default ({ data }) => {
                 })}
               </div>
             </section>
-            <CV data={bio.cv} title={RichText.asText(bio.cv_title)} />
             <section className="bio__images">
               {bio.images.map(({ imageSharp: i }) => {
                 return (
@@ -91,6 +92,7 @@ export default ({ data }) => {
                 )
               })}
             </section>
+            <CV data={bio.cv} title={RichText.asText(bio.cv_title)} />
           </>
         )
       })}
