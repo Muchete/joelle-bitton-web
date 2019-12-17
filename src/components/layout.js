@@ -15,13 +15,7 @@ const Layout = ({ children }) => {
   //   }
   // `)
 
-  return (
-    <>
-      <div className="dummy-wrap">
-        <main>{children}</main>
-      </div>
-    </>
-  )
+  return <main className="main">{children}</main>
 }
 
 Layout.propTypes = {
