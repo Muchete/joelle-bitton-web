@@ -1,0 +1,77 @@
+.cv {
+  &__title {
+    display: none;
+
+    @include mq($from: phablet) {
+      box-sizing: border-box;
+      @include spacing(left, small, true);
+      @include spacing(left, small);
+      display: inline-block;
+      float: left;
+      max-width: 33%;
+    }
+  }
+
+  &__categories {
+    @include spacing(left, small, true);
+    max-width: 100%;
+    overflow-x: scroll;
+    display: flex;
+    flex-wrap: nowrap;
+    flex: none;
+    margin-bottom: 14px;
+
+    @include mq($from: phablet) {
+      flex-wrap: wrap;
+      margin-left: 205px;
+      max-width: 695px;
+      margin-bottom: 4px;
+
+      .filter__item {
+        margin-bottom: 10px;
+      }
+    }
+
+    .filter__item {
+      margin-right: 10px; //NOT WORKING: HELP
+    }
+  }
+
+  &__content {
+    @include spacing(left, small);
+    @include spacing(right, small);
+
+    &__category {
+      margin-bottom: 20px;
+
+      @include mq($from: phablet) {
+        margin-left: 205px;
+        max-width: 695px;
+      }
+    }
+
+    &__entry {
+      display: flex;
+      align-items: stretch;
+      align-content: stretch;
+
+      margin-bottom: 20px;
+
+      @include mq($from: phablet) {
+        margin-left: 205px;
+        max-width: 695px;
+      }
+
+      span {
+        box-sizing: border-box;
+      }
+      .--left {
+        width: 25%;
+        padding-right: 10px;
+      }
+      .--right {
+        width: 75%;
+      }
+    }
+  }
+}

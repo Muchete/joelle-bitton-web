@@ -3,3 +3,10 @@
   @include spacing(left, small);
   @include spacing(bottom, medium);
 }
+
+.bio__image:first-of-type {
+  @include mq($from: phablet) {
+    margin-left: 205px;
+    max-width: 695px;
+  }
+}

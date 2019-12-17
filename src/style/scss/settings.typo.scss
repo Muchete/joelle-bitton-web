@@ -113,8 +113,18 @@ $font-heading: Gt-America-Regular, Helvetica, Arial, sans-serif;
   @include font-size(29px, $line-height: 1.1);
 
   font-family: $font-heading;
+  font-feature-settings: "pnum" on, "onum" on, "salt" on;
   letter-spacing: -0.01em;
   font-weight: normal;
   margin-top: 12px;
   margin-bottom: 10px;
+}
+
+@mixin typo-heading-medium() {
+  @include font-size(21px, $line-height: 1.1);
+
+  font-family: $font-heading;
+  font-feature-settings: "pnum" on, "onum" on, "salt" on;
+  letter-spacing: -0.01em;
+  font-weight: normal;
 }

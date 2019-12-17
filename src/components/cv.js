@@ -41,7 +41,7 @@ class CV extends Component {
 
     return (
       <section className="cv">
-        <h3 className="cv__title">{this.props.title}</h3>
+        <h2 className="cv__title">{this.props.title}</h2>
         <div className="cv__categories">
           {categoryList.map(category => {
             return (
@@ -56,7 +56,7 @@ class CV extends Component {
           })}
         </div>
         <div className="cv__content">
-          <h4 className="cv__content__category">{this.state.currentFilter}</h4>
+          <h2 className="cv__content__category">{this.state.currentFilter}</h2>
           {entries.map(entry => {
             return (
               <div className="cv__content__entry">
