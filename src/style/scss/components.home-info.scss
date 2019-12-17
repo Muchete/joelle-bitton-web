@@ -13,11 +13,21 @@ section.info {
     .introduction {
       padding-top: 5px;
     }
+  }
 
+  @include mq($from: phablet, $until: desktop) {
     .introduction,
     .bio__link {
-      margin-left: 205px;
-      max-width: 695px;
+      margin-left: 33%;
+      max-width: 66%;
+    }
+  }
+
+  @include mq($from: desktop) {
+    .introduction,
+    .bio__link {
+      margin-left: 16.6%;
+      max-width: 50%;
     }
   }
 }

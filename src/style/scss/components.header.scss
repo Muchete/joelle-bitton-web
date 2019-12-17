@@ -6,6 +6,7 @@
 
   h1 {
     margin-top: 0;
+    word-break: break-all;
   }
 
   &__homeLink {
@@ -14,10 +15,13 @@
   }
 
   @include mq($from: phablet) {
-    max-width: 200px;
+    max-width: 33.3%;
 
     h1 {
       float: left;
     }
+  }
+  @include mq($from: desktop) {
+    max-width: calc(16.6% - 10px);
   }
 }

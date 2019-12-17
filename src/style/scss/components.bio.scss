@@ -22,18 +22,28 @@
   @include mq($from: phablet) {
     &__description {
       padding-top: 5px;
-      margin-left: 205px;
-      max-width: 695px;
+    }
+  }
+
+  @include mq($from: phablet, $until: desktop) {
+    &__description {
+      margin-left: 33%;
+      max-width: 66%;
     }
     &__links {
-      margin-left: 205px;
-      max-width: 695px;
+      margin-left: 33%;
+      max-width: 66%;
     }
   }
 
   @include mq($from: desktop) {
-    box-sizing: border-box;
-    @include spacing(right, small, true);
-    width: 50%;
+    &__description {
+      margin-left: 16.6%;
+      max-width: 33.3%;
+    }
+    &__links {
+      margin-left: 16.6%;
+      max-width: 33.3%;
+    }
   }
 }

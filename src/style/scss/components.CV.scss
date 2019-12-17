@@ -1,16 +1,19 @@
 .cv {
+  @include mq($from: phablet) {
+    @include spacing(left, small);
+    @include spacing(right, small);
+  }
+
   &__title {
     display: none;
 
     @include mq($from: phablet) {
-      box-sizing: border-box;
-      @include spacing(left, small, true);
-      @include spacing(left, small);
       display: inline-block;
       float: left;
     }
 
     @include mq($from: desktop) {
+      max-width: 16.6%;
     }
   }
 
@@ -31,13 +34,22 @@
 
     @include mq($from: phablet) {
       flex-wrap: wrap;
-      margin-left: 205px;
-      max-width: 695px;
+      padding-left: 0;
       margin-bottom: 4px;
 
       .filter__item {
         margin-bottom: 10px;
       }
+    }
+
+    @include mq($from: phablet, $until: desktop) {
+      margin-left: 33%;
+      max-width: 66%;
+    }
+
+    @include mq($from: desktop) {
+      margin-left: 16.6%;
+      max-width: 33.3%;
     }
 
     .filter__item {
@@ -46,15 +58,17 @@
   }
 
   &__content {
-    @include spacing(left, small);
-    @include spacing(right, small);
+    @include mq($until: phablet) {
+      @include spacing(left, small);
+      @include spacing(right, small);
+    }
 
     &__category {
       margin-bottom: 20px;
 
-      @include mq($from: phablet) {
-        margin-left: 205px;
-        max-width: 695px;
+      @include mq($from: phablet, $until: desktop) {
+        margin-left: 33%;
+        max-width: 66%;
       }
     }
 
@@ -65,9 +79,9 @@
 
       margin-bottom: 20px;
 
-      @include mq($from: phablet) {
-        margin-left: 205px;
-        max-width: 695px;
+      @include mq($from: phablet, $until: desktop) {
+        margin-left: 33%;
+        max-width: 66%;
       }
 
       span {
@@ -81,10 +95,11 @@
         width: 75%;
       }
     }
-  }
 
-  @include mq($from: desktop) {
-    box-sizing: border-box;
-    width: 50%;
+    @include mq($from: desktop) {
+      margin-left: 16.6%;
+      box-sizing: border-box;
+      max-width: 33.3%;
+    }
   }
 }
