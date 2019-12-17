@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 
-class Arrowsign extends Component {
+class ArrowCV extends Component {
   render() {
     return (
       <svg
@@ -21,4 +21,4 @@ class Arrowsign extends Component {
   }
 }
 
-export default Arrowsign
+export default ArrowCV

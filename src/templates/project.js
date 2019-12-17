@@ -5,6 +5,7 @@ import Img from "gatsby-image"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import ArrowHome from "../components/arrowHome"
 import { linkResolver } from "../utils/linkResolver"
 
 export const query = graphql`
@@ -62,8 +63,12 @@ export default ({ data }) => {
           <>
             <SEO title={RichText.asText(p.project_title)} site={data.site} />
             <section className="project__header" key={p._meta.id}>
-              <Link to="/">BACK TO HOME</Link>
-              <h1>{RichText.asText(p.project_title)}</h1>
+              <h1>
+                <Link to="/">
+                  <ArrowHome />
+                </Link>
+                {RichText.asText(p.project_title)}
+              </h1>
             </section>
             <section className="project__images">
               {p.images.map(({ project_imageSharp: i }) => {

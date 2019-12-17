@@ -5,32 +5,38 @@
  *
  * Use this spacing settings for the @include spacing[s] mixin
  *
- * @link      https://y7k.com
- * @licence   MIT
- * @version   1.0.0
  */
 
-
-$space-small: (
-    phone: 15px,
-    tablet: 20px,
-    desktop: 20px,
+//FIX! lg MUCHI
+$space-topSpace: (
+  phone: 12px,
+  tablet: 32px,
+  desktop: 32px,
 );
 
+//FIX! lg MUCHI
+$space-small: (
+  phone: 10px,
+  tablet: 20px,
+  desktop: 20px,
+);
+
+//FIX! lg MUCHI
 $space-medium: (
-    phone: 30px,
-    tablet: 40px,
-    desktop: 40px,
+  phone: 30px,
+  tablet: 40px,
+  desktop: 40px,
 );
 
 $space-large: (
-    phone: 60px,
-    tablet: 80px,
-    desktop: 100px,
+  phone: 60px,
+  tablet: 80px,
+  desktop: 100px,
 );
 
 $spacings: (
-    small: $space-small,
-    medium: $space-medium,
-    large: $space-large,
+  small: $space-small,
+  medium: $space-medium,
+  large: $space-large,
+  topSpace: $space-topSpace,
 );

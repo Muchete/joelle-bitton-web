@@ -1,0 +1,31 @@
+section.info {
+  //   margin: 0 10px 30px 10px;
+  @include spacing(top, topSpace);
+  @include spacing(left, small);
+  @include spacing(right, small);
+  @include spacing(bottom, medium);
+
+  h1 {
+    margin-top: 0;
+  }
+
+  .introduction {
+    margin-bottom: 20px;
+  }
+
+  @include mq($from: phablet) {
+    h1 {
+      float: left;
+    }
+
+    .introduction {
+      margin-top: 5px;
+    }
+
+    .introduction,
+    .bio__link {
+      margin-left: 205px;
+      max-width: 695px;
+    }
+  }
+}

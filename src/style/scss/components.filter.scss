@@ -15,6 +15,10 @@
   @include mq($from: phablet) {
     position: initial;
     padding: 0;
+    margin-bottom: 20px;
+
+    @include spacing(left, small);
+    @include spacing(right, small);
   }
 
   //no border, except for first one

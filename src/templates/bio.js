@@ -5,6 +5,7 @@ import Img from "gatsby-image"
 
 import Layout from "../components/layout"
 import CV from "../components/cv"
+import ArrowHome from "../components/arrowHome"
 import SEO from "../components/seo"
 import { linkResolver } from "../utils/linkResolver"
 
@@ -65,8 +66,12 @@ export default ({ data }) => {
           <>
             <SEO title={RichText.asText(bio.title)} site={data.site} />
             <section className="bio__info">
-              <Link to="/">BACK TO HOME</Link>
-              <h1>{RichText.asText(bio.title)}</h1>
+              <h1>
+                <Link to="/">
+                  <ArrowHome />
+                </Link>
+                {RichText.asText(bio.title)}
+              </h1>
               <div className="bio__description">
                 <RichText render={bio.about_text} linkResolver={linkResolver} />
               </div>

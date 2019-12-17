@@ -24,61 +24,97 @@ $font-heading: Gt-America-Regular, Helvetica, Arial, sans-serif;
 
 // Example Typography definitions
 @mixin typo-small() {
-    @include font-size(14px, $line-height: 1.25);
-    @include resp(font-size,(phone: 16px, phone-plus: 18px, tablet: 18px, desktop: 19px));
-    font-family: $font-default;
+  @include font-size(14px, $line-height: 1.25);
+  @include resp(
+    font-size,
+    (
+      phone: 16px,
+      phone-plus: 18px,
+      tablet: 18px,
+      desktop: 19px,
+    )
+  );
+  font-family: $font-default;
 }
 
 @mixin typo-body() {
-    @include font-size(16px);
-    font-family: $font-default;
-    font-feature-settings: 'pnum' on, 'onum' on, 'salt' on;
+  @include font-size(16px);
+  font-family: $font-default;
+  font-feature-settings: "pnum" on, "onum" on, "salt" on;
 }
 
 @mixin typo-heading-small() {
-    // Fluid font size
-    @include font-size(36px, $line-height: 1.2);
-    @include resp(font-size, (phone: 20px, phone-plus: 24px, phablet: 28px, tablet: 32px, desktop: 36px));
+  // Fluid font size
+  @include font-size(36px, $line-height: 1.2);
+  @include resp(
+    font-size,
+    (
+      phone: 20px,
+      phone-plus: 24px,
+      phablet: 28px,
+      tablet: 32px,
+      desktop: 36px,
+    )
+  );
 
-    font-family: $font-heading;
-    letter-spacing: -0.01em;
-    font-weight: normal;
+  font-family: $font-heading;
+  letter-spacing: -0.01em;
+  font-weight: normal;
 }
 
 @mixin typo-heading-4() {
-    // Fluid font size
-    @include font-size(48px, $line-height: 1.15);
-    @include resp(font-size, (phone: 26px, phone-plus: 30px, phablet: 36px, tablet: 42px, desktop: 48px));
+  // Fluid font size
+  @include font-size(48px, $line-height: 1.15);
+  @include resp(
+    font-size,
+    (
+      phone: 26px,
+      phone-plus: 30px,
+      phablet: 36px,
+      tablet: 42px,
+      desktop: 48px,
+    )
+  );
 
-    font-family: $font-heading;
-    letter-spacing: -0.01em;
-    font-weight: normal;
+  font-family: $font-heading;
+  letter-spacing: -0.01em;
+  font-weight: normal;
 }
 
 @mixin typo-heading-3() {
-    @include font-size(48px, $line-height: 1.15);
-    @include resp(font-size, (phone: 26px, phone-plus: 30px, phablet: 36px, tablet: 42px, desktop: 48px));
+  @include font-size(48px, $line-height: 1.15);
+  @include resp(
+    font-size,
+    (
+      phone: 26px,
+      phone-plus: 30px,
+      phablet: 36px,
+      tablet: 42px,
+      desktop: 48px,
+    )
+  );
 
-    font-family: $font-heading;
-    letter-spacing: -0.01em;
-    font-weight: normal;
+  font-family: $font-heading;
+  letter-spacing: -0.01em;
+  font-weight: normal;
 }
 
 @mixin typo-heading() {
-    @include font-size(19px, $line-height: 1.1);
-    font-family: $font-heading;
-    letter-spacing: -0.01em;
-    font-weight: normal;
-    @include mq($from: tablet) {
-        @include font-size(21px, $line-height: 1.1);
-    }
+  @include font-size(19px, $line-height: 1.1);
+  font-family: $font-heading;
+  letter-spacing: -0.01em;
+  font-weight: normal;
+  @include mq($from: tablet) {
+    @include font-size(21px, $line-height: 1.1);
+  }
 }
 
 @mixin typo-heading-large() {
-    @include font-size(29px, $line-height: 1.1);
+  @include font-size(29px, $line-height: 1.1);
 
-    font-family: $font-heading;
-    letter-spacing: -0.01em;
-    font-weight: normal;
+  font-family: $font-heading;
+  letter-spacing: -0.01em;
+  font-weight: normal;
+  margin-top: 12px;
+  margin-bottom: 10px;
 }
-

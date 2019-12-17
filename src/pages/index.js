@@ -95,7 +95,9 @@ export default ({ data }) => {
 
         {bio.map(({ node: n }) => {
           return (
-            <Link to={linkResolver(n._meta)}>{RichText.asText(n.title)}</Link>
+            <Link to={linkResolver(n._meta)} className="bio__link">
+              {RichText.asText(n.title)}
+            </Link>
           )
         })}
       </section>
