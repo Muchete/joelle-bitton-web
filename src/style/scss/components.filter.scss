@@ -12,6 +12,11 @@
   padding: 3px; //PADDING RIGHT IS STILL MISSING - HELP
   @include z-index(filters);
 
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   @include mq($from: phablet) {
     position: initial;
     padding: 0;

@@ -30,4 +30,10 @@
       max-width: 695px;
     }
   }
+
+  @include mq($from: desktop) {
+    box-sizing: border-box;
+    @include spacing(right, small, true);
+    width: 50%;
+  }
 }
