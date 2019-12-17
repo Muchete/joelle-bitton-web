@@ -64,23 +64,23 @@ export default ({ data }) => {
         return (
           <>
             <SEO title={RichText.asText(bio.title)} site={data.site} />
-            <section className="bio info">
+            <section className="bio__info">
               <Link to="/">BACK TO HOME</Link>
               <h1>{RichText.asText(bio.title)}</h1>
-              <div className="bio-description">
+              <div className="bio__description">
                 <RichText render={bio.about_text} linkResolver={linkResolver} />
               </div>
-              <div className="bio-links">
+              <div className="bio__links">
                 {bio.links.map(({ link: l }) => {
                   return <RichText render={l} linkResolver={linkResolver} />
                 })}
               </div>
             </section>
             <CV data={bio.cv} title={RichText.asText(bio.cv_title)} />
-            <section className="bio-images images">
+            <section className="bio__images">
               {bio.images.map(({ imageSharp: i }) => {
                 return (
-                  <div className="bio-image image">
+                  <div className="bio__image">
                     <Img fluid={i.childImageSharp.fluid} />
                   </div>
                 )

@@ -2,8 +2,9 @@ $c: "filter__item";
 $c-b-btn-padding-vertical: 8px;
 $c-b-btn-padding-horizontal: 10px;
 $c-b-btn-border-radius: 0px;
-$c-b-btn-color: transparent;
+$c-b-btn-color: white;
 $c-b-btn-color-border: black;
+$c-b-btn-border-width: 1px;
 $c-b-btn-color-text: black;
 
 $c-b-btn-active-color: black;
@@ -22,7 +23,9 @@ $c-b-btn-active-color-text: white;
   text-decoration: none;
   background-color: $c-b-btn-color;
   border-radius: $c-b-btn-border-radius;
-  border: 1px solid $c-b-btn-color-border;
+  border: $c-b-btn-border-width solid $c-b-btn-color-border;
+
+  white-space: nowrap;
 
   //@include mq($from: desktop) {
   //    border: 3px solid $c-b-btn-color-border;

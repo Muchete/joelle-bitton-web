@@ -1,10 +1,29 @@
-.filter {
-    
-    &__item {
-        
-    }
-    
-    &__icon {
+.projects .filter {
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-x: scroll;
 
-    }
+  display: flex;
+  flex-wrap: nowrap;
+  flex: none;
+
+  position: fixed;
+  bottom: 0;
+  padding: 3px; //PADDING RIGHT IS STILL MISSING - HELP
+  @include z-index(filters);
+
+  @include mq($from: phablet) {
+    position: initial;
+    padding: 0;
+  }
+
+  //no border, except for first one
+  &__item {
+    border-left: none;
+  }
+
+  &__item:nth-of-type(1) {
+    // margin-left: 3px;
+    border-left: $c-b-btn-border-width solid $c-b-btn-color-border;
+  }
 }

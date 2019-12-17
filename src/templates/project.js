@@ -61,43 +61,42 @@ export default ({ data }) => {
         return (
           <>
             <SEO title={RichText.asText(p.project_title)} site={data.site} />
-            <section className="project info" key={p._meta.id}>
+            <section className="project__header" key={p._meta.id}>
               <Link to="/">BACK TO HOME</Link>
               <h1>{RichText.asText(p.project_title)}</h1>
-              <div className="project-description">
-                <RichText render={p.project_text} linkResolver={linkResolver} />
-                <div className="project-description-info">
-                  <h3>{RichText.asText(p.info_credits_title)}</h3>
-                  {p.info_credits.map(el => {
-                    return (
-                      <>
-                        <RichText
-                          render={el.leftColumn}
-                          linkResolver={linkResolver}
-                          className="leftColumn"
-                          Component="span"
-                        />
-                        <RichText
-                          render={el.rightColumn}
-                          linkResolver={linkResolver}
-                          className="rightColumn"
-                          Component="span"
-                        />
-                      </>
-                    )
-                  })}
-                </div>
-              </div>
             </section>
-
-            <section className="proj-images images">
+            <section className="project__images">
               {p.images.map(({ project_imageSharp: i }) => {
                 return (
-                  <div className="image">
+                  <div className="project__image">
                     <Img fluid={i.childImageSharp.fluid} />
                   </div>
                 )
               })}
+            </section>
+            <section className="project__description">
+              <RichText render={p.project_text} linkResolver={linkResolver} />
+              <div className="project__description__info">
+                <h3>{RichText.asText(p.info_credits_title)}</h3>
+                {p.info_credits.map(el => {
+                  return (
+                    <>
+                      <RichText
+                        render={el.leftColumn}
+                        linkResolver={linkResolver}
+                        className="leftColumn"
+                        Component="span"
+                      />
+                      <RichText
+                        render={el.rightColumn}
+                        linkResolver={linkResolver}
+                        className="rightColumn"
+                        Component="span"
+                      />
+                    </>
+                  )
+                })}
+              </div>
             </section>
           </>
         )
