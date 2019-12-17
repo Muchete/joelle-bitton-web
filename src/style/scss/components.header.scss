@@ -1,0 +1,11 @@
+.header {
+  @include spacing(top, topSpace);
+  @include spacing(right, small);
+  @include spacing(left, small);
+  margin-bottom: 14px;
+
+  &__homeLink {
+    padding-left: 5px;
+    padding-right: 8px;
+  }
+}
