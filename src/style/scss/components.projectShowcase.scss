@@ -31,7 +31,7 @@ $showcase-title-color-text: black;
 
   margin: 0 $showcase-border-row-gap $filter-height $showcase-border-row-gap;
   @include mq($from: phablet) {
-    margin-bottom: 0;
+    margin-bottom: $showcase-border-row-gap;
     @include spacing(left, small);
     @include spacing(right, small);
     grid-template-columns: 1fr 1fr 1fr;
