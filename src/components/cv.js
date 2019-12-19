@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { RichText } from "prismic-reactjs"
 import { linkResolver } from "../utils/linkResolver"
 import ArrowCV from "../components/arrowCV"
+import { CSSTransition, TransitionGroup } from "react-transition-group"
 
 let categoryList = []
 let entries
@@ -60,9 +61,14 @@ class CV extends Component {
           })}
         </div>
         <div className="cv__content" key="cv-content">
-          <h2 className="cv__content__category" key="cv-category">
-            {this.state.currentFilter}
-          </h2>
+          <CSSTransition appear={true} classNames="fadeCV" timeout={400}>
+            <h2
+              className="cv__content__category"
+              key={this.state.currentFilter + "title"}
+            >
+              {this.state.currentFilter}
+            </h2>
+          </CSSTransition>
           {entries.map((entry, i) => {
             return (
               <div className="cv__content__entry" key={"entry" + i}>
