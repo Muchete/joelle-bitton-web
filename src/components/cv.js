@@ -35,42 +35,50 @@ class CV extends Component {
       entries = this.props.data.filter(entry => {
         return entry.category.indexOf(this.state.currentFilter) !== -1
       })
-    } else {
-      entries = this.props.data
     }
+    // else {
+    //   entries = this.props.data
+    // }
 
     return (
-      <section className="cv">
-        <h2 className="cv__title">{this.props.title}</h2>
-        <div className="cv__categories">
-          {categoryList.map(category => {
+      <section className="cv" key="cv-section">
+        <h2 className="cv__title" key="cv-title">
+          {this.props.title}
+        </h2>
+        <div className="cv__categories" key="cv-allCat">
+          {categoryList.map((category, i) => {
             return (
               <button
                 className={this.activeHandler(category)}
                 onClick={() => this.setFilter(category)}
+                key={"cv-button" + i}
               >
                 {category}
-                <ArrowCV />
+                <ArrowCV key={"cv-arrow" + i} />
               </button>
             )
           })}
         </div>
-        <div className="cv__content">
-          <h2 className="cv__content__category">{this.state.currentFilter}</h2>
-          {entries.map(entry => {
+        <div className="cv__content" key="cv-content">
+          <h2 className="cv__content__category" key="cv-category">
+            {this.state.currentFilter}
+          </h2>
+          {entries.map((entry, i) => {
             return (
-              <div className="cv__content__entry">
+              <div className="cv__content__entry" key={"entry" + i}>
                 <RichText
                   render={entry.year}
                   linkResolver={linkResolver}
                   className="--left"
                   Component="span"
+                  key={"cdleft" + i}
                 />
                 <RichText
                   render={entry.text}
                   linkResolver={linkResolver}
                   className="--right"
                   Component="span"
+                  key={"cdright" + i}
                 />
               </div>
             )

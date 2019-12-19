@@ -7,7 +7,7 @@ import { linkResolver } from "../utils/linkResolver"
 let tagList = []
 let projects
 
-class Projects extends Component {
+class Projectshowcase extends Component {
   constructor(props) {
     super(props)
     this.state = { currentFilter: "Main Works" }
@@ -40,7 +40,7 @@ class Projects extends Component {
     // }
 
     return (
-      <section className="projects">
+      <section className="showcase">
         <div className="filter">
           {tagList.map(tag => {
             return (
@@ -53,34 +53,38 @@ class Projects extends Component {
             )
           })}
         </div>
-        {projects.map(({ node: project }) => {
-          return (
-            <div className="project" key={project._meta.id}>
-              <Link className="project__link" to={linkResolver(project._meta)}>
-                <div className="project__image">
-                  <div
-                    className="project__image-background"
-                    style={{
-                      backgroundColor: this.props.colors[project.cover_color],
-                    }}
-                  >
-                    <Img
-                      fluid={project.cover_imageSharp.childImageSharp.fluid}
-                      alt={project.cover_image.alt}
-                      style={{ opacity: 0.7, filter: "grayscale(100%)" }}
-                    />
+        <div className="projects">
+          {projects.map(({ node: project }) => {
+            return (
+              <div className="project" key={project._meta.id}>
+                <Link
+                  className="project__link"
+                  to={linkResolver(project._meta)}
+                >
+                  <div className="project__image">
+                    <div
+                      className="project__image-background"
+                      style={{
+                        backgroundColor: this.props.colors[project.cover_color],
+                      }}
+                    >
+                      <Img
+                        fluid={project.cover_imageSharp.childImageSharp.fluid}
+                        alt={project.cover_image.alt}
+                      />
+                    </div>
+                    <span className="project__title">
+                      {RichText.asText(project.project_title)}
+                    </span>
                   </div>
-                  <span className="project__title">
-                    {RichText.asText(project.project_title)}
-                  </span>
-                </div>
-              </Link>
-            </div>
-          )
-        })}
+                </Link>
+              </div>
+            )
+          })}
+        </div>
       </section>
     )
   }
 }
 
-export default Projects
+export default Projectshowcase

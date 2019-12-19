@@ -96,17 +96,17 @@ export default ({ data }) => {
                 })}
               </div>
             </section>
-            <section className="project">
-              <div className="project__description">
+            <section className="proj">
+              <div className="proj__description">
                 <RichText render={p.project_text} linkResolver={linkResolver} />
               </div>
-              <h2 className="project__infoTitle">
+              <h2 className="proj__infoTitle">
                 {RichText.asText(p.info_credits_title)}
               </h2>
-              <div className="project__info">
+              <div className="proj__info">
                 {p.info_credits.map(el => {
                   return (
-                    <div className="project__info__entry">
+                    <div className="proj__info__entry">
                       <RichText
                         render={el.leftColumn}
                         linkResolver={linkResolver}

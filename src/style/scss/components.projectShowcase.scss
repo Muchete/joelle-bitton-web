@@ -1,0 +1,80 @@
+$image-ratio: 75%;
+$filter-height: 44px;
+$showcase-border-width: 1px;
+$showcase-border-column-gap: 3px;
+$showcase-border-row-gap: 3px;
+$showcase-border-width: 1px;
+$showcase-title-padding-vertical: 8px;
+$showcase-title-padding-horizontal: 10px;
+$showcase-title-color: white;
+$showcase-title-color-border: black;
+$showcase-title-border-width: $showcase-border-width;
+$showcase-title-color-text: black;
+
+.showcase .projects {
+  display: grid;
+  grid-template-columns: 1fr;
+  @include mq($from: phone-plus, $until: phablet) {
+    grid-template-columns: 1fr 1fr;
+  }
+  margin: 0 $showcase-border-row-gap;
+  @include mq($from: phablet) {
+    margin: 0;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  // grid-template-rows: 100vw / 4 * 3 / 3;
+  column-gap: $showcase-border-column-gap;
+  row-gap: $showcase-border-row-gap;
+}
+
+.showcase .project {
+  &:last-of-type {
+    margin-bottom: $filter-height;
+    @include mq($from: phablet) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    position: relative;
+  }
+
+  &__image-background {
+    width: 100%;
+    box-sizing: border-box;
+    border: $showcase-border-width solid black;
+
+    &:after {
+      display: block;
+      content: "";
+      padding-top: $image-ratio;
+    }
+
+    .gatsby-image-wrapper {
+      @supports (mix-blend-mode: multiply) {
+        mix-blend-mode: multiply;
+      }
+      @supports not (mix-blend-mode: multiply) {
+        opacity: 0.7;
+        filter: "grayscale(100%)";
+      }
+
+      position: absolute !important;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+
+  &__title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: $showcase-title-padding-vertical $showcase-title-padding-horizontal;
+    background-color: $showcase-title-color;
+    border: $showcase-title-border-width solid $showcase-title-color-border;
+    color: $showcase-title-color-text;
+  }
+}

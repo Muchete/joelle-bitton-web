@@ -1,4 +1,4 @@
-.project {
+.proj {
   @include spacing(left, small);
   @include spacing(right, small);
   @include mq($until: desktop) {
