@@ -18,7 +18,7 @@
 .bio__image:first-of-type {
   @include mq($from: phablet, $until: desktop) {
     margin-left: 33%;
-    max-width: 66%;
+    max-width: 67%;
   }
 
   @include mq($from: desktop) {

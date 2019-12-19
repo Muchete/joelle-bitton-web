@@ -44,7 +44,7 @@
 
     @include mq($from: phablet, $until: desktop) {
       margin-left: 33%;
-      max-width: 66%;
+      max-width: 67%;
     }
 
     @include mq($from: desktop) {
@@ -68,7 +68,7 @@
 
       @include mq($from: phablet, $until: desktop) {
         margin-left: 33%;
-        max-width: 66%;
+        max-width: 67%;
       }
     }
 
@@ -81,7 +81,7 @@
 
       @include mq($from: phablet, $until: desktop) {
         margin-left: 33%;
-        max-width: 66%;
+        max-width: 67%;
       }
 
       span {

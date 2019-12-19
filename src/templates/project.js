@@ -70,7 +70,7 @@ export default ({ data }) => {
         return (
           <>
             <SEO title={RichText.asText(p.project_title)} site={data.site} />
-            <section className="header" key={p._meta.id}>
+            <section className="header hproject" key={p._meta.id}>
               <h1>
                 <Link className="header__homeLink" to="/">
                   <ArrowHome />
@@ -78,43 +78,51 @@ export default ({ data }) => {
                 {RichText.asText(p.project_title)}
               </h1>
             </section>
-            <section className="p__images">
-              {p.images.map(({ project_imageSharp: i }) => {
-                return (
-                  <div
-                    className="p__image"
-                    style={calcWidth(i.childImageSharp.fluid.aspectRatio)}
-                  >
-                    {/* <div
+            <section className="slider">
+              <div className="slider__images">
+                {p.images.map(({ project_imageSharp: i }) => {
+                  return (
+                    <div
+                      className="slider__image"
+                      style={calcWidth(i.childImageSharp.fluid.aspectRatio)}
+                    >
+                      {/* <div
                       style={calcPadding(i.childImageSharp.fluid.aspectRatio)}
                     > */}
-                    <Img fluid={i.childImageSharp.fluid} />
-                    {/* </div> */}
-                  </div>
-                )
-              })}
+                      <Img fluid={i.childImageSharp.fluid} />
+                      {/* </div> */}
+                    </div>
+                  )
+                })}
+              </div>
             </section>
-            <section className="project__description">
-              <RichText render={p.project_text} linkResolver={linkResolver} />
-              <h2>{RichText.asText(p.info_credits_title)}</h2>
-              {p.info_credits.map(el => {
-                return (
-                  <div className="project__description__entry">
-                    <RichText
-                      render={el.leftColumn}
-                      linkResolver={linkResolver}
-                      className="--left"
-                      Component="span"
-                    />
-                    <RichText
-                      render={el.rightColumn}
-                      linkResolver={linkResolver}
-                      className="--right"
-                      Component="span"
-                    />
-                  </div>
-                )
-              })}
+            <section className="project">
+              <div className="project__description">
+                <RichText render={p.project_text} linkResolver={linkResolver} />
+              </div>
+              <h2 className="project__infoTitle">
+                {RichText.asText(p.info_credits_title)}
+              </h2>
+              <div className="project__info">
+                {p.info_credits.map(el => {
+                  return (
+                    <div className="project__info__entry">
+                      <RichText
+                        render={el.leftColumn}
+                        linkResolver={linkResolver}
+                        className="--left"
+                        Component="span"
+                      />
+                      <RichText
+                        render={el.rightColumn}
+                        linkResolver={linkResolver}
+                        className="--right"
+                        Component="span"
+                      />
+                    </div>
+                  )
+                })}
+              </div>
             </section>
           </>
         )

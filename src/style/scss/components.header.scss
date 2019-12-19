@@ -1,6 +1,7 @@
 .header {
+  box-sizing: border-box;
   @include spacing(top, topSpace);
-  @include spacing(right, small);
+  @include spacing(right, small, true);
   @include spacing(left, small);
   margin-bottom: 14px;
 
@@ -19,10 +20,22 @@
       float: left;
     }
   }
+
   @include mq($from: phablet, $until: desktop) {
-    max-width: 33.3%;
+    max-width: calc(33.3% - 10px);
   }
+
   @include mq($from: desktop) {
     max-width: calc(16.6% - 10px);
+  }
+
+  &.hproject {
+    @include mq($from: phablet) {
+      position: absolute;
+    }
+
+    @include mq($from: phablet, $until: desktop) {
+      max-width: calc(33.3% - 10px);
+    }
   }
 }

@@ -28,11 +28,11 @@
   @include mq($from: phablet, $until: desktop) {
     &__description {
       margin-left: 33%;
-      max-width: 66%;
+      max-width: 67%;
     }
     &__links {
       margin-left: 33%;
-      max-width: 66%;
+      max-width: 67%;
     }
   }
 

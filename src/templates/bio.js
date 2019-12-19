@@ -65,7 +65,7 @@ export default ({ data }) => {
         return (
           <>
             <SEO title={RichText.asText(bio.title)} site={data.site} />
-            <section className="header">
+            <section className="header bio">
               <h1>
                 <Link className="header__homeLink" to="/">
                   <ArrowHome />

@@ -41,9 +41,14 @@
 @import "scss/components.filter";
 @import "scss/components.main";
 @import "scss/components.header";
+
+//Home Page
 @import "scss/components.home-info";
+
+//Bio Page
 @import "scss/components.bio";
 @import "scss/components.bio-images";
 @import "scss/components.CV";
-@import "scss/components.proj-images";
+//Project Page
+@import "scss/components.slider";
 @import "scss/components.proj-description";
