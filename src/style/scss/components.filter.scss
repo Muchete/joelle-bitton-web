@@ -10,6 +10,13 @@
   position: fixed;
   bottom: 0;
   padding: 3px; //PADDING RIGHT IS STILL MISSING - HELP
+  @include mq($until: phablet) {
+    &::after {
+      content: "";
+      padding-right: 3px;
+    }
+  }
+
   @include z-index(filters);
 
   -ms-overflow-style: none;

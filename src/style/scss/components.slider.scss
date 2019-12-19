@@ -48,16 +48,20 @@ $slider-image-gap: 10px;
   }
 
   &__image {
+    box-sizing: border-box;
     margin-left: $slider-image-gap;
 
-    &:last-of-type {
-      margin-right: $slider-image-gap; //HELP
+    @include mq($until: desktop) {
+      &:last-of-type {
+        border-right: $slider-image-gap solid transparent; //HELP - sorry for the ugly fix
+      }
     }
 
     &:only-child {
-      width: 100% !important;
-      @include mq($until: phablet) {
-        padding-right: 2 * $slider-image-gap;
+      width: calc(100% - 20px) !important; //NEEDS TO BE FIXED
+      border: none;
+      @include mq($from: phablet) {
+        width: 100% !important;
       }
     }
 

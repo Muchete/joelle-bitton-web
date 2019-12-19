@@ -32,6 +32,14 @@
       display: none;
     }
 
+    @include mq($until: phablet) {
+      &::after {
+        //FIX FOR Vertical scrolling padding at end
+        content: "";
+        padding-right: 10px;
+      }
+    }
+
     @include mq($from: phablet) {
       flex-wrap: wrap;
       padding-left: 0;
@@ -54,6 +62,9 @@
 
     .filter__item {
       margin-right: 10px; //NOT WORKING WITH LAST: HELP
+      &:last-of-type {
+        margin-right: 0px; //NOT WORKING WITH LAST: HELP
+      }
     }
   }
 
