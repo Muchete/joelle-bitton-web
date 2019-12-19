@@ -11,23 +11,56 @@ $showcase-title-color-border: black;
 $showcase-title-border-width: $showcase-border-width;
 $showcase-title-color-text: black;
 
+// @-webkit-keyframes blinker {
+//   from {
+//     opacity: 1;
+//   }
+//   to {
+//     opacity: 0;
+//   }
+// }
+
+// &__link:hover .gatsby-image-wrapper {
+//   animation: blinker 0.01s linear infinite;
+// }
+
 .showcase .projects {
   display: grid;
+  align-items: stretch;
+  justify-items: stretch;
+  gap: $showcase-border-row-gap $showcase-border-column-gap;
+
   grid-template-columns: 1fr;
   @include mq($from: phone-plus, $until: phablet) {
     grid-template-columns: 1fr 1fr;
   }
+
   margin: 0 $showcase-border-row-gap;
   @include mq($from: phablet) {
-    margin: 0;
+    @include spacing(left, small);
+    @include spacing(right, small);
     grid-template-columns: 1fr 1fr 1fr;
   }
-  // grid-template-rows: 100vw / 4 * 3 / 3;
-  column-gap: $showcase-border-column-gap;
-  row-gap: $showcase-border-row-gap;
 }
 
 .showcase .project {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    padding-top: $image-ratio;
+  }
+
+  @include mq($from: phablet) {
+    &:nth-child(12n + 4) {
+      grid-area: span 2 / span 2;
+    }
+
+    &:nth-child(12n + 11) {
+      grid-area: span 2 / span 2;
+    }
+  }
+
   &:last-of-type {
     margin-bottom: $filter-height;
     @include mq($from: phablet) {
@@ -36,20 +69,17 @@ $showcase-title-color-text: black;
   }
 
   &__image {
-    width: 100%;
-    position: relative;
+    // width: 100%;
   }
 
   &__image-background {
-    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     box-sizing: border-box;
     border: $showcase-border-width solid black;
-
-    &:after {
-      display: block;
-      content: "";
-      padding-top: $image-ratio;
-    }
 
     .gatsby-image-wrapper {
       @supports (mix-blend-mode: multiply) {
