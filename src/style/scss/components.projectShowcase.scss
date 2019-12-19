@@ -1,5 +1,5 @@
 $image-ratio: 75%;
-$filter-height: 44px;
+$filter-height: 44px; //height of fixed filters on bottom of screen(mobile only)
 $showcase-border-width: 1px;
 $showcase-border-column-gap: 3px;
 $showcase-border-row-gap: 3px;
@@ -20,14 +20,8 @@ $showcase-title-color-text: black;
 //   }
 // }
 
-// &__link:hover .gatsby-image-wrapper {
-//   animation: blinker 0.01s linear infinite;
-// }
-
 .showcase .projects {
   display: grid;
-  align-items: stretch;
-  justify-items: stretch;
   gap: $showcase-border-row-gap $showcase-border-column-gap;
 
   grid-template-columns: 1fr;
@@ -35,8 +29,9 @@ $showcase-title-color-text: black;
     grid-template-columns: 1fr 1fr;
   }
 
-  margin: 0 $showcase-border-row-gap;
+  margin: 0 $showcase-border-row-gap $filter-height $showcase-border-row-gap;
   @include mq($from: phablet) {
+    margin-bottom: 0;
     @include spacing(left, small);
     @include spacing(right, small);
     grid-template-columns: 1fr 1fr 1fr;
@@ -45,7 +40,7 @@ $showcase-title-color-text: black;
 
 .showcase .project {
   position: relative;
-  &:before {
+  &:after {
     display: block;
     content: "";
     padding-top: $image-ratio;
@@ -61,16 +56,13 @@ $showcase-title-color-text: black;
     }
   }
 
-  &:last-of-type {
-    margin-bottom: $filter-height;
-    @include mq($from: phablet) {
-      margin-bottom: 0;
-    }
-  }
-
-  &__image {
-    // width: 100%;
-  }
+  //HOVER???
+  // &__link:hover .gatsby-image-wrapper {
+  //   animation: blinker 0.01s linear infinite;
+  //   @supports (mix-blend-mode: difference) {
+  //     mix-blend-mode: difference;
+  //   }
+  // }
 
   &__image-background {
     position: absolute;
@@ -87,7 +79,6 @@ $showcase-title-color-text: black;
       }
       @supports not (mix-blend-mode: multiply) {
         opacity: 0.7;
-        filter: "grayscale(100%)";
       }
 
       position: absolute !important;
