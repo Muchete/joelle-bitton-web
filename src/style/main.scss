@@ -36,12 +36,14 @@
 @import "scss/element.link";
 
 // Components
+@import "scss/components.arrowHome";
+@import "scss/components.button";
+@import "scss/components.filter";
 @import "scss/components.main";
 @import "scss/components.header";
 @import "scss/components.home-info";
 @import "scss/components.bio";
 @import "scss/components.bio-images";
 @import "scss/components.CV";
-@import "scss/components.arrowHome";
-@import "scss/components.button";
-@import "scss/components.filter";
+@import "scss/components.proj-images";
+@import "scss/components.proj-description";

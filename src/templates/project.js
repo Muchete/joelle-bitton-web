@@ -56,6 +56,14 @@ export default ({ data }) => {
 
   if (!project) return null
 
+  // function calcPadding(aspectRatio) {
+  //   return { "padding-top": 100 / aspectRatio + "%" }
+  // }
+
+  function calcWidth(aspectRatio) {
+    return { width: 75 * aspectRatio + "%" }
+  }
+
   return (
     <Layout>
       {project.map(({ node: p }) => {
@@ -70,38 +78,43 @@ export default ({ data }) => {
                 {RichText.asText(p.project_title)}
               </h1>
             </section>
-            <section className="project__images">
+            <section className="p__images">
               {p.images.map(({ project_imageSharp: i }) => {
                 return (
-                  <div className="project__image">
+                  <div
+                    className="p__image"
+                    style={calcWidth(i.childImageSharp.fluid.aspectRatio)}
+                  >
+                    {/* <div
+                      style={calcPadding(i.childImageSharp.fluid.aspectRatio)}
+                    > */}
                     <Img fluid={i.childImageSharp.fluid} />
+                    {/* </div> */}
                   </div>
                 )
               })}
             </section>
             <section className="project__description">
               <RichText render={p.project_text} linkResolver={linkResolver} />
-              <div className="project__description__info">
-                <h3>{RichText.asText(p.info_credits_title)}</h3>
-                {p.info_credits.map(el => {
-                  return (
-                    <>
-                      <RichText
-                        render={el.leftColumn}
-                        linkResolver={linkResolver}
-                        className="leftColumn"
-                        Component="span"
-                      />
-                      <RichText
-                        render={el.rightColumn}
-                        linkResolver={linkResolver}
-                        className="rightColumn"
-                        Component="span"
-                      />
-                    </>
-                  )
-                })}
-              </div>
+              <h2>{RichText.asText(p.info_credits_title)}</h2>
+              {p.info_credits.map(el => {
+                return (
+                  <div className="project__description__entry">
+                    <RichText
+                      render={el.leftColumn}
+                      linkResolver={linkResolver}
+                      className="--left"
+                      Component="span"
+                    />
+                    <RichText
+                      render={el.rightColumn}
+                      linkResolver={linkResolver}
+                      className="--right"
+                      Component="span"
+                    />
+                  </div>
+                )
+              })}
             </section>
           </>
         )

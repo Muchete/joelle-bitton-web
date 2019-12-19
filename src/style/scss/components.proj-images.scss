@@ -1,0 +1,28 @@
+.p {
+  &__images {
+    width: 100%;
+    max-width: 100%;
+    overflow-y: hidden;
+    overflow-x: scroll;
+
+    display: -webkit-box;
+
+    //hide vert. scrollbar
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__image {
+    margin-left: 10px;
+
+    &:last-of-type {
+      margin-right: 10px; //HELP
+    }
+
+    &:only-child {
+      width: calc(100% - 2 * 10px) !important;
+    }
+  }
+}

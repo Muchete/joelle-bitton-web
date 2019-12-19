@@ -1,0 +1,34 @@
+.project__description {
+  @include spacing(left, small);
+  @include spacing(right, small);
+
+  @include mq($until: phablet) {
+    @include spacing(top, topSpace);
+  }
+
+  h2 {
+    @include spacing(bottom, small);
+    @include mq($until: phablet) {
+      @include spacing(top, infoSpace);
+    }
+  }
+
+  &__entry {
+    display: flex;
+    align-items: stretch;
+    align-content: stretch;
+
+    margin-bottom: 20px;
+
+    span {
+      box-sizing: border-box;
+    }
+    .--left {
+      width: 50%;
+      padding-right: 10px;
+    }
+    .--right {
+      width: 50%;
+    }
+  }
+}
