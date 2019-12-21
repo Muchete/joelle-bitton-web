@@ -1,4 +1,5 @@
 .showcase .filter {
+  @include z-index(filters);
   box-sizing: border-box;
   max-width: 100%;
   overflow-x: scroll;
@@ -9,15 +10,12 @@
 
   position: fixed;
   bottom: 0;
-  padding: 3px; //PADDING RIGHT IS STILL MISSING - HELP
-  @include mq($until: phablet) {
-    &::after {
-      content: "";
-      padding-right: 3px;
-    }
-  }
+  padding: 3px;
 
-  @include z-index(filters);
+  &::after {
+    content: "";
+    padding-right: 3px;
+  }
 
   -ms-overflow-style: none;
   &::-webkit-scrollbar {
@@ -29,8 +27,10 @@
     padding: 0;
     margin-bottom: 20px;
 
-    @include spacing(left, small);
-    @include spacing(right, small);
+    @include spacing(left, small, true);
+    &::after {
+      @include spacing(right, small, true);
+    }
   }
 
   //no border, except for first one
