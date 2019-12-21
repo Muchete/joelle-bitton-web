@@ -6,6 +6,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group"
 
 let categoryList = []
 let entries
+let animationTime = 400 //time of overall animation speed
 
 class CV extends Component {
   constructor(props) {
@@ -19,6 +20,17 @@ class CV extends Component {
     if (categoryList) {
       this.state = { currentFilter: categoryList[0] }
     }
+  }
+
+  scrollToBottom = () => {
+    this.cvDiv.scrollIntoView({
+      block: "end",
+      behavior: "smooth",
+    })
+  }
+
+  componentDidUpdate() {
+    setTimeout(this.scrollToBottom, animationTime / 2)
   }
 
   setFilter(newFilter) {
@@ -61,35 +73,51 @@ class CV extends Component {
           })}
         </div>
         <div className="cv__content" key="cv-content">
-          <CSSTransition appear={true} classNames="fadeCV" timeout={400}>
-            <h2
-              className="cv__content__category"
-              key={this.state.currentFilter + "title"}
+          <TransitionGroup className="animation-group">
+            <CSSTransition
+              in={true}
+              key={this.state.currentFilter + "cssTrans"}
+              // appear={true}
+              timeout={animationTime}
+              classNames="fadeCV"
             >
-              {this.state.currentFilter}
-            </h2>
-          </CSSTransition>
-          {entries.map((entry, i) => {
-            return (
-              <div className="cv__content__entry" key={"entry" + i}>
-                <RichText
-                  render={entry.year}
-                  linkResolver={linkResolver}
-                  className="--left"
-                  Component="span"
-                  key={"cdleft" + i}
-                />
-                <RichText
-                  render={entry.text}
-                  linkResolver={linkResolver}
-                  className="--right"
-                  Component="span"
-                  key={"cdright" + i}
-                />
+              <div>
+                <h2
+                  className="cv__content__category"
+                  // key={this.state.currentFilter + "title"}
+                >
+                  {this.state.currentFilter}
+                </h2>
+                {entries.map((entry, i) => {
+                  return (
+                    <div className="cv__content__entry" key={"entry" + i}>
+                      <RichText
+                        render={entry.year}
+                        linkResolver={linkResolver}
+                        className="--left"
+                        Component="span"
+                        key={"cdleft" + i}
+                      />
+                      <RichText
+                        render={entry.text}
+                        linkResolver={linkResolver}
+                        className="--right"
+                        Component="span"
+                        key={"cdright" + i}
+                      />
+                    </div>
+                  )
+                })}
               </div>
-            )
-          })}
+            </CSSTransition>
+          </TransitionGroup>
         </div>
+        <div
+          //div used for bottom scroll animation
+          ref={el => {
+            this.cvDiv = el
+          }}
+        ></div>
       </section>
     )
   }

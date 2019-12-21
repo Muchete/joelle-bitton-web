@@ -118,11 +118,21 @@ $animation-speed: 200ms;
 }
 
 //animation settings
-.transition-group {
+.animation-group {
   position: relative;
 }
 
 .fadeCV {
+  &-appear {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  &-appear-active {
+    opacity: 1;
+    transition: opacity $animation-speed linear;
+  }
+
   &-enter {
     opacity: 0;
     z-index: 1;
@@ -139,9 +149,11 @@ $animation-speed: 200ms;
 
   &-exit-active {
     opacity: 0;
-    transition: opacity $animation-speed linear;
+    transition: opacity $animation-speed linear, height $animation-speed linear;
     position: absolute;
     top: 0;
+    left: 0;
+    right: 0;
   }
 
   &-exit-done {
