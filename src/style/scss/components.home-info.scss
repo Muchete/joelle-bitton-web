@@ -8,7 +8,7 @@ section.info {
   }
 
   .introduction {
-    margin-bottom: 20px;
+    margin-bottom: $global-line-height;
 
     @include mq($from: phablet) {
       @include spacing(right, small, true);
@@ -16,7 +16,7 @@ section.info {
     }
   }
 
-  .bio__pagelink {
+  .pagelink {
     @include mq($from: phablet) {
       @include spacing(right, small, true);
     }
@@ -24,7 +24,7 @@ section.info {
 
   @include mq($from: phablet, $until: desktop) {
     .introduction,
-    .bio__pagelink {
+    .pagelink {
       margin-left: 33%;
       max-width: 67%;
     }
@@ -32,7 +32,7 @@ section.info {
 
   @include mq($from: desktop) {
     .introduction,
-    .bio__pagelink {
+    .pagelink {
       margin-left: 16.6%;
       max-width: 50%;
     }

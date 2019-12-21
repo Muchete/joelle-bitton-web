@@ -40,6 +40,7 @@
 @import "scss/components.button"; //filter buttons for CV and Projectshowcase
 @import "scss/components.layout"; //wrapper around all
 @import "scss/components.header"; //header (title and back button)
+@import "scss/components.pagelinks"; //header (title and back button)
 
 @import "scss/components.filter"; //homescreen filter section
 @import "scss/components.home-info"; //info on home page
@@ -47,5 +48,6 @@
 @import "scss/components.bio"; //for bio text section on bio page
 @import "scss/components.bio-images"; //for bio images on bio page
 @import "scss/components.CV"; //for CV section on bio page
+@import "scss/components.project"; //for project pages
 @import "scss/components.slider"; //for images on project page
-@import "scss/components.proj-description"; //for text and infos on project pages
+@import "scss/components.proj-description"; //for text and other on project pages

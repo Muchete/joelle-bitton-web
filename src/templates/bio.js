@@ -75,7 +75,7 @@ export default ({ data }) => {
               <div className="bio__description">
                 <RichText render={bio.about_text} linkResolver={linkResolver} />
               </div>
-              <div className="bio__links">
+              <div className="bio__links pagelink">
                 {bio.links.map(({ link: l }) => {
                   return (
                     <span className="bio__link">

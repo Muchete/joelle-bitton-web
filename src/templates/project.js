@@ -96,7 +96,11 @@ export default ({ data }) => {
             </section>
             <section className="proj">
               <div className="proj__description">
-                <RichText render={p.project_text} linkResolver={linkResolver} />
+                <RichText
+                  className="rt"
+                  render={p.project_text}
+                  linkResolver={linkResolver}
+                />
               </div>
               <h2 className="proj__infoTitle">
                 {RichText.asText(p.info_credits_title)}

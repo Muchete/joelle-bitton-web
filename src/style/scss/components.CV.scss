@@ -89,7 +89,7 @@ $animation-speed-enter: 200ms;
     }
 
     &__category {
-      margin-bottom: 20px;
+      margin-bottom: $global-line-height;
 
       @include mq($from: phablet) {
         @include spacing(right, small, true);
@@ -106,7 +106,7 @@ $animation-speed-enter: 200ms;
       align-items: stretch;
       align-content: stretch;
 
-      margin-bottom: 20px;
+      margin-bottom: $global-line-height;
 
       @include mq($from: phablet, $until: desktop) {
         margin-left: 33%;

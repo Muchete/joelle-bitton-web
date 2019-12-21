@@ -40,7 +40,7 @@ $font-heading: Gt-America-Regular, Helvetica, Arial, sans-serif;
 @mixin typo-body() {
   @include font-size(16px);
   font-family: $font-default;
-  font-feature-settings: "pnum" on, "onum" on, "salt" on;
+  font-feature-settings: "pnum" on, "lnum" on, "salt" on;
 }
 
 @mixin typo-heading-small() {
