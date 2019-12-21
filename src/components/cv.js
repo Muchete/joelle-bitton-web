@@ -80,7 +80,7 @@ class CV extends Component {
               key={this.state.currentFilter + "cssTrans"}
               // appear={true}
               timeout={animationSpeedEnter + animationSpeedExit}
-              classNames="fadeCV"
+              classNames="fade-animation"
             >
               <div>
                 <h2

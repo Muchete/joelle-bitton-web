@@ -11,15 +11,6 @@ $showcase-title-color-border: black;
 $showcase-title-border-width: $showcase-border-width;
 $showcase-title-color-text: black;
 
-// @-webkit-keyframes blinker {
-//   from {
-//     opacity: 1;
-//   }
-//   to {
-//     opacity: 0;
-//   }
-// }
-
 .showcase .projects {
   display: grid;
   gap: $showcase-border-row-gap $showcase-border-column-gap;
@@ -58,7 +49,6 @@ $showcase-title-color-text: black;
 
   //HOVER???
   // &__link:hover .gatsby-image-wrapper {
-  //   animation: blinker 0.01s linear infinite;
   //   @supports (mix-blend-mode: difference) {
   //     mix-blend-mode: difference;
   //   }

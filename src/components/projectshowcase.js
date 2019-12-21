@@ -2,10 +2,13 @@ import React, { Component } from "react"
 import { Link } from "gatsby"
 import { RichText } from "prismic-reactjs"
 import Img from "gatsby-image"
+import { CSSTransition, TransitionGroup } from "react-transition-group"
 
 import { linkResolver } from "../utils/linkResolver"
 let tagList = []
 let projects
+let animationSpeedEnter = 500
+let animationSpeedExit = 500
 
 class Projectshowcase extends Component {
   constructor(props) {
@@ -53,170 +56,49 @@ class Projectshowcase extends Component {
             )
           })}
         </div>
-        <div className="projects">
-          {projects.map(({ node: project }) => {
-            return (
-              <div className="project" key={project._meta.id}>
-                <Link
-                  className="project__link"
-                  to={linkResolver(project._meta)}
+        <TransitionGroup className="animation-group">
+          <div className="projects">
+            {projects.map(({ node: project }, i) => {
+              return (
+                <CSSTransition
+                  in={true}
+                  key={project._meta.id}
+                  // appear={true}
+                  timeout={animationSpeedEnter + animationSpeedExit}
+                  classNames="fade-animation"
                 >
-                  <div className="project__image">
-                    <div
-                      className="project__image-background"
-                      style={{
-                        backgroundColor: this.props.colors[project.cover_color],
-                      }}
+                  <div className="project">
+                    <Link
+                      className="project__link"
+                      to={linkResolver(project._meta)}
                     >
-                      <Img
-                        fluid={project.cover_imageSharp.childImageSharp.fluid}
-                        alt={project.cover_image.alt}
-                      />
-                    </div>
-                    <span className="project__title">
-                      {RichText.asText(project.project_title)}
-                    </span>
+                      <div className="project__image">
+                        <div
+                          className="project__image-background"
+                          style={{
+                            backgroundColor: this.props.colors[
+                              project.cover_color
+                            ],
+                          }}
+                        >
+                          <Img
+                            fluid={
+                              project.cover_imageSharp.childImageSharp.fluid
+                            }
+                            alt={project.cover_image.alt}
+                          />
+                        </div>
+                        <span className="project__title">
+                          {RichText.asText(project.project_title)}
+                        </span>
+                      </div>
+                    </Link>
                   </div>
-                </Link>
-              </div>
-            )
-          })}
-          {projects.map(({ node: project }) => {
-            return (
-              <div className="project" key={project._meta.id}>
-                <Link
-                  className="project__link"
-                  to={linkResolver(project._meta)}
-                >
-                  <div className="project__image">
-                    <div
-                      className="project__image-background"
-                      style={{
-                        backgroundColor: this.props.colors[project.cover_color],
-                      }}
-                    >
-                      <Img
-                        fluid={project.cover_imageSharp.childImageSharp.fluid}
-                        alt={project.cover_image.alt}
-                      />
-                    </div>
-                    <span className="project__title">
-                      {RichText.asText(project.project_title)}
-                    </span>
-                  </div>
-                </Link>
-              </div>
-            )
-          })}
-          {projects.map(({ node: project }) => {
-            return (
-              <div className="project" key={project._meta.id}>
-                <Link
-                  className="project__link"
-                  to={linkResolver(project._meta)}
-                >
-                  <div className="project__image">
-                    <div
-                      className="project__image-background"
-                      style={{
-                        backgroundColor: this.props.colors[project.cover_color],
-                      }}
-                    >
-                      <Img
-                        fluid={project.cover_imageSharp.childImageSharp.fluid}
-                        alt={project.cover_image.alt}
-                      />
-                    </div>
-                    <span className="project__title">
-                      {RichText.asText(project.project_title)}
-                    </span>
-                  </div>
-                </Link>
-              </div>
-            )
-          })}
-          {projects.map(({ node: project }) => {
-            return (
-              <div className="project" key={project._meta.id}>
-                <Link
-                  className="project__link"
-                  to={linkResolver(project._meta)}
-                >
-                  <div className="project__image">
-                    <div
-                      className="project__image-background"
-                      style={{
-                        backgroundColor: this.props.colors[project.cover_color],
-                      }}
-                    >
-                      <Img
-                        fluid={project.cover_imageSharp.childImageSharp.fluid}
-                        alt={project.cover_image.alt}
-                      />
-                    </div>
-                    <span className="project__title">
-                      {RichText.asText(project.project_title)}
-                    </span>
-                  </div>
-                </Link>
-              </div>
-            )
-          })}
-          {projects.map(({ node: project }) => {
-            return (
-              <div className="project" key={project._meta.id}>
-                <Link
-                  className="project__link"
-                  to={linkResolver(project._meta)}
-                >
-                  <div className="project__image">
-                    <div
-                      className="project__image-background"
-                      style={{
-                        backgroundColor: this.props.colors[project.cover_color],
-                      }}
-                    >
-                      <Img
-                        fluid={project.cover_imageSharp.childImageSharp.fluid}
-                        alt={project.cover_image.alt}
-                      />
-                    </div>
-                    <span className="project__title">
-                      {RichText.asText(project.project_title)}
-                    </span>
-                  </div>
-                </Link>
-              </div>
-            )
-          })}
-          {projects.map(({ node: project }) => {
-            return (
-              <div className="project" key={project._meta.id}>
-                <Link
-                  className="project__link"
-                  to={linkResolver(project._meta)}
-                >
-                  <div className="project__image">
-                    <div
-                      className="project__image-background"
-                      style={{
-                        backgroundColor: this.props.colors[project.cover_color],
-                      }}
-                    >
-                      <Img
-                        fluid={project.cover_imageSharp.childImageSharp.fluid}
-                        alt={project.cover_image.alt}
-                      />
-                    </div>
-                    <span className="project__title">
-                      {RichText.asText(project.project_title)}
-                    </span>
-                  </div>
-                </Link>
-              </div>
-            )
-          })}
-        </div>
+                </CSSTransition>
+              )
+            })}
+          </div>
+        </TransitionGroup>
       </section>
     )
   }
