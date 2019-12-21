@@ -2,9 +2,6 @@
   @include mq($until: desktop) {
     @include spacing(top, topSpace);
   }
-  @include mq($from: desktop) {
-    min-height: 100vh;
-  }
 
   &__description {
     @include spacing(bottom, medium);
