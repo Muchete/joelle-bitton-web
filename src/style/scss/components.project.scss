@@ -1,0 +1,80 @@
+.proj {
+  @include mq($until: desktop) {
+    @include spacing(top, topSpace);
+  }
+  @include mq($from: desktop) {
+    min-height: 100vh;
+  }
+
+  &__description {
+    @include spacing(bottom, medium);
+    @include spacing(right, small, true);
+    @include spacing(left, small, true);
+
+    @include mq($from: phablet) {
+      margin-left: 33%;
+      max-width: 67%;
+      padding-top: 5px;
+      padding-left: 0;
+    }
+
+    @include mq($from: desktop) {
+      margin-left: 16.6%;
+      max-width: 33.3%;
+    }
+  }
+
+  &__infoTitle {
+    @include spacing(left, small, true);
+    @include spacing(right, small, true);
+    @include spacing(bottom, small);
+    box-sizing: border-box;
+    max-width: 100%;
+
+    @include mq($from: phablet) {
+      display: inline-block;
+      float: left;
+      max-width: 33%;
+    }
+
+    @include mq($from: desktop) {
+      max-width: 16.6%;
+    }
+  }
+
+  &__info {
+    @include spacing(left, small, true);
+    @include spacing(right, small, true);
+
+    @include mq($from: phablet) {
+      margin-left: 33%;
+      max-width: 67%;
+      padding-top: 5px;
+      padding-left: 0;
+    }
+    @include mq($from: desktop) {
+      margin-left: 16.6%;
+      max-width: 33.3%;
+    }
+
+    &__entry {
+      display: flex;
+      align-items: stretch;
+      align-content: stretch;
+      padding-bottom: $global-line-height;
+
+      span {
+        box-sizing: border-box;
+      }
+
+      .--left {
+        width: 50%;
+        padding-right: 10px;
+      }
+
+      .--right {
+        width: 50%;
+      }
+    }
+  }
+}

@@ -8,7 +8,7 @@ section.info {
   }
 
   .introduction {
-    margin-bottom: 20px;
+    margin-bottom: $global-line-height;
 
     @include mq($from: phablet) {
       @include spacing(right, small, true);

@@ -86,7 +86,7 @@
     }
 
     &__category {
-      margin-bottom: 20px;
+      margin-bottom: $global-line-height;
 
       @include mq($from: phablet) {
         @include spacing(right, small, true);
@@ -103,7 +103,7 @@
       align-items: stretch;
       align-content: stretch;
 
-      margin-bottom: 20px;
+      margin-bottom: $global-line-height;
 
       @include mq($from: phablet, $until: desktop) {
         margin-left: 33%;
