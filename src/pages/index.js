@@ -95,13 +95,15 @@ export default ({ data }) => {
           )
         })}
 
-        {bio.map(({ node: n }) => {
-          return (
-            <Link to={linkResolver(n._meta)} className="bio__pagelink">
-              {RichText.asText(n.title)}
-            </Link>
-          )
-        })}
+        <div className="pagelink">
+          {bio.map(({ node: n }) => {
+            return (
+              <Link to={linkResolver(n._meta)} className="bio__pagelink">
+                {RichText.asText(n.title)}
+              </Link>
+            )
+          })}
+        </div>
       </section>
       <Projectshowcase data={projects} colors={colors} />
     </Layout>

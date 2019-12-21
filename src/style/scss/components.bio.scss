@@ -18,6 +18,7 @@
   }
 
   &__links {
+    box-sizing: border-box;
     @include mq($from: phablet) {
       @include spacing(right, small, true);
     }
