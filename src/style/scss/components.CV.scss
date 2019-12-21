@@ -1,13 +1,17 @@
 .cv {
-  @include mq($from: phablet) {
-    @include spacing(left, small);
-    @include spacing(right, small);
-  }
+  // @include mq($from: phablet) {
+  //   @include spacing(left, small);
+  //   @include spacing(right, small);
+  // }
 
   &__title {
     display: none;
 
     @include mq($from: phablet) {
+      @include spacing(left, small, true);
+      @include spacing(right, small, true);
+      box-sizing: border-box;
+      max-width: 33%;
       display: inline-block;
       float: left;
     }
@@ -19,6 +23,8 @@
 
   &__categories {
     @include spacing(left, small, true);
+    @include spacing(right, small, true);
+    box-sizing: border-box;
     max-width: 100%;
     overflow-x: scroll;
     display: flex;
@@ -73,9 +79,18 @@
       @include spacing(left, small);
       @include spacing(right, small);
     }
+    @include mq($from: desktop) {
+      margin-left: 16.6%;
+      box-sizing: border-box;
+      max-width: 33.3%;
+    }
 
     &__category {
       margin-bottom: 20px;
+
+      @include mq($from: phablet) {
+        @include spacing(right, small, true);
+      }
 
       @include mq($from: phablet, $until: desktop) {
         margin-left: 33%;
@@ -95,6 +110,10 @@
         max-width: 67%;
       }
 
+      @include mq($from: phablet) {
+        @include spacing(right, small, true);
+      }
+
       span {
         box-sizing: border-box;
       }
@@ -105,12 +124,6 @@
       .--right {
         width: 75%;
       }
-    }
-
-    @include mq($from: desktop) {
-      margin-left: 16.6%;
-      box-sizing: border-box;
-      max-width: 33.3%;
     }
   }
 }

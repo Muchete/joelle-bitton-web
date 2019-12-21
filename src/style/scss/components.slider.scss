@@ -1,10 +1,10 @@
 $slider-image-gap: 10px;
 
 .slider {
-  @include mq($from: phablet, $until: desktop) {
-    @include spacing(left, small);
-    @include spacing(right, small);
-  }
+  // @include mq($from: phablet, $until: desktop) {
+  // @include spacing(left, small);
+  // @include spacing(right, small);
+  // }
 
   @include mq($from: desktop) {
     position: fixed;

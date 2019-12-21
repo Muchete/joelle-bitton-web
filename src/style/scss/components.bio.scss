@@ -1,9 +1,12 @@
 .bio {
-  @include spacing(right, small);
-  @include spacing(left, small);
+  @include mq($until: phablet) {
+    @include spacing(right, small);
+    @include spacing(left, small);
+  }
   @include spacing(bottom, medium);
 
   &__description {
+    box-sizing: border-box;
     margin-bottom: 20px;
 
     p {
@@ -14,6 +17,12 @@
     }
   }
 
+  &__links {
+    @include mq($from: phablet) {
+      @include spacing(right, small, true);
+    }
+  }
+
   &__link {
     display: inline-block;
     margin-right: 18px;
@@ -21,6 +30,7 @@
 
   @include mq($from: phablet) {
     &__description {
+      @include spacing(right, small, true);
       padding-top: 5px;
     }
   }
