@@ -80,7 +80,7 @@ export default ({ data }) => {
       <SEO title="Home" site={data.site} />
       <section className="header home">
         {home.map(({ node: page }) => {
-          return <h1>{RichText.asText(page.page_title)}</h1>
+          return <h1 className="home">{RichText.asText(page.page_title)}</h1>
         })}
       </section>
       <section className="info">
@@ -97,7 +97,7 @@ export default ({ data }) => {
 
         {bio.map(({ node: n }) => {
           return (
-            <Link to={linkResolver(n._meta)} className="bio__link">
+            <Link to={linkResolver(n._meta)} className="bio__pagelink">
               {RichText.asText(n.title)}
             </Link>
           )

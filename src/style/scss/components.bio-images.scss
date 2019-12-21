@@ -1,27 +1,25 @@
 .bio__images {
-  @include spacing(right, small);
-  @include spacing(left, small);
-  @include spacing(bottom, medium);
-  @include z-index(background);
-
-  @include mq($from: desktop) {
-    margin: 0;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    width: 50%;
-    overflow-y: scroll;
+  box-sizing: border-box;
+  @include mq($until: phablet) {
+    @include spacing(right, small);
+    @include spacing(left, small);
   }
-}
+  @include mq($from: phablet) {
+    @include spacing(right, small, true);
+  }
+  @include spacing(bottom, medium);
 
-.bio__image:first-of-type {
   @include mq($from: phablet, $until: desktop) {
     margin-left: 33%;
     max-width: 67%;
   }
 
   @include mq($from: desktop) {
-    @include spacing(left, small, true);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    overflow-y: scroll;
   }
 }
