@@ -6,7 +6,8 @@ import { CSSTransition, TransitionGroup } from "react-transition-group"
 
 let categoryList = []
 let entries
-let animationTime = 400 //time of overall animation speed
+let animationSpeedExit = 200 //time of animation speed (old element out)
+let animationSpeedEnter = 200 //time of animation speed (new element in)
 
 class CV extends Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class CV extends Component {
   }
 
   componentDidUpdate() {
-    setTimeout(this.scrollToBottom, animationTime / 2)
+    setTimeout(this.scrollToBottom, animationSpeedExit)
   }
 
   setFilter(newFilter) {
@@ -78,7 +79,7 @@ class CV extends Component {
               in={true}
               key={this.state.currentFilter + "cssTrans"}
               // appear={true}
-              timeout={animationTime}
+              timeout={animationSpeedEnter + animationSpeedExit}
               classNames="fadeCV"
             >
               <div>

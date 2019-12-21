@@ -1,4 +1,5 @@
-$animation-speed: 200ms;
+$animation-speed-exit: 200ms;
+$animation-speed-enter: 200ms;
 
 .cv {
   @include mq($from: phablet) {
@@ -123,15 +124,15 @@ $animation-speed: 200ms;
 }
 
 .fadeCV {
-  &-appear {
-    opacity: 0;
-    z-index: 1;
-  }
+  // &-appear {
+  //   opacity: 0;
+  //   z-index: 1;
+  // }
 
-  &-appear-active {
-    opacity: 1;
-    transition: opacity $animation-speed linear;
-  }
+  // &-appear-active {
+  //   opacity: 1;
+  //   transition: opacity $animation-speed linear;
+  // }
 
   &-enter {
     opacity: 0;
@@ -140,7 +141,7 @@ $animation-speed: 200ms;
 
   &-enter-active {
     opacity: 1;
-    transition: opacity $animation-speed linear $animation-speed;
+    transition: opacity $animation-speed-enter linear $animation-speed-exit;
   }
 
   &-exit {
@@ -149,7 +150,7 @@ $animation-speed: 200ms;
 
   &-exit-active {
     opacity: 0;
-    transition: opacity $animation-speed linear, height $animation-speed linear;
+    transition: opacity $animation-speed-exit linear;
     position: absolute;
     top: 0;
     left: 0;
