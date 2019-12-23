@@ -5,15 +5,15 @@
   // }
 
   &__title {
-    display: none;
+    display: none; //CV is hidden at first
 
     @include mq($from: phablet) {
       @include spacing(left, small, true);
       @include spacing(right, small, true);
+      display: inline-block;
+      position: absolute;
       box-sizing: border-box;
       max-width: 33%;
-      display: inline-block;
-      float: left;
     }
 
     @include mq($from: desktop) {
