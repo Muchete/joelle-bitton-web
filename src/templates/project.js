@@ -35,11 +35,13 @@ export const query = graphql`
               project_image
               project_imageSharp {
                 childImageSharp {
-                  fluid {
-                    srcSet
-                    src
-                    base64
-                    aspectRatio
+                  fluid(
+                    sizes: "(max-width: 600px) 100vw, 
+                            (max-width: 1100px) 67vw, 
+                            (max-width: 1400px) 50vw, 
+                            (min-width: 1400px) 680px"
+                  ) {
+                    ...GatsbyImageSharpFluid
                   }
                 }
               }

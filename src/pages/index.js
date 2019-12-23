@@ -34,11 +34,14 @@ export const query = graphql`
             cover_image
             cover_imageSharp {
               childImageSharp {
-                fluid {
-                  srcSet
-                  src
-                  base64
-                  aspectRatio
+                fluid(
+                  sizes: "(max-width: 376px) 100vw, 
+                          (max-width: 600px) 50vw, 
+                          (max-width: 1100px) 67vw, 
+                          (max-width: 1400px) 67vw, 
+                          (min-width: 1400px) 904px"
+                ) {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }
