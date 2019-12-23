@@ -56,48 +56,44 @@ class Projectshowcase extends Component {
             )
           })}
         </div>
-        <TransitionGroup className="animation-group">
-          <div className="projects">
-            {projects.map(({ node: project }, i) => {
-              return (
-                <CSSTransition
-                  in={true}
-                  key={project._meta.id}
-                  // appear={true}
-                  timeout={animationSpeedEnter + animationSpeedExit}
-                  classNames="fade-animation"
-                >
-                  <div className="project">
-                    <Link
-                      className="project__link"
-                      to={linkResolver(project._meta)}
-                    >
-                      <div className="project__image">
-                        <div
-                          className="project__image-background"
-                          style={{
-                            backgroundColor: this.props.colors[
-                              project.cover_color
-                            ],
-                          }}
-                        >
-                          <Img
-                            fluid={
-                              project.cover_imageSharp.childImageSharp.fluid
-                            }
-                            alt={project.cover_image.alt}
-                          />
-                        </div>
-                        <span className="project__title">
-                          {RichText.asText(project.project_title)}
-                        </span>
+        <TransitionGroup className="projects">
+          {projects.map(({ node: project }, i) => {
+            return (
+              <CSSTransition
+                in={true}
+                key={project._meta.id}
+                // appear={true}
+                timeout={animationSpeedEnter + animationSpeedExit}
+                classNames="fade-animation"
+              >
+                <div className="project">
+                  <Link
+                    className="project__link"
+                    to={linkResolver(project._meta)}
+                  >
+                    <div className="project__image">
+                      <div
+                        className="project__image-background"
+                        style={{
+                          backgroundColor: this.props.colors[
+                            project.cover_color
+                          ],
+                        }}
+                      >
+                        <Img
+                          fluid={project.cover_imageSharp.childImageSharp.fluid}
+                          alt={project.cover_image.alt}
+                        />
                       </div>
-                    </Link>
-                  </div>
-                </CSSTransition>
-              )
-            })}
-          </div>
+                      <span className="project__title">
+                        {RichText.asText(project.project_title)}
+                      </span>
+                    </div>
+                  </Link>
+                </div>
+              </CSSTransition>
+            )
+          })}
         </TransitionGroup>
       </section>
     )
