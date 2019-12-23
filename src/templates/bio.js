@@ -36,10 +36,7 @@ export const query = graphql`
               imageSharp {
                 childImageSharp {
                   fluid(
-                    sizes: "(max-width: 600px) 100vw, 
-                            (max-width: 1100px) 67vw, 
-                            (max-width: 1400px) 50vw, 
-                            (min-width: 1400px) 680px"
+                    sizes: "(max-width: 600px) 100vw, (max-width: 1100px) 67vw, (max-width: 1400px) 50vw, (min-width: 1400px) 680px"
                   ) {
                     ...GatsbyImageSharpFluid
                   }
