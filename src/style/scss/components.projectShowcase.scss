@@ -1,0 +1,91 @@
+$image-ratio: 75%;
+$filter-height: 44px; //height of fixed filters on bottom of screen(mobile only)
+$showcase-border-width: 1px;
+$showcase-border-column-gap: 3px;
+$showcase-border-row-gap: 3px;
+$showcase-border-width: 1px;
+$showcase-title-padding-vertical: 8px;
+$showcase-title-padding-horizontal: 10px;
+$showcase-title-color: white;
+$showcase-title-color-border: black;
+$showcase-title-border-width: $showcase-border-width;
+$showcase-title-color-text: black;
+
+.showcase .projects {
+  display: grid;
+  gap: $showcase-border-row-gap $showcase-border-column-gap;
+
+  grid-template-columns: 1fr;
+  @include mq($from: phone-plus, $until: phablet) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  margin: 0 $showcase-border-row-gap $filter-height $showcase-border-row-gap;
+  @include mq($from: phablet) {
+    margin-bottom: $showcase-border-row-gap;
+    @include spacing(left, small);
+    @include spacing(right, small);
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.showcase .project {
+  position: relative;
+  &:after {
+    display: block;
+    content: "";
+    padding-top: $image-ratio;
+  }
+
+  @include mq($from: phablet) {
+    &:nth-child(12n + 4) {
+      grid-area: span 2 / span 2;
+    }
+
+    &:nth-child(12n + 11) {
+      grid-area: span 2 / span 2;
+    }
+  }
+
+  //HOVER???
+  // &__link:hover .gatsby-image-wrapper {
+  //   @supports (mix-blend-mode: difference) {
+  //     mix-blend-mode: difference;
+  //   }
+  // }
+
+  &__image-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    border: $showcase-border-width solid black;
+
+    .gatsby-image-wrapper {
+      @supports (mix-blend-mode: multiply) {
+        mix-blend-mode: multiply;
+      }
+      @supports not (mix-blend-mode: multiply) {
+        opacity: 0.7;
+      }
+
+      position: absolute !important;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+
+  &__title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: $showcase-title-padding-vertical $showcase-title-padding-horizontal;
+    background-color: $showcase-title-color;
+    border: $showcase-title-border-width solid $showcase-title-color-border;
+    color: $showcase-title-color-text;
+  }
+}

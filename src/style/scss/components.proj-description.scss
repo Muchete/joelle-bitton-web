@@ -1,0 +1,39 @@
+.proj__description {
+  p + p {
+    margin-top: $global-line-height;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  pre {
+    background-color: black;
+    color: white;
+    @include spacing(left, small, true);
+    @include spacing(right, small, true);
+    @include spacing(top, small, true);
+    @include spacing(bottom, small, true);
+    margin: $global-line-height 0;
+  }
+
+  // vimeo and youtube STUFF
+  .embed {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    margin: $global-line-height 0;
+  }
+
+  .embed iframe,
+  .embed object,
+  .embed embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

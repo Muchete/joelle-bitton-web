@@ -1,0 +1,25 @@
+.bio__images {
+  box-sizing: border-box;
+  @include mq($until: phablet) {
+    @include spacing(right, small);
+    @include spacing(left, small);
+  }
+  @include mq($from: phablet) {
+    @include spacing(right, small, true);
+  }
+  @include spacing(bottom, medium);
+
+  @include mq($from: phablet, $until: desktop) {
+    margin-left: 33%;
+    max-width: 67%;
+  }
+
+  @include mq($from: desktop) {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    overflow-y: scroll;
+  }
+}

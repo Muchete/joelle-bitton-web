@@ -1,0 +1,40 @@
+section.info {
+  @include spacing(top, topSpace);
+  @include spacing(bottom, medium);
+
+  @include mq($until: phablet) {
+    @include spacing(left, small);
+    @include spacing(right, small);
+  }
+
+  .introduction {
+    margin-bottom: $global-line-height;
+
+    @include mq($from: phablet) {
+      @include spacing(right, small, true);
+      padding-top: 5px;
+    }
+  }
+
+  .pagelink {
+    @include mq($from: phablet) {
+      @include spacing(right, small, true);
+    }
+  }
+
+  @include mq($from: phablet, $until: desktop) {
+    .introduction,
+    .pagelink {
+      margin-left: 33%;
+      max-width: 67%;
+    }
+  }
+
+  @include mq($from: desktop) {
+    .introduction,
+    .pagelink {
+      margin-left: 16.6%;
+      max-width: 50%;
+    }
+  }
+}

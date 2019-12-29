@@ -1,0 +1,176 @@
+$animation-speed-exit: 200ms;
+$animation-speed-enter: 200ms;
+
+.cv {
+  // @include mq($from: phablet) {
+  //   @include spacing(left, small);
+  //   @include spacing(right, small);
+  // }
+
+  &__title {
+    display: none; //CV is hidden at first
+
+    @include mq($from: phablet) {
+      @include spacing(left, small, true);
+      @include spacing(right, small, true);
+      display: inline-block;
+      position: absolute;
+      box-sizing: border-box;
+      max-width: 33%;
+    }
+
+    @include mq($from: desktop) {
+      max-width: 16.6%;
+    }
+  }
+
+  &__categories {
+    @include spacing(left, small, true);
+    @include spacing(right, small, true);
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow-x: scroll;
+    display: flex;
+    flex-wrap: nowrap;
+    flex: none;
+    margin-bottom: 14px;
+
+    //hide vert. scrollbar
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    @include mq($until: phablet) {
+      &::after {
+        //FIX FOR Vertical scrolling padding at end
+        content: "";
+        padding-right: 10px;
+      }
+    }
+
+    @include mq($from: phablet) {
+      flex-wrap: wrap;
+      padding-left: 0;
+      margin-bottom: 4px;
+
+      .filter__item {
+        margin-bottom: 10px;
+      }
+    }
+
+    @include mq($from: phablet, $until: desktop) {
+      margin-left: 33%;
+      max-width: 67%;
+    }
+
+    @include mq($from: desktop) {
+      margin-left: 16.6%;
+      max-width: 33.3%;
+    }
+
+    .filter__item {
+      margin-right: 10px; //NOT WORKING WITH LAST: HELP
+      &:last-of-type {
+        margin-right: 0px; //NOT WORKING WITH LAST: HELP
+      }
+    }
+  }
+
+  &__content {
+    @include mq($until: phablet) {
+      @include spacing(left, small);
+      @include spacing(right, small);
+    }
+    @include mq($from: desktop) {
+      margin-left: 16.6%;
+      box-sizing: border-box;
+      max-width: 33.3%;
+    }
+
+    &__category {
+      margin-bottom: $global-line-height;
+
+      @include mq($from: phablet) {
+        @include spacing(right, small, true);
+      }
+
+      @include mq($from: phablet, $until: desktop) {
+        margin-left: 33%;
+        max-width: 67%;
+      }
+    }
+
+    &__entry {
+      display: flex;
+      align-items: stretch;
+      align-content: stretch;
+
+      margin-bottom: $global-line-height;
+
+      @include mq($from: phablet, $until: desktop) {
+        margin-left: 33%;
+        max-width: 67%;
+      }
+
+      @include mq($from: phablet) {
+        @include spacing(right, small, true);
+      }
+
+      span {
+        box-sizing: border-box;
+      }
+      .--left {
+        width: 25%;
+        padding-right: 10px;
+      }
+      .--right {
+        width: 75%;
+      }
+    }
+  }
+}
+
+//animation settings
+.animation-group {
+  position: relative;
+}
+
+.fade-animation {
+  // &-appear {
+  //   opacity: 0;
+  //   z-index: 1;
+  // }
+
+  // &-appear-active {
+  //   opacity: 1;
+  //   transition: opacity $animation-speed-enter linear;
+  // }
+
+  &-enter {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  &-enter-active {
+    opacity: 1;
+    transition: opacity $animation-speed-enter linear $animation-speed-exit;
+  }
+
+  &-exit {
+    opacity: 1;
+  }
+
+  &-exit-active {
+    opacity: 0;
+    transition: opacity $animation-speed-exit linear;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  &-exit-done {
+    opacity: 0;
+  }
+}

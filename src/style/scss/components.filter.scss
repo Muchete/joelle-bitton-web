@@ -1,0 +1,45 @@
+.showcase .filter {
+  @include z-index(filters);
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-x: scroll;
+
+  display: flex;
+  flex-wrap: nowrap;
+  flex: none;
+
+  position: fixed;
+  bottom: 0;
+  padding: 3px;
+
+  &::after {
+    content: "";
+    padding-right: 3px;
+  }
+
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include mq($from: phablet) {
+    position: initial;
+    padding: 0;
+    margin-bottom: $global-line-height;
+
+    @include spacing(left, small, true);
+    &::after {
+      @include spacing(right, small, true);
+    }
+  }
+
+  //no border, except for first one
+  &__item {
+    border-left: none;
+  }
+
+  &__item:nth-of-type(1) {
+    // margin-left: 3px;
+    border-left: $c-b-btn-border-width solid $c-b-btn-color-border;
+  }
+}

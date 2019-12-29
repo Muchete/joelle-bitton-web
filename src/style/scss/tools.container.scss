@@ -1,0 +1,70 @@
+/**
+ * -----------------------------------------------------------------------
+ * container
+ * -----------------------------------------------------------------------
+ *
+ * container defines a responsive container for it's content.
+ * Usually this is used for the whole-page-container. It takes
+ * the definitions from "settings/containers" and creates a container with different
+ * width based on breakpoint.
+ *
+ * The page container can be:
+ * - Fluid, with margins on its side
+ * - Have a given width
+ * - Be absolute positioned or normal
+ *
+ *
+ * @include container($page-container);          --> Normal
+ * @include container($page-container, true);    --> Absolute
+ 
+ */
+
+
+@mixin container($container, $absolute: false) {
+
+    @each $breakpoint, $settings in $container {
+
+        $width: map-get($settings, width);
+        // Width: Auto, when no width is given
+        $width: if($width, $width, auto);
+
+        $margin: map-get($settings, margin);
+        // Margins: auto, when no margins given
+        $margin: if($margin, $margin, auto);
+
+        @include mq($from: $breakpoint) {
+
+            // Position absolute in center
+            @if $absolute {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+
+                @if $margin != auto {
+                    width: calc(100% - 2 * #{$margin});
+                } @else {
+                    width: $width;
+                }
+
+            } @else {
+
+                // Default
+                width: $width;
+                margin: 0 $margin;
+            }
+        }
+    }
+}
+
+
+@mixin container-content-full-page() {
+    margin-left: calc((100vw - 100%) / 2 * -1);
+    margin-right: calc((100vw - 100%) / 2 * -1);
+}
+
+
+@mixin container-content-full-page-inner() {
+    padding-left: calc((100vw - 100%) / 2);
+    padding-right: calc((100vw - 100%) / 2);
+}
+

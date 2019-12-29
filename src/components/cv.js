@@ -1,9 +1,13 @@
 import React, { Component } from "react"
 import { RichText } from "prismic-reactjs"
 import { linkResolver } from "../utils/linkResolver"
+import ArrowCV from "../components/arrowCV"
+import { CSSTransition, TransitionGroup } from "react-transition-group"
 
 let categoryList = []
 let entries
+let animationSpeedExit = 200 //time of animation speed (old element out)
+let animationSpeedEnter = 200 //time of animation speed (new element in)
 
 class CV extends Component {
   constructor(props) {
@@ -19,13 +23,24 @@ class CV extends Component {
     }
   }
 
+  scrollToBottom = () => {
+    this.cvDiv.scrollIntoView({
+      block: "end",
+      behavior: "smooth",
+    })
+  }
+
+  componentDidUpdate() {
+    setTimeout(this.scrollToBottom, animationSpeedExit)
+  }
+
   setFilter(newFilter) {
     this.setState({ currentFilter: newFilter })
   }
 
   activeHandler(tag) {
-    let classnames = "filter-button"
-    if (this.state.currentFilter === tag) classnames += " active"
+    let classnames = "filter__item"
+    if (this.state.currentFilter === tag) classnames += " filter__item--active"
     return classnames
   }
 
@@ -34,46 +49,76 @@ class CV extends Component {
       entries = this.props.data.filter(entry => {
         return entry.category.indexOf(this.state.currentFilter) !== -1
       })
-    } else {
-      entries = this.props.data
     }
+    // else {
+    //   entries = this.props.data
+    // }
 
     return (
-      <section className="cv">
-        <h3 className="cv-title">{this.props.title}</h3>
-        <div className="cv-categories filter-set">
-          {categoryList.map(category => {
+      <section className="cv" key="cv-section">
+        <h2 className="cv__title" key="cv-title">
+          {this.props.title}
+        </h2>
+        <div className="cv__categories" key="cv-allCat">
+          {categoryList.map((category, i) => {
             return (
               <button
                 className={this.activeHandler(category)}
                 onClick={() => this.setFilter(category)}
+                key={"cv-button" + i}
               >
                 {category}
+                <ArrowCV key={"cv-arrow" + i} />
               </button>
             )
           })}
         </div>
-        <div className="cv-content">
-          <h4 className="cv-category-title">{this.state.currentFilter}</h4>
-          {entries.map(entry => {
-            return (
-              <div className="cv-entry">
-                <RichText
-                  render={entry.year}
-                  linkResolver={linkResolver}
-                  className="leftColumn"
-                  Component="span"
-                />
-                <RichText
-                  render={entry.text}
-                  linkResolver={linkResolver}
-                  className="rightColumn"
-                  Component="span"
-                />
+        <div className="cv__content" key="cv-content">
+          <TransitionGroup className="animation-group">
+            <CSSTransition
+              in={true}
+              key={this.state.currentFilter + "cssTrans"}
+              // appear={true}
+              timeout={animationSpeedEnter + animationSpeedExit}
+              classNames="fade-animation"
+            >
+              <div>
+                <h2
+                  className="cv__content__category"
+                  // key={this.state.currentFilter + "title"}
+                >
+                  {this.state.currentFilter}
+                </h2>
+                {entries.map((entry, i) => {
+                  return (
+                    <div className="cv__content__entry" key={"entry" + i}>
+                      <RichText
+                        render={entry.year}
+                        linkResolver={linkResolver}
+                        className="--left"
+                        Component="span"
+                        key={"cdleft" + i}
+                      />
+                      <RichText
+                        render={entry.text}
+                        linkResolver={linkResolver}
+                        className="--right"
+                        Component="span"
+                        key={"cdright" + i}
+                      />
+                    </div>
+                  )
+                })}
               </div>
-            )
-          })}
+            </CSSTransition>
+          </TransitionGroup>
         </div>
+        <div
+          //div used for bottom scroll animation
+          ref={el => {
+            this.cvDiv = el
+          }}
+        ></div>
       </section>
     )
   }

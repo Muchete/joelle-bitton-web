@@ -1,0 +1,60 @@
+.bio {
+  @include mq($until: phablet) {
+    @include spacing(right, small);
+    @include spacing(left, small);
+  }
+  @include spacing(bottom, medium);
+
+  &__description {
+    box-sizing: border-box;
+    margin-bottom: $global-line-height;
+
+    p {
+      margin-bottom: 24px;
+    }
+    p:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  &__links {
+    box-sizing: border-box;
+    @include mq($from: phablet) {
+      @include spacing(right, small, true);
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    margin-right: 18px;
+  }
+
+  @include mq($from: phablet) {
+    &__description {
+      @include spacing(right, small, true);
+      padding-top: 5px;
+    }
+  }
+
+  @include mq($from: phablet, $until: desktop) {
+    &__description {
+      margin-left: 33%;
+      max-width: 67%;
+    }
+    &__links {
+      margin-left: 33%;
+      max-width: 67%;
+    }
+  }
+
+  @include mq($from: desktop) {
+    &__description {
+      margin-left: 16.6%;
+      max-width: 33.3%;
+    }
+    &__links {
+      margin-left: 16.6%;
+      max-width: 33.3%;
+    }
+  }
+}

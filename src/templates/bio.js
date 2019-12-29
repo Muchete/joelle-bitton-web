@@ -5,6 +5,7 @@ import Img from "gatsby-image"
 
 import Layout from "../components/layout"
 import CV from "../components/cv"
+import ArrowHome from "../components/arrowHome"
 import SEO from "../components/seo"
 import { linkResolver } from "../utils/linkResolver"
 
@@ -64,28 +65,36 @@ export default ({ data }) => {
         return (
           <>
             <SEO title={RichText.asText(bio.title)} site={data.site} />
-            <section className="bio info">
-              <Link to="/">BACK TO HOME</Link>
+            <section className="header hbio">
               <h1>{RichText.asText(bio.title)}</h1>
-              <div className="bio-description">
+              <Link className="header__homeLink" to="/">
+                <ArrowHome />
+              </Link>
+            </section>
+            <section className="bio">
+              <div className="bio__description">
                 <RichText render={bio.about_text} linkResolver={linkResolver} />
               </div>
-              <div className="bio-links">
+              <div className="bio__links pagelink">
                 {bio.links.map(({ link: l }) => {
-                  return <RichText render={l} linkResolver={linkResolver} />
+                  return (
+                    <span className="bio__link">
+                      <RichText render={l} linkResolver={linkResolver} />
+                    </span>
+                  )
                 })}
               </div>
             </section>
-            <CV data={bio.cv} title={RichText.asText(bio.cv_title)} />
-            <section className="bio-images images">
+            <section className="bio__images">
               {bio.images.map(({ imageSharp: i }) => {
                 return (
-                  <div className="bio-image image">
+                  <div className="bio__image">
                     <Img fluid={i.childImageSharp.fluid} />
                   </div>
                 )
               })}
             </section>
+            <CV data={bio.cv} title={RichText.asText(bio.cv_title)} />
           </>
         )
       })}

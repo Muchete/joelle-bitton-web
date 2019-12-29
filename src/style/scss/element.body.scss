@@ -1,0 +1,22 @@
+/**
+ * -----------------------------------------------------------------------
+ * body
+ * -----------------------------------------------------------------------
+ *
+ */
+
+html {
+  background-color: $color-background;
+}
+
+body {
+  padding-top: 1px;
+  margin-top: -1px;
+  @include typo-body();
+  color: $color-text;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: $color-background;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

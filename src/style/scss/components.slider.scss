@@ -1,0 +1,87 @@
+$slider-image-gap: 10px;
+
+.slider {
+  // @include mq($from: phablet, $until: desktop) {
+  // @include spacing(left, small);
+  // @include spacing(right, small);
+  // }
+
+  @include mq($from: desktop) {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    overflow-y: scroll;
+    //hide vert. scrollbar
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  @include mq($from: desktop14) {
+    right: calc(50% - 700px);
+  }
+
+  &__images {
+    box-sizing: border-box;
+    display: -webkit-box;
+    @include mq($from: desktop) {
+      display: block;
+    }
+
+    width: 100%;
+    max-width: 100%;
+    overflow-y: hidden;
+    overflow-x: scroll;
+
+    @include mq($from: phablet, $until: desktop) {
+      margin-left: 33%;
+      max-width: 67%;
+    }
+    @include mq($from: desktop) {
+      @include spacing(left, small, true);
+    }
+
+    //hide vert. scrollbar
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__image {
+    box-sizing: border-box;
+    margin-left: $slider-image-gap;
+
+    @include mq($until: desktop) {
+      &:last-of-type {
+        border-right: $slider-image-gap solid transparent; //HELP - sorry for the ugly fix
+      }
+    }
+
+    &:only-child {
+      width: calc(100% - 20px) !important; //NEEDS TO BE FIXED
+      border: none;
+      @include mq($from: phablet) {
+        width: 100% !important;
+      }
+    }
+
+    @include mq($from: phablet) {
+      &:first-of-type {
+        margin-left: 0;
+      }
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+
+    @include mq($from: desktop) {
+      width: 100% !important;
+      margin-left: 0;
+      margin-bottom: $slider-image-gap;
+    }
+  }
+}

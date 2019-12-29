@@ -1,0 +1,52 @@
+/**
+ * -----------------------------------------------------------------------
+ * page level styling for typography
+ * -----------------------------------------------------------------------
+ */
+
+html,
+body {
+  font-kerning: normal;
+  font-feature-settings: "liga" 1, "kern" 1, "pnum" on, "lnum" on, "salt" on;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+h2 {
+  @include typo-heading-medium;
+}
+
+h1 {
+  @include typo-heading-large;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  @include typo-body;
+}
+
+//NO BOLD OR ITALIC
+em,
+strong {
+  font-style: initial;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  padding-left: 2em;
+  margin-bottom: $global-line-height;
+}
+
+li {
+  list-style-position: outside;
+}

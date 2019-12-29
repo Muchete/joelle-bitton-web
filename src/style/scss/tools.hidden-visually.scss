@@ -1,0 +1,46 @@
+/**
+ * -----------------------------------------------------------------------
+ * hidden-visually
+ * -----------------------------------------------------------------------
+ *
+ * Mixin to quickly apply accessible hiding to elements.
+ */
+
+@mixin hidden-visually() {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+}
+
+
+/*
+ * Hide visually
+ * See http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ * for discussion of different solutions
+ */
+@mixin visually-hidden() {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    border: 0;
+}
+
+@mixin visually-hidden-reset() {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+}
