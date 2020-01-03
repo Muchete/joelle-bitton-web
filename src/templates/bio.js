@@ -3,7 +3,7 @@ import { RichText } from "prismic-reactjs"
 import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
 
-import Layout from "../components/layout"
+// import Layout from "../components/layout"
 import CV from "../components/cv"
 import ArrowHome from "../components/arrowHome"
 import SEO from "../components/seo"
@@ -60,7 +60,7 @@ export default ({ data }) => {
   if (!bio_data) return null
 
   return (
-    <Layout>
+    <>
       {bio_data.map(({ node: bio }) => {
         return (
           <>
@@ -76,9 +76,9 @@ export default ({ data }) => {
                 <RichText render={bio.about_text} linkResolver={linkResolver} />
               </div>
               <div className="bio__links pagelink">
-                {bio.links.map(({ link: l }) => {
+                {bio.links.map(({ link: l }, i) => {
                   return (
-                    <span className="bio__link">
+                    <span className="bio__link" key={"bio-link" + i}>
                       <RichText render={l} linkResolver={linkResolver} />
                     </span>
                   )
@@ -86,9 +86,9 @@ export default ({ data }) => {
               </div>
             </section>
             <section className="bio__images">
-              {bio.images.map(({ imageSharp: i }) => {
+              {bio.images.map(({ imageSharp: i }, k) => {
                 return (
-                  <div className="bio__image">
+                  <div className="bio__image" key={"bio-image" + k}>
                     <Img fluid={i.childImageSharp.fluid} />
                   </div>
                 )
@@ -98,6 +98,6 @@ export default ({ data }) => {
           </>
         )
       })}
-    </Layout>
+    </>
   )
 }

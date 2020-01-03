@@ -12,7 +12,6 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-sass`,
-    `gatsby-plugin-transition-link`,
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
@@ -28,6 +27,18 @@ module.exports = {
     //     // icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
     //   },
     // },
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/components/layout.js`),
+      },
+    },
+    {
+      resolve: "gatsby-plugin-transition-link",
+      options: {
+        // layout: require.resolve(`./src/components/layout.js`),
+      },
+    },
     {
       resolve: `gatsby-source-prismic-graphql`,
       options: {

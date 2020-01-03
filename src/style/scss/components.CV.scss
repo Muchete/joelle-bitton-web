@@ -137,15 +137,15 @@ $animation-speed-enter: 200ms;
 }
 
 .fade-animation {
-  // &-appear {
-  //   opacity: 0;
-  //   z-index: 1;
-  // }
+  &-appear {
+    opacity: 0;
+    z-index: 1;
+  }
 
-  // &-appear-active {
-  //   opacity: 1;
-  //   transition: opacity $animation-speed-enter linear;
-  // }
+  &-appear-active {
+    opacity: 1;
+    transition: opacity $animation-speed-enter linear;
+  }
 
   &-enter {
     opacity: 0;

@@ -3,7 +3,6 @@ import { RichText } from "prismic-reactjs"
 import { Link, graphql } from "gatsby"
 import { linkResolver } from "../utils/linkResolver"
 
-import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Projectshowcase from "../components/projectshowcase"
 
@@ -76,7 +75,7 @@ export default ({ data }) => {
   const colors = data.site.siteMetadata.colors
 
   return (
-    <Layout>
+    <>
       <SEO title="Home" site={data.site} />
       <section className="header home">
         {home.map(({ node: page }) => {
@@ -106,6 +105,6 @@ export default ({ data }) => {
         </div>
       </section>
       <Projectshowcase data={projects} colors={colors} />
-    </Layout>
+    </>
   )
 }

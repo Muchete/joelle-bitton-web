@@ -1,9 +1,11 @@
 import React from "react"
 import { RichText } from "prismic-reactjs"
 import { Link, graphql } from "gatsby"
+// import TransitionLink from "gatsby-plugin-transition-link"
+// import transition_settings from "../components/transition-settings"
 import Img from "gatsby-image"
 
-import Layout from "../components/layout"
+// import Layout from "../components/layout"
 import SEO from "../components/seo"
 import ArrowHome from "../components/arrowHome"
 import { linkResolver } from "../utils/linkResolver"
@@ -56,16 +58,12 @@ export default ({ data }) => {
 
   if (!project) return null
 
-  // function calcPadding(aspectRatio) {
-  //   return { "padding-top": 100 / aspectRatio + "%" }
-  // }
-
   function calcWidth(aspectRatio) {
     return { width: 75 * aspectRatio + "%" }
   }
 
   return (
-    <Layout>
+    <>
       {project.map(({ node: p }) => {
         return (
           <>
@@ -84,11 +82,7 @@ export default ({ data }) => {
                       className="slider__image"
                       style={calcWidth(i.childImageSharp.fluid.aspectRatio)}
                     >
-                      {/* <div
-                      style={calcPadding(i.childImageSharp.fluid.aspectRatio)}
-                    > */}
                       <Img fluid={i.childImageSharp.fluid} />
-                      {/* </div> */}
                     </div>
                   )
                 })}
@@ -96,11 +90,7 @@ export default ({ data }) => {
             </section>
             <section className="proj">
               <div className="proj__description">
-                <RichText
-                  className="rt"
-                  render={p.project_text}
-                  linkResolver={linkResolver}
-                />
+                <RichText render={p.project_text} linkResolver={linkResolver} />
               </div>
               <h2 className="proj__infoTitle">
                 {RichText.asText(p.info_credits_title)}
@@ -129,6 +119,6 @@ export default ({ data }) => {
           </>
         )
       })}
-    </Layout>
+    </>
   )
 }
