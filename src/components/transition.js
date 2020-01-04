@@ -39,7 +39,6 @@ class Transition extends React.PureComponent {
                 ...transitionStyles[status],
               }}
             >
-              <div>THIS SUCKS</div>
               {children}
             </div>
           )}
