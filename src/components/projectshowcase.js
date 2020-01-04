@@ -48,6 +48,7 @@ class Projectshowcase extends Component {
           {tagList.map(tag => {
             return (
               <button
+                key={tag + "-button"}
                 className={this.activeHandler(tag)}
                 onClick={() => this.setFilter(tag)}
               >

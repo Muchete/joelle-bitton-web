@@ -68,7 +68,7 @@ export const query = graphql`
     }
   }
 `
-export default ({ data }) => {
+const Index = ({ data }) => {
   const home = data.prismic.allHomes.edges
   const bio = data.prismic.allBios.edges
   const projects = data.prismic.allProjects.edges
@@ -108,3 +108,5 @@ export default ({ data }) => {
     </>
   )
 }
+
+export default Index
