@@ -1,10 +1,11 @@
-import React from "react"
-import { RichText } from "prismic-reactjs"
-import { Link, graphql } from "gatsby"
-import { linkResolver } from "../utils/linkResolver"
+/* eslint-disable react/prop-types */
+import React from "react";
+import { RichText } from "prismic-reactjs";
+import { Link, graphql } from "gatsby";
+import { linkResolver } from "../utils/linkResolver";
 
-import SEO from "../components/seo"
-import Projectshowcase from "../components/projectshowcase"
+import SEO from "../components/seo";
+import Projectshowcase from "../components/projectshowcase";
 
 export const query = graphql`
   query home {
@@ -67,19 +68,20 @@ export const query = graphql`
       }
     }
   }
-`
+`;
+
 const Index = ({ data }) => {
-  const home = data.prismic.allHomes.edges
-  const bio = data.prismic.allBios.edges
-  const projects = data.prismic.allProjects.edges
-  const colors = data.site.siteMetadata.colors
+  const home = data.prismic.allHomes.edges;
+  const bio = data.prismic.allBios.edges;
+  const projects = data.prismic.allProjects.edges;
+  const colors = data.site.siteMetadata.colors;
 
   return (
     <>
       <SEO title="Home" site={data.site} />
       <section className="header home">
         {home.map(({ node: page }) => {
-          return <h1 className="home">{RichText.asText(page.page_title)}</h1>
+          return <h1 className="home">{RichText.asText(page.page_title)}</h1>;
         })}
       </section>
       <section className="info">
@@ -91,7 +93,7 @@ const Index = ({ data }) => {
               Component="div"
               className="introduction"
             />
-          )
+          );
         })}
 
         <div className="pagelink">
@@ -100,13 +102,13 @@ const Index = ({ data }) => {
               <Link to={linkResolver(n._meta)} className="bio__pagelink">
                 {RichText.asText(n.title)}
               </Link>
-            )
+            );
           })}
         </div>
       </section>
       <Projectshowcase data={projects} colors={colors} />
     </>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;
