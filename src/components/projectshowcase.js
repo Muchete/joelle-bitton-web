@@ -3,12 +3,11 @@ import { Link } from "gatsby"
 import { RichText } from "prismic-reactjs"
 import Img from "gatsby-image"
 import { CSSTransition, TransitionGroup } from "react-transition-group"
+import { timeout } from "../components/transitionsettings"
 
 import { linkResolver } from "../utils/linkResolver"
 let tagList = []
 let projects
-let animationSpeedEnter = 500
-let animationSpeedExit = 500
 
 class Projectshowcase extends Component {
   constructor(props) {
@@ -58,13 +57,12 @@ class Projectshowcase extends Component {
           })}
         </div>
         <TransitionGroup className="projects">
-          {projects.map(({ node: project }, i) => {
+          {projects.map(({ node: project }) => {
             return (
               <CSSTransition
                 in={true}
-                key={project._meta.id}
-                // appear={true}
-                timeout={animationSpeedEnter + animationSpeedExit}
+                key={"p-" + project._meta.uid}
+                timeout={timeout}
                 classNames="fade-animation"
               >
                 <div className="project">

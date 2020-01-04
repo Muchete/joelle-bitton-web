@@ -1,5 +1,4 @@
 section.info {
-  @include spacing(top, topSpace);
   @include spacing(bottom, medium);
 
   @include mq($until: phablet) {

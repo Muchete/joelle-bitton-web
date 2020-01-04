@@ -1,14 +1,18 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Transition from "../components/transition"
+// import PrismicToolbar from "../components/prismictoolbar"
 
 import "./../style/main.scss"
 
 const Layout = ({ children, location }) => {
   return (
-    <main className="main">
-      <Transition location={location}>{children}</Transition>
-    </main>
+    <>
+      {/* <PrismicToolbar /> */}
+      <main className="main">
+        <Transition location={location}>{children}</Transition>
+      </main>
+    </>
   )
 }
 

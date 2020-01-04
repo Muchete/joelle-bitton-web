@@ -3,11 +3,10 @@ import { RichText } from "prismic-reactjs"
 import { linkResolver } from "../utils/linkResolver"
 import ArrowCV from "../components/arrowCV"
 import { CSSTransition, TransitionGroup } from "react-transition-group"
+import { animationSpeedExit, timeout } from "../components/transitionsettings"
 
 let categoryList = []
 let entries
-let animationSpeedExit = 200 //time of animation speed (old element out)
-let animationSpeedEnter = 200 //time of animation speed (new element in)
 
 class CV extends Component {
   constructor(props) {
@@ -75,7 +74,7 @@ class CV extends Component {
               in={true}
               key={this.state.currentFilter + "cssTrans"}
               // appear={true}
-              timeout={animationSpeedEnter + animationSpeedExit}
+              timeout={timeout}
               classNames="fade-animation"
             >
               <div>

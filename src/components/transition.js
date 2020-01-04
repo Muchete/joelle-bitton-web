@@ -2,9 +2,11 @@ import React from "react"
 import {
   TransitionGroup,
   Transition as ReactTransition,
+  CSSTransition,
 } from "react-transition-group"
+import { timeout } from "../components/transitionsettings"
 
-const timeout = 500
+// const timeout = 500
 const getTransitionStyles = {
   entering: {
     position: `absolute`,
@@ -25,25 +27,14 @@ class Transition extends React.PureComponent {
     const { children, location } = this.props
 
     return (
-      <TransitionGroup>
-        <ReactTransition
+      <TransitionGroup className="animation-group page-transition">
+        <CSSTransition
           key={location.pathname}
-          timeout={{
-            enter: timeout,
-            exit: timeout,
-          }}
+          timeout={timeout}
+          classNames="fade-animation"
         >
-          {status => (
-            <div
-              className="topspace"
-              style={{
-                ...getTransitionStyles[status],
-              }}
-            >
-              {children}
-            </div>
-          )}
-        </ReactTransition>
+          <div>{children}</div>
+        </CSSTransition>
       </TransitionGroup>
     )
   }
