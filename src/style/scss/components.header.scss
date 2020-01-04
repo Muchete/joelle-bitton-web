@@ -1,5 +1,6 @@
 .header {
   box-sizing: border-box;
+  position: relative;
   @include spacing(top, topSpace);
   @include mq($until: phablet) {
     @include spacing(left, small);

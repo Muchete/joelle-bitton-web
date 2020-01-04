@@ -4,7 +4,7 @@ import {
   Transition as ReactTransition,
 } from "react-transition-group"
 
-const timeout = 250
+const timeout = 500
 const getTransitionStyles = {
   entering: {
     position: `absolute`,
@@ -35,6 +35,7 @@ class Transition extends React.PureComponent {
         >
           {status => (
             <div
+              className="topspace"
               style={{
                 ...getTransitionStyles[status],
               }}

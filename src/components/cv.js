@@ -24,14 +24,7 @@ class CV extends Component {
   }
 
   scrollToBottom = () => {
-    this.cvDiv.scrollIntoView({
-      block: "end",
-      behavior: "smooth",
-    })
-  }
-
-  componentDidUpdate() {
-    setTimeout(this.scrollToBottom, animationSpeedExit)
+    this.cvDiv.scrollIntoView({ behavior: "smooth" })
   }
 
   setFilter(newFilter) {
@@ -64,7 +57,10 @@ class CV extends Component {
             return (
               <button
                 className={this.activeHandler(category)}
-                onClick={() => this.setFilter(category)}
+                onClick={() => {
+                  this.setFilter(category)
+                  setTimeout(this.scrollToBottom, animationSpeedExit)
+                }}
                 key={"cv-button" + i}
               >
                 {category}
@@ -115,6 +111,7 @@ class CV extends Component {
         </div>
         <div
           //div used for bottom scroll animation
+          style={{ float: "left", clear: "both" }}
           ref={el => {
             this.cvDiv = el
           }}

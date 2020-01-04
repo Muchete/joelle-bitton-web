@@ -1,7 +1,19 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/browser-apis/
- */
+const transitionDelay = 500
 
-// You can delete this file if you're not using it
+exports.shouldUpdateScroll = ({
+  routerProps: { location },
+  getSavedScrollPosition,
+}) => {
+  if (location.action === "PUSH") {
+    window.setTimeout(() => window.scrollTo(0, 0), transitionDelay)
+    console.log("scrolling to 0 in " + transitionDelay)
+  } else {
+    const savedPosition = getSavedScrollPosition(location)
+    window.setTimeout(
+      () => window.scrollTo(...(savedPosition || [0, 0])),
+      transitionDelay
+    )
+    console.log("scrolling to " + (savedPosition || [0, 0]))
+  }
+  return false
+}
