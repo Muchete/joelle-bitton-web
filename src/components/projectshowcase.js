@@ -61,7 +61,7 @@ class Projectshowcase extends Component {
             return (
               <CSSTransition
                 in={true}
-                key={"p-" + project._meta.uid}
+                key={project._meta.id}
                 timeout={timeout}
                 classNames="fade-animation"
               >

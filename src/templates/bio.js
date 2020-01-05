@@ -94,7 +94,7 @@ export default ({ data }) => {
                 )
               })}
             </section>
-            <CV data={bio.cv} title={RichText.asText(bio.cv_title)} />
+            <CV cvData={bio.cv} title={RichText.asText(bio.cv_title)} />
           </>
         )
       })}

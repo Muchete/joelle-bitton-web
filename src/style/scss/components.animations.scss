@@ -1,5 +1,6 @@
 $animation-speed-exit: 200ms;
 $animation-speed-enter: 200ms;
+//when changing these, also change timeout at "../../components/transitionsettings.js" and "../../../gatsby-browser.js"
 
 //general animation settings
 .animation-group {
@@ -47,7 +48,9 @@ $animation-speed-enter: 200ms;
 
 //page transition animation settings
 .page-transition {
-  &.fade-animation-exit-active {
-    position: fixed;
+  &.fade-animation {
+    &-exit-active {
+      position: fixed;
+    }
   }
 }

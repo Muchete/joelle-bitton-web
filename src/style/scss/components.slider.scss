@@ -37,7 +37,8 @@ $slider-image-gap: 10px;
     overflow-x: scroll;
 
     @include mq($from: phablet, $until: desktop) {
-      margin-left: 33%;
+      // margin-left: 33%;
+      margin-left: 33vw; //BUG ON SAFARI?
       max-width: 67%;
     }
     @include mq($from: desktop) {

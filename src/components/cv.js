@@ -12,7 +12,7 @@ class CV extends Component {
   constructor(props) {
     super(props)
 
-    this.props.data.forEach(entry => {
+    this.props.cvData.forEach(entry => {
       if (categoryList.indexOf(entry.category) === -1)
         categoryList.push(entry.category)
     })
@@ -38,12 +38,12 @@ class CV extends Component {
 
   render() {
     if (this.state.currentFilter) {
-      entries = this.props.data.filter(entry => {
+      entries = this.props.cvData.filter(entry => {
         return entry.category.indexOf(this.state.currentFilter) !== -1
       })
     }
     // else {
-    //   entries = this.props.data
+    //   entries = this.props.cvData
     // }
 
     return (

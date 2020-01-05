@@ -1,5 +1,5 @@
-export const animationSpeedExit = 250 //time of animation speed (old element out)
-export const animationSpeedEnter = 250 //time of animation speed (new element in)
+export const animationSpeedExit = 200 //time of animation speed (old element out)
+export const animationSpeedEnter = 200 //time of animation speed (new element in)
 export const timeout = animationSpeedExit + animationSpeedEnter
 
 export const transitionStyles = {
