@@ -1,0 +1,56 @@
+$animation-speed-exit: 250ms;
+$animation-speed-enter: 250ms;
+
+//animation settings
+.animation-group {
+  position: relative;
+}
+
+.fade-animation {
+  &-appear {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  &-appear-active {
+    opacity: 1;
+    transition: opacity $animation-speed-enter linear;
+  }
+
+  &-enter {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  &-enter-active {
+    opacity: 1;
+    transition: opacity $animation-speed-enter linear $animation-speed-exit;
+  }
+
+  &-exit {
+    opacity: 1;
+  }
+
+  &-exit-active {
+    opacity: 0;
+    transition: opacity $animation-speed-exit linear;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  &-exit-done {
+    opacity: 0;
+  }
+}
+
+.main {
+  &.fade-animation-exit-active {
+    position: fixed;
+
+    .header {
+      position: relative;
+    }
+  }
+}

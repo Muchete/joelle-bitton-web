@@ -9,9 +9,9 @@ const Layout = ({ children, location }) => {
   return (
     <>
       {/* <PrismicToolbar /> */}
-      <main className="main">
-        <Transition location={location}>{children}</Transition>
-      </main>
+      <Transition location={location}>
+        <main className="main">{children}</main>
+      </Transition>
     </>
   )
 }
