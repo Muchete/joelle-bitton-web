@@ -7,7 +7,7 @@ class Transition extends React.PureComponent {
     const { children, location } = this.props
 
     return (
-      <TransitionGroup className="animation-group page-transition">
+      <TransitionGroup className="animation-group">
         <CSSTransition
           key={location.pathname}
           timeout={timeout}
