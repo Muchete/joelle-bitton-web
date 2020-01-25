@@ -37,7 +37,9 @@ exports.onPostBuild = async ({ graphql, reporter }) => {
     let imageList = []
 
     data.map(({ node: project }) => {
-      imageList.push(project.cover_imageSharp.name)
+      if (project.cover_imageSharp) {
+        imageList.push(project.cover_imageSharp.name)
+      }
     })
 
     ditherFiles(imageList)
