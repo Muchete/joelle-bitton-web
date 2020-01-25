@@ -5,6 +5,7 @@ import Img from "gatsby-image"
 
 import { linkResolver } from "../utils/linkResolver"
 let tagList = []
+let extraTagList = ["News", "Blog"]
 let projects
 
 class Projectshowcase extends Component {
@@ -14,7 +15,8 @@ class Projectshowcase extends Component {
 
     this.props.data.forEach(({ node: p }) => {
       p._meta.tags.forEach(tag => {
-        if (tagList.indexOf(tag) === -1) tagList.push(tag)
+        if (tagList.indexOf(tag) === -1 && extraTagList.indexOf(tag) === -1)
+          tagList.push(tag)
       })
     })
   }
@@ -52,6 +54,18 @@ class Projectshowcase extends Component {
               </button>
             )
           })}
+          <div className="extra">
+            {extraTagList.map(tag => {
+              return (
+                <button
+                  className={this.activeHandler(tag)}
+                  onClick={() => this.setFilter(tag)}
+                >
+                  {tag}
+                </button>
+              )
+            })}
+          </div>
         </div>
         <div className="projects">
           {projects.map(({ node: project }) => {
@@ -62,17 +76,23 @@ class Projectshowcase extends Component {
                   to={linkResolver(project._meta)}
                 >
                   <div className="project__image">
-                    <div
-                      className="project__image-background"
-                      style={{
-                        backgroundColor: this.props.colors[project.cover_color],
-                      }}
-                    >
-                      <Img
-                        fluid={project.cover_imageSharp.childImageSharp.fluid}
-                        alt={project.cover_image.alt}
-                      />
-                    </div>
+                    {project.cover_imageSharp ? (
+                      <div
+                        className="project__image-background"
+                        style={{
+                          backgroundColor: this.props.colors[
+                            project.cover_color
+                          ],
+                        }}
+                      >
+                        <Img
+                          fluid={project.cover_imageSharp.childImageSharp.fluid}
+                          alt={project.cover_image.alt}
+                        />
+                      </div>
+                    ) : (
+                      <div class="project__image-placeholder"></div>
+                    )}
                     <span className="project__title">
                       {RichText.asText(project.project_title)}
                     </span>

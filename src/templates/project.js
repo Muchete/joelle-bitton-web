@@ -78,18 +78,22 @@ export default ({ data }) => {
             <section className="slider">
               <div className="slider__images">
                 {p.images.map(({ project_imageSharp: i }) => {
-                  return (
-                    <div
-                      className="slider__image"
-                      style={calcWidth(i.childImageSharp.fluid.aspectRatio)}
-                    >
-                      {/* <div
+                  if (i.childImageSharp) {
+                    return (
+                      <div
+                        className="slider__image"
+                        style={calcWidth(i.childImageSharp.fluid.aspectRatio)}
+                      >
+                        {/* <div
                       style={calcPadding(i.childImageSharp.fluid.aspectRatio)}
                     > */}
-                      <Img fluid={i.childImageSharp.fluid} />
-                      {/* </div> */}
-                    </div>
-                  )
+                        <Img fluid={i.childImageSharp.fluid} />
+                        {/* </div> */}
+                      </div>
+                    )
+                  } else {
+                    return null
+                  }
                 })}
               </div>
             </section>
