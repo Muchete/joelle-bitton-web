@@ -64,7 +64,8 @@ $showcase-title-color-text: black;
   //   }
   // }
 
-  &__image-background {
+  &__image-background,
+  &__image-placeholder {
     position: absolute;
     top: 0;
     left: 0;
@@ -87,6 +88,10 @@ $showcase-title-color-text: black;
       right: 0;
       bottom: 0;
     }
+  }
+
+  &__image-placeholder {
+    //things come inhere
   }
 
   &__title {

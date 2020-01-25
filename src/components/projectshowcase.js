@@ -62,17 +62,23 @@ class Projectshowcase extends Component {
                   to={linkResolver(project._meta)}
                 >
                   <div className="project__image">
-                    <div
-                      className="project__image-background"
-                      style={{
-                        backgroundColor: this.props.colors[project.cover_color],
-                      }}
-                    >
-                      <Img
-                        fluid={project.cover_imageSharp.childImageSharp.fluid}
-                        alt={project.cover_image.alt}
-                      />
-                    </div>
+                    {project.cover_imageSharp ? (
+                      <div
+                        className="project__image-background"
+                        style={{
+                          backgroundColor: this.props.colors[
+                            project.cover_color
+                          ],
+                        }}
+                      >
+                        <Img
+                          fluid={project.cover_imageSharp.childImageSharp.fluid}
+                          alt={project.cover_image.alt}
+                        />
+                      </div>
+                    ) : (
+                      <div class="project__image-placeholder"></div>
+                    )}
                     <span className="project__title">
                       {RichText.asText(project.project_title)}
                     </span>

@@ -86,11 +86,15 @@ export default ({ data }) => {
             </section>
             <section className="bio__images">
               {bio.images.map(({ imageSharp: i }) => {
-                return (
-                  <div className="bio__image">
-                    <Img fluid={i.childImageSharp.fluid} />
-                  </div>
-                )
+                if (!i.childImageSharp) {
+                  return null
+                } else {
+                  return (
+                    <div className="bio__image">
+                      <Img fluid={i.childImageSharp.fluid} />
+                    </div>
+                  )
+                }
               })}
             </section>
             <CV data={bio.cv} title={RichText.asText(bio.cv_title)} />
