@@ -78,9 +78,8 @@ export default ({ data }) => {
                   switch (slice.type) {
                     case "text":
                       return (
-                        <div key={index} className="homepage-slice-wrapper">
+                        <div key={index}>
                           <RichText
-                            className="rt"
                             render={slice.primary.text}
                             linkResolver={linkResolver}
                           />
@@ -90,9 +89,9 @@ export default ({ data }) => {
                     case "image":
                       return (
                         <div className="blog-img">
-                          {slice.fields.map(f => {
+                          {slice.fields.map((f, i) => {
                             return (
-                              <div className="blog-img__image">
+                              <div className="blog-img__image" key={i + "img"}>
                                 <Img
                                   fluid={f.imageSharp.childImageSharp.fluid}
                                   alt={f.image.alt}

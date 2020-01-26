@@ -3,9 +3,6 @@
   gap: $showcase-border-row-gap $showcase-border-column-gap;
 
   grid-template-columns: 1fr;
-  @include mq($from: phone-plus, $until: phablet) {
-    grid-template-columns: 1fr 1fr;
-  }
 
   margin: 0 $showcase-border-row-gap $filter-height $showcase-border-row-gap;
   @include mq($from: phablet) {
