@@ -21,10 +21,6 @@ const months = [
 ]
 
 class BlogOverview extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   // Function to retrieve a small preview of the post's text
   firstParagraph(post) {
     // Find the first text slice of post's body
@@ -35,12 +31,12 @@ class BlogOverview extends Component {
 
       if (text.length > textLimit) {
         return (
-          <p className="post__excerpt">
+          <p>
             {limitedText.substring(0, limitedText.lastIndexOf(" ")) + "..."}
           </p>
         )
       } else {
-        return <p className="post__excerpt">{text}</p>
+        return <p>{text}</p>
       }
     } else {
       return null
@@ -59,13 +55,19 @@ class BlogOverview extends Component {
           return (
             <div className="post">
               <Link to={linkResolver(post._meta)}>
-                <h2>{RichText.asText(post.blog_post_title)}</h2>
-                <p className="post__date">
-                  <time>
-                    {this.formatDate(post._meta.firstPublicationDate)}
-                  </time>
-                </p>
-                {this.firstParagraph(post)}
+                <div className="post__wrap">
+                  <h2 className="post__title">
+                    {RichText.asText(post.blog_post_title)}
+                  </h2>
+                  <div className="post__excerpt">
+                    <span className="post__date">
+                      <time>
+                        {this.formatDate(post._meta.firstPublicationDate)}
+                      </time>
+                    </span>
+                    {this.firstParagraph(post)}
+                  </div>
+                </div>
               </Link>
             </div>
           )

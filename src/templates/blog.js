@@ -22,7 +22,6 @@ export const query = graphql`
         edges {
           node {
             blog_post_title
-            post_text
             body {
               ... on PRISMIC_BlogpostBodyText {
                 type
