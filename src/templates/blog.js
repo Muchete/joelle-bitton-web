@@ -72,8 +72,8 @@ export default ({ data }) => {
                 <ArrowHome />
               </Link>
             </section>
-            <section className="proj">
-              <div className="proj__description">
+            <section className="proj blog">
+              <div className="proj__description blog__description">
                 {p.body.map((slice, index) => {
                   switch (slice.type) {
                     case "text":
