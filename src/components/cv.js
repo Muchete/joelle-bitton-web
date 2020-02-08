@@ -24,6 +24,19 @@ class CV extends Component {
     this.setState({ currentFilter: newFilter })
   }
 
+  componentDidUpdate() {
+    this.setHeight()
+  }
+
+  componentDidMount() {
+    this.setHeight()
+  }
+
+  setHeight() {
+    const elem = document.getElementById("cv-content")
+    elem.style.minHeight = elem.clientHeight + "px"
+  }
+
   activeHandler(tag) {
     let classnames = "filter__item"
     if (this.state.currentFilter === tag) classnames += " filter__item--active"
@@ -59,7 +72,7 @@ class CV extends Component {
             )
           })}
         </div>
-        <div className="cv__content" key="cv-content">
+        <div className="cv__content" id="cv-content" key="cv-content">
           <h2 className="cv__content__category" key="cv-category">
             {this.state.currentFilter}
           </h2>
