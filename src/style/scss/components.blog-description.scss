@@ -10,13 +10,18 @@
   .embed {
     padding-bottom: 84.375%;
     max-width: unset;
-    width: calc(150% + 5px);
     margin: $global-line-height 0;
+
+    @include mq($from: desktop) {
+      width: calc(150% + 5px);
+    }
   }
 }
 
 .blog-img {
-  width: calc(150% + 5px);
+  @include mq($from: desktop) {
+    width: calc(150% + 5px);
+  }
 
   &__image {
     margin: $global-line-height 0;
