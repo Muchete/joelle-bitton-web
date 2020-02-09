@@ -4,7 +4,7 @@ import { RichText } from "prismic-reactjs"
 
 import { linkResolver } from "../utils/linkResolver"
 
-const textLimit = 300
+const textLimit = 300 // only even numbers!!
 const months = [
   "January",
   "February",
@@ -28,12 +28,21 @@ class BlogOverview extends Component {
     if (firstTextSlice != null) {
       let text = RichText.asText(firstTextSlice.primary.text)
       let limitedText = text.substring(0, textLimit)
+      let limitedTextShort = text.substring(0, textLimit / 2)
 
-      if (text.length > textLimit) {
+      if (text.length > textLimit / 2) {
         return (
-          <p>
-            {limitedText.substring(0, limitedText.lastIndexOf(" ")) + "..."}
-          </p>
+          <>
+            <p className="post__excerpt__short">
+              {limitedTextShort.substring(
+                0,
+                limitedTextShort.lastIndexOf(" ")
+              ) + "..."}
+            </p>
+            <p className="post__excerpt__long">
+              {limitedText.substring(0, limitedText.lastIndexOf(" ")) + "..."}
+            </p>
+          </>
         )
       } else {
         return <p>{text}</p>

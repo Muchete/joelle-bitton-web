@@ -1,14 +1,18 @@
 .showcase .posts {
   display: grid;
+  margin: 0 $showcase-border-row-gap $filter-height $showcase-border-row-gap;
   gap: $showcase-border-row-gap $showcase-border-column-gap;
 
   grid-template-columns: 1fr;
 
-  margin: 0 $showcase-border-row-gap $filter-height $showcase-border-row-gap;
   @include mq($from: phablet) {
     margin-bottom: $showcase-border-row-gap;
     @include spacing(left, small);
     @include spacing(right, small);
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include mq($from: desktop) {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
@@ -17,20 +21,33 @@
   position: relative;
   overflow: hidden;
 
-  &:after {
-    display: block;
-    content: "";
-    padding-top: $image-ratio;
+  a {
+    text-decoration: none;
   }
 
   &__wrap {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     box-sizing: border-box;
     border: $showcase-border-width solid black;
+  }
+
+  &__wrap h2 {
+    text-decoration: none;
+  }
+
+  @include mq($from: phablet) {
+    &:after {
+      display: block;
+      content: "";
+      padding-top: $image-ratio;
+    }
+
+    &__wrap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
   }
 
   &__title {
@@ -41,6 +58,19 @@
   &__title,
   &__excerpt {
     padding: $showcase-title-padding-vertical $showcase-title-padding-horizontal;
+
+    &__long {
+      display: none;
+    }
+
+    @include mq($from: n-tablet) {
+      &__long {
+        display: block;
+      }
+      &__short {
+        display: none;
+      }
+    }
   }
 
   &__date {
