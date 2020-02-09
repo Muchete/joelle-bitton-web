@@ -75,6 +75,8 @@
   }
 
   &__content {
+    margin-bottom: $global-line-height;
+
     @include mq($until: phablet) {
       @include spacing(left, small);
       @include spacing(right, small);

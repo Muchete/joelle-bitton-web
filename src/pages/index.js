@@ -46,6 +46,38 @@ export const query = graphql`
           }
         }
       }
+      allBlogposts {
+        edges {
+          node {
+            blog_post_title
+            body {
+              ... on PRISMIC_BlogpostBodyText {
+                type
+                label
+                primary {
+                  text
+                }
+              }
+              ... on PRISMIC_BlogpostBodyImage {
+                type
+                label
+                fields {
+                  imageSharp {
+                    id
+                  }
+                  image
+                }
+              }
+            }
+            _meta {
+              firstPublicationDate
+              uid
+              id
+              type
+            }
+          }
+        }
+      }
       allHomes(last: 1) {
         edges {
           node {
@@ -72,6 +104,7 @@ export default ({ data }) => {
   const home = data.prismic.allHomes.edges
   const bio = data.prismic.allBios.edges
   const projects = data.prismic.allProjects.edges
+  const posts = data.prismic.allBlogposts.edges
   const colors = data.site.siteMetadata.colors
 
   return (
@@ -104,7 +137,7 @@ export default ({ data }) => {
           })}
         </div>
       </section>
-      <Projectshowcase data={projects} colors={colors} />
+      <Projectshowcase data={projects} posts={posts} colors={colors} />
     </Layout>
   )
 }

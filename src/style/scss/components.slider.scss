@@ -20,9 +20,9 @@ $slider-image-gap: 10px;
     }
   }
 
-  @include mq($from: desktop14) {
-    right: calc(50% - 700px);
-  }
+  // @include mq($from: desktop14) {
+  //   right: calc(50% - 700px);
+  // }
 
   &__images {
     box-sizing: border-box;

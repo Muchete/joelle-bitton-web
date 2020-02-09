@@ -8,6 +8,7 @@ module.exports = {
       Violet: `#A48EE7`,
       Turquoise: `#9EEADD`,
       Yellow: `#FBE36A`,
+      White: `#FFF`,
     },
   },
   plugins: [
@@ -39,6 +40,12 @@ module.exports = {
             match: "/projects/:uid",
             path: "/project-preview",
             component: require.resolve("./src/templates/project.js"),
+          },
+          {
+            type: "Blogpost",
+            match: "/blog/:uid",
+            path: "/blog-preview",
+            component: require.resolve("./src/templates/blog.js"),
           },
           {
             type: "Bio",

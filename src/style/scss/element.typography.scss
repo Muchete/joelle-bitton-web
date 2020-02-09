@@ -19,15 +19,18 @@ h6 {
   font-weight: normal;
 }
 
-h2 {
-  @include typo-heading-medium;
-}
-
 h1 {
   @include typo-heading-large;
 }
 
-h3,
+h2 {
+  @include typo-heading-medium;
+}
+
+h3 {
+  @include typo-heading-small;
+}
+
 h4,
 h5,
 h6 {
