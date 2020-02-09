@@ -8,6 +8,7 @@ module.exports = {
       Violet: `#A48EE7`,
       Turquoise: `#9EEADD`,
       Yellow: `#FBE36A`,
+      White: `#FFF`,
     },
   },
   plugins: [
