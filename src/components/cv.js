@@ -5,6 +5,7 @@ import ArrowCV from "../components/arrowCV"
 
 let categoryList = []
 let entries
+let maxHeight = 0
 
 class CV extends Component {
   constructor(props) {
@@ -34,7 +35,10 @@ class CV extends Component {
 
   setHeight() {
     const elem = document.getElementById("cv-content")
-    elem.style.minHeight = elem.clientHeight + "px"
+    if (maxHeight < elem.clientHeight) {
+      maxHeight = elem.clientHeight
+      elem.style.minHeight = elem.clientHeight + "px"
+    }
   }
 
   activeHandler(tag) {
