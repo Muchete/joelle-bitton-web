@@ -8,6 +8,8 @@ exports.linkResolver = function linkResolver(doc) {
       return "/bio"
     case "project":
       return "/projects/" + doc.uid
+    case "blogpost":
+      return "/blog/" + doc.uid
     // Homepage route fallback
     default:
       return "/"

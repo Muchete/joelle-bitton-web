@@ -3,6 +3,13 @@
     margin-top: $global-line-height;
   }
 
+  h2,
+  h3,
+  h4 {
+    margin-top: $global-line-height * 1.3;
+    margin-bottom: $global-line-height;
+  }
+
   img {
     max-width: 100%;
   }

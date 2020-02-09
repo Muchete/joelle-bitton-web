@@ -2,11 +2,13 @@ import React, { Component } from "react"
 import { Link } from "gatsby"
 import { RichText } from "prismic-reactjs"
 import Img from "gatsby-image"
+import BlogOverview from "../components/blogOverview"
 
 import { linkResolver } from "../utils/linkResolver"
 let tagList = []
 let extraTagList = ["News", "Blog"]
 let projects
+let posts
 
 class Projectshowcase extends Component {
   constructor(props) {
@@ -19,6 +21,8 @@ class Projectshowcase extends Component {
           tagList.push(tag)
       })
     })
+
+    posts = this.props.posts
   }
 
   setFilter(newFilter) {
@@ -37,36 +41,9 @@ class Projectshowcase extends Component {
         return project._meta.tags.indexOf(this.state.currentFilter) !== -1
       })
     }
-    // else {
-    //   projects = this.props.data
-    // }
 
-    return (
-      <section className="showcase">
-        <div className="filter">
-          {tagList.map(tag => {
-            return (
-              <button
-                className={this.activeHandler(tag)}
-                onClick={() => this.setFilter(tag)}
-              >
-                {tag}
-              </button>
-            )
-          })}
-          <div className="extra">
-            {extraTagList.map(tag => {
-              return (
-                <button
-                  className={this.activeHandler(tag)}
-                  onClick={() => this.setFilter(tag)}
-                >
-                  {tag}
-                </button>
-              )
-            })}
-          </div>
-        </div>
+    let ProjectsList = ({ projects }) => {
+      return (
         <div className="projects">
           {projects.map(({ node: project }) => {
             return (
@@ -91,7 +68,7 @@ class Projectshowcase extends Component {
                         />
                       </div>
                     ) : (
-                      <div class="project__image-placeholder"></div>
+                      <div className="project__image-placeholder"></div>
                     )}
                     <span className="project__title">
                       {RichText.asText(project.project_title)}
@@ -102,6 +79,42 @@ class Projectshowcase extends Component {
             )
           })}
         </div>
+      )
+    }
+
+    return (
+      <section className="showcase">
+        <div className="filter">
+          {tagList.map(tag => {
+            return (
+              <button
+                className={this.activeHandler(tag)}
+                onClick={() => this.setFilter(tag)}
+                key={tag + "-button"}
+              >
+                {tag}
+              </button>
+            )
+          })}
+          <div className="extra">
+            {extraTagList.map(tag => {
+              return (
+                <button
+                  className={this.activeHandler(tag)}
+                  onClick={() => this.setFilter(tag)}
+                  key={tag + "-button"}
+                >
+                  {tag}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+        {this.state.currentFilter !== "Blog" ? (
+          <ProjectsList projects={projects} />
+        ) : (
+          <BlogOverview posts={posts} />
+        )}
       </section>
     )
   }
