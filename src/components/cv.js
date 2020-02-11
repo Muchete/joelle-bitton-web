@@ -19,6 +19,8 @@ class CV extends Component {
     if (categoryList) {
       this.state = { currentFilter: categoryList[0] }
     }
+
+    this.orderCV()
   }
 
   setFilter(newFilter) {
@@ -39,6 +41,12 @@ class CV extends Component {
       maxHeight = elem.clientHeight
       elem.style.minHeight = elem.clientHeight + "px"
     }
+  }
+
+  orderCV() {
+    this.props.data.sort((a, b) =>
+      parseInt(a.year[0].text) < parseInt(b.year[0].text) ? 1 : -1
+    )
   }
 
   activeHandler(tag) {
