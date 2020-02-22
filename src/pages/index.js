@@ -46,7 +46,7 @@ export const query = graphql`
           }
         }
       }
-      allBlogposts {
+      allBlogposts(sortBy: meta_firstPublicationDate_DESC) {
         edges {
           node {
             blog_post_title
