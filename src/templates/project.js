@@ -78,7 +78,7 @@ export default ({ data }) => {
             <section className="slider">
               <div className="slider__images">
                 {p.images.map(({ project_imageSharp: i }) => {
-                  if (i.childImageSharp) {
+                  if (i && i.childImageSharp) {
                     return (
                       <div
                         className="slider__image"
@@ -106,7 +106,9 @@ export default ({ data }) => {
                 />
               </div>
               <h2 className="proj__infoTitle">
-                {RichText.asText(p.info_credits_title)}
+                {p.info_credits_title
+                  ? RichText.asText(p.info_credits_title)
+                  : "Info & Credits"}
               </h2>
               <div className="proj__info">
                 {p.info_credits.map(el => {
