@@ -63,6 +63,14 @@ export default ({ data }) => {
     return { width: 75 * aspectRatio + "%" }
   }
 
+  function setInfo(text) {
+    if (text && RichText.asText(text) !== "") {
+      return RichText.asText(text)
+    } else {
+      return "Info & Credits"
+    }
+  }
+
   return (
     <Layout>
       {project.map(({ node: p }) => {
@@ -106,9 +114,7 @@ export default ({ data }) => {
                 />
               </div>
               <h2 className="proj__infoTitle">
-                {p.info_credits_title
-                  ? RichText.asText(p.info_credits_title)
-                  : "Info & Credits"}
+                {setInfo(p.info_credits_title)}
               </h2>
               <div className="proj__info">
                 {p.info_credits.map(el => {
