@@ -17,7 +17,7 @@ exports.onPostBuild = async ({ graphql, reporter }) => {
   const result = await graphql(`
     query allDitherImages {
       prismic {
-        allProjects {
+        allProjects(sortBy: meta_firstPublicationDate_DESC) {
           edges {
             node {
               cover_image
