@@ -3,4 +3,8 @@
   // max-width: 1400px;
   margin: 0 auto;
   position: relative;
+
+  @include mq($from: desktop) {
+    min-height: calc(100vh - 37px);
+  }
 }
