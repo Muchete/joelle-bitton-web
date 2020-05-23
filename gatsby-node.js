@@ -14,10 +14,63 @@ let options = {
 let ditherjs = new DitherJS(options)
 
 exports.onPostBuild = async ({ graphql, reporter }) => {
-  const result = await graphql(`
+  await graphql(`
     query allDitherImages {
       prismic {
-        allProjects(sortBy: meta_firstPublicationDate_DESC) {
+        p0: allProjects(sortBy: meta_firstPublicationDate_DESC) {
+          totalCount
+          edges {
+            node {
+              cover_image
+              cover_imageSharp {
+                name
+              }
+            }
+          }
+        }
+        p1: allProjects(
+          sortBy: meta_firstPublicationDate_DESC
+          after: "YXJyYXljb25uZWN0aW9uOjE5"
+        ) {
+          edges {
+            node {
+              cover_image
+              cover_imageSharp {
+                name
+              }
+            }
+          }
+        }
+        p2: allProjects(
+          sortBy: meta_firstPublicationDate_DESC
+          after: "YXJyYXljb25uZWN0aW9uOjM5"
+        ) {
+          edges {
+            node {
+              cover_image
+              cover_imageSharp {
+                name
+              }
+            }
+          }
+        }
+        p3: allProjects(
+          sortBy: meta_firstPublicationDate_DESC
+          after: "YXJyYXljb25uZWN0aW9uOjU5"
+        ) {
+          edges {
+            node {
+              cover_image
+              cover_imageSharp {
+                name
+              }
+            }
+          }
+        }
+        p4: allProjects(
+          sortBy: meta_firstPublicationDate_DESC
+          after: "YXJyYXljb25uZWN0aW9uOjc5"
+        ) {
           edges {
             node {
               cover_image
@@ -29,31 +82,54 @@ exports.onPostBuild = async ({ graphql, reporter }) => {
         }
       }
     }
-  `)
+  `).then(res => {
+    reporter.info("Starting Dithering...")
 
-  receivedNames(result.data.prismic.allProjects.edges)
+    const collectEntries = (data, letter, amount) => {
+      let proj = []
+      let totalCount = data[letter + "0"].totalCount
 
-  function receivedNames(data) {
-    let imageList = []
+      for (let i = 0; i < amount; i++) {
+        const key = letter + i
+        proj.push(...data[key].edges)
 
-    data.map(({ node: project }) => {
-      if (project.cover_imageSharp) {
-        imageList.push(project.cover_imageSharp.name)
+        if (proj.length === totalCount) break
       }
-    })
 
-    ditherFiles(imageList)
-  }
+      return proj
+    }
 
-  function ditherFiles(filenames) {
-    filenames.map(filename => {
-      let filepaths = find.fileSync(new RegExp(filename), "./public/static/")
-      filepaths.map(file => {
-        let buffer = fs.readFileSync(file)
-        fs.writeFileSync(file, ditherjs.dither(buffer, options))
+    const receivedNames = data => {
+      let imageList = []
+
+      data.map(({ node: project }) => {
+        if (project.cover_imageSharp) {
+          imageList.push(project.cover_imageSharp.name)
+        }
       })
-    })
 
-    reporter.info(`Dithered cover images!`)
-  }
+      ditherFiles(imageList)
+    }
+
+    const ditherFiles = filenames => {
+      filenames.map(filename => {
+        let filepaths = find.fileSync(new RegExp(filename), "./public/static/")
+        filepaths.map(file => {
+          let buffer = fs.readFileSync(file)
+          fs.writeFileSync(file, ditherjs.dither(buffer, options))
+        })
+      })
+
+      reporter.info(`Successfully dithered cover images!`)
+    }
+
+    let projects = collectEntries(res.data.prismic, "p", 5)
+
+    try {
+      receivedNames(projects)
+    } catch (error) {
+      reporter.error("Dithering Failed!")
+      reporter.error(error)
+    }
+  })
 }

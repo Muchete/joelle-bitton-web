@@ -6,9 +6,15 @@ import BlogOverview from "../components/blogOverview"
 
 import { linkResolver } from "../utils/linkResolver"
 let tagList = []
-let extraTagList = ["News", "Blog"]
+const extraTagList = ["News", "Blog"]
 let projects
 let posts
+const order = [
+  "Main Works",
+  "Interaction Design",
+  "Teaching & Workshops",
+  "Curation",
+]
 
 class Projectshowcase extends Component {
   constructor(props) {
@@ -20,6 +26,12 @@ class Projectshowcase extends Component {
         if (tagList.indexOf(tag) === -1 && extraTagList.indexOf(tag) === -1)
           tagList.push(tag)
       })
+    })
+
+    tagList.sort((a, b) => {
+      if (order.indexOf(a) === -1) return 1
+      if (order.indexOf(b) === -1) return -1
+      return order.indexOf(a) - order.indexOf(b)
     })
 
     posts = this.props.posts
