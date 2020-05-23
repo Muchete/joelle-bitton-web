@@ -23,7 +23,8 @@ export const query = graphql`
       }
     }
     prismic {
-      allProjects(sortBy: meta_firstPublicationDate_DESC) {
+      p0: allProjects(sortBy: meta_firstPublicationDate_DESC) {
+        totalCount
         edges {
           node {
             _meta {
@@ -46,7 +47,256 @@ export const query = graphql`
           }
         }
       }
-      allBlogposts(sortBy: meta_firstPublicationDate_DESC) {
+      p1: allProjects(
+        sortBy: meta_firstPublicationDate_DESC
+        after: "YXJyYXljb25uZWN0aW9uOjE5"
+      ) {
+        edges {
+          node {
+            _meta {
+              tags
+              uid
+              type
+            }
+            cover_image
+            cover_imageSharp {
+              childImageSharp {
+                fluid(
+                  sizes: "(max-width: 376px) 100vw, (max-width: 600px) 50vw, (max-width: 1100px) 67vw, (max-width: 1400px) 67vw, (min-width: 1400px) 904px"
+                ) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            cover_color
+            project_title
+          }
+        }
+      }
+      p2: allProjects(
+        sortBy: meta_firstPublicationDate_DESC
+        after: "YXJyYXljb25uZWN0aW9uOjM5"
+      ) {
+        edges {
+          node {
+            _meta {
+              tags
+              uid
+              type
+            }
+            cover_image
+            cover_imageSharp {
+              childImageSharp {
+                fluid(
+                  sizes: "(max-width: 376px) 100vw, (max-width: 600px) 50vw, (max-width: 1100px) 67vw, (max-width: 1400px) 67vw, (min-width: 1400px) 904px"
+                ) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            cover_color
+            project_title
+          }
+        }
+      }
+      p3: allProjects(
+        sortBy: meta_firstPublicationDate_DESC
+        after: "YXJyYXljb25uZWN0aW9uOjU5"
+      ) {
+        edges {
+          node {
+            _meta {
+              tags
+              uid
+              type
+            }
+            cover_image
+            cover_imageSharp {
+              childImageSharp {
+                fluid(
+                  sizes: "(max-width: 376px) 100vw, (max-width: 600px) 50vw, (max-width: 1100px) 67vw, (max-width: 1400px) 67vw, (min-width: 1400px) 904px"
+                ) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            cover_color
+            project_title
+          }
+        }
+      }
+      p4: allProjects(
+        sortBy: meta_firstPublicationDate_DESC
+        after: "YXJyYXljb25uZWN0aW9uOjc5"
+      ) {
+        edges {
+          node {
+            _meta {
+              tags
+              uid
+              type
+            }
+            cover_image
+            cover_imageSharp {
+              childImageSharp {
+                fluid(
+                  sizes: "(max-width: 376px) 100vw, (max-width: 600px) 50vw, (max-width: 1100px) 67vw, (max-width: 1400px) 67vw, (min-width: 1400px) 904px"
+                ) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            cover_color
+            project_title
+          }
+        }
+      }
+      b0: allBlogposts(sortBy: meta_firstPublicationDate_DESC) {
+        totalCount
+        edges {
+          node {
+            blog_post_title
+            body {
+              ... on PRISMIC_BlogpostBodyText {
+                type
+                label
+                primary {
+                  text
+                }
+              }
+              ... on PRISMIC_BlogpostBodyImage {
+                type
+                label
+                fields {
+                  imageSharp {
+                    id
+                  }
+                  image
+                }
+              }
+            }
+            _meta {
+              firstPublicationDate
+              uid
+              id
+              type
+            }
+          }
+        }
+      }
+      b1: allBlogposts(
+        sortBy: meta_firstPublicationDate_DESC
+        after: "YXJyYXljb25uZWN0aW9uOjE5"
+      ) {
+        totalCount
+        edges {
+          node {
+            blog_post_title
+            body {
+              ... on PRISMIC_BlogpostBodyText {
+                type
+                label
+                primary {
+                  text
+                }
+              }
+              ... on PRISMIC_BlogpostBodyImage {
+                type
+                label
+                fields {
+                  imageSharp {
+                    id
+                  }
+                  image
+                }
+              }
+            }
+            _meta {
+              firstPublicationDate
+              uid
+              id
+              type
+            }
+          }
+        }
+      }
+      b2: allBlogposts(
+        sortBy: meta_firstPublicationDate_DESC
+        after: "YXJyYXljb25uZWN0aW9uOjM5"
+      ) {
+        totalCount
+        edges {
+          node {
+            blog_post_title
+            body {
+              ... on PRISMIC_BlogpostBodyText {
+                type
+                label
+                primary {
+                  text
+                }
+              }
+              ... on PRISMIC_BlogpostBodyImage {
+                type
+                label
+                fields {
+                  imageSharp {
+                    id
+                  }
+                  image
+                }
+              }
+            }
+            _meta {
+              firstPublicationDate
+              uid
+              id
+              type
+            }
+          }
+        }
+      }
+      b3: allBlogposts(
+        sortBy: meta_firstPublicationDate_DESC
+        after: "YXJyYXljb25uZWN0aW9uOjU5"
+      ) {
+        totalCount
+        edges {
+          node {
+            blog_post_title
+            body {
+              ... on PRISMIC_BlogpostBodyText {
+                type
+                label
+                primary {
+                  text
+                }
+              }
+              ... on PRISMIC_BlogpostBodyImage {
+                type
+                label
+                fields {
+                  imageSharp {
+                    id
+                  }
+                  image
+                }
+              }
+            }
+            _meta {
+              firstPublicationDate
+              uid
+              id
+              type
+            }
+          }
+        }
+      }
+      b4: allBlogposts(
+        sortBy: meta_firstPublicationDate_DESC
+        after: "YXJyYXljb25uZWN0aW9uOjc5"
+      ) {
+        totalCount
         edges {
           node {
             blog_post_title
@@ -101,10 +351,25 @@ export const query = graphql`
   }
 `
 export default ({ data }) => {
+  let collectEntries = (data, letter, amount) => {
+    let proj = []
+    let totalCount = data[letter + "0"].totalCount
+
+    for (let i = 0; i < amount; i++) {
+      const key = letter + i
+      proj.push(...data[key].edges)
+
+      if (proj.length === totalCount) break
+    }
+
+    return proj
+  }
+
   const home = data.prismic.allHomes.edges
   const bio = data.prismic.allBios.edges
-  const projects = data.prismic.allProjects.edges
-  const posts = data.prismic.allBlogposts.edges
+  // const projects = data.prismic.allProjects.edges
+  const projects = collectEntries(data.prismic, "p", 5)
+  const posts = collectEntries(data.prismic, "b", 5)
   const colors = data.site.siteMetadata.colors
 
   return (
