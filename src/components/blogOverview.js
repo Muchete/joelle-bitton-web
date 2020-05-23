@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Link } from "gatsby"
-import { RichText } from "prismic-reactjs"
+import { RichText, Date as PDate } from "prismic-reactjs"
 
 import { linkResolver } from "../utils/linkResolver"
 
@@ -53,7 +53,7 @@ class BlogOverview extends Component {
   }
 
   formatDate(str) {
-    let d = new Date(str)
+    const d = new Date(PDate(str))
     return d.getDate() + ". " + months[d.getMonth()] + ", " + d.getFullYear()
   }
 
