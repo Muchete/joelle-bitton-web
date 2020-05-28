@@ -9,12 +9,6 @@ let tagList = []
 const extraTagList = ["News", "Blog"]
 let projects
 let posts
-const order = [
-  "Main Works",
-  "Interaction Design",
-  "Teaching & Workshops",
-  "Curation",
-]
 
 class Projectshowcase extends Component {
   constructor(props) {
@@ -28,6 +22,7 @@ class Projectshowcase extends Component {
       })
     })
 
+    const order = this.props.order
     tagList.sort((a, b) => {
       if (order.indexOf(a) === -1) return 1
       if (order.indexOf(b) === -1) return -1
