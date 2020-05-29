@@ -1,8 +1,12 @@
 var DitherJS = require("ditherjs/server")
 var fs = require("fs")
 var find = require("find")
+var btoa = require("btoa")
+let projectData = []
+let blogData = []
+let imageList
 
-let options = {
+const options = {
   step: 3, // The step for the pixel quantization n = 1,2,3...
   palette: [
     [0, 0, 0],
@@ -13,123 +17,149 @@ let options = {
 
 let ditherjs = new DitherJS(options)
 
-exports.onPostBuild = async ({ graphql, reporter }) => {
-  await graphql(`
-    query allDitherImages {
+exports.createPages = async ({ actions, graphql, reporter }) => {
+  const initialQuery = await graphql(`
+    query total {
       prismic {
-        p0: allProjects(sortBy: meta_firstPublicationDate_DESC) {
+        allProjects(sortBy: meta_firstPublicationDate_DESC) {
           totalCount
-          edges {
-            node {
-              cover_image
-              cover_imageSharp {
-                name
-              }
-            }
-          }
         }
-        p1: allProjects(
-          sortBy: meta_firstPublicationDate_DESC
-          after: "YXJyYXljb25uZWN0aW9uOjE5"
-        ) {
-          edges {
-            node {
-              cover_image
-              cover_imageSharp {
-                name
-              }
-            }
-          }
+        allBlogposts(sortBy: meta_firstPublicationDate_DESC) {
+          totalCount
         }
-        p2: allProjects(
-          sortBy: meta_firstPublicationDate_DESC
-          after: "YXJyYXljb25uZWN0aW9uOjM5"
-        ) {
-          edges {
-            node {
-              cover_image
-              cover_imageSharp {
-                name
-              }
-            }
-          }
-        }
-        p3: allProjects(
-          sortBy: meta_firstPublicationDate_DESC
-          after: "YXJyYXljb25uZWN0aW9uOjU5"
-        ) {
-          edges {
-            node {
-              cover_image
-              cover_imageSharp {
-                name
-              }
-            }
-          }
-        }
-        p4: allProjects(
-          sortBy: meta_firstPublicationDate_DESC
-          after: "YXJyYXljb25uZWN0aW9uOjc5"
-        ) {
-          edges {
-            node {
-              cover_image
-              cover_imageSharp {
-                name
+      }
+    }
+  `)
+
+  let totalProjects = initialQuery.data.prismic.allProjects.totalCount
+  let totalBlogposts = initialQuery.data.prismic.allBlogposts.totalCount
+
+  //get all Projects
+  while (projectData.length < totalProjects) {
+    const cursor = btoa("arrayconnection:" + (projectData.length - 1))
+
+    const p = await graphql(`
+      query projectSet {
+        prismic {
+          allProjects(
+            sortBy: meta_firstPublicationDate_DESC
+            after: "${cursor}"
+          ) {
+            totalCount
+            edges {
+              node {
+                _meta {
+                  tags
+                  uid
+                  type
+                }
+                cover_image
+                cover_imageSharp {
+                  name
+                  childImageSharp {
+                    fluid(
+                      sizes: "(max-width: 376px) 100vw, (max-width: 600px) 50vw, (max-width: 1100px) 67vw, (max-width: 1400px) 67vw, (min-width: 1400px) 904px"
+                    ) {
+                      aspectRatio
+                      base64
+                      sizes
+                      src
+                      srcSet
+                    }
+                  }
+                }
+                cover_color
+                project_title
               }
             }
           }
         }
       }
-    }
-  `).then(res => {
-    reporter.info("Starting Dithering...")
+    `)
 
-    const collectEntries = (data, letter, amount) => {
-      let proj = []
-      let totalCount = data[letter + "0"].totalCount
+    projectData.push(...p.data.prismic.allProjects.edges)
+  }
+  reporter.info("projectData length:" + projectData.length)
 
-      for (let i = 0; i < amount; i++) {
-        const key = letter + i
-        proj.push(...data[key].edges)
-
-        if (proj.length === totalCount) break
-      }
-
-      return proj
-    }
-
-    const receivedNames = data => {
-      let imageList = []
-
-      data.map(({ node: project }) => {
-        if (project.cover_imageSharp) {
-          imageList.push(project.cover_imageSharp.name)
-        }
-      })
-
-      ditherFiles(imageList)
-    }
-
-    const ditherFiles = filenames => {
-      filenames.map(filename => {
-        let filepaths = find.fileSync(new RegExp(filename), "./public/static/")
-        filepaths.map(file => {
-          let buffer = fs.readFileSync(file)
-          fs.writeFileSync(file, ditherjs.dither(buffer, options))
-        })
-      })
-
-      reporter.info(`Successfully dithered cover images!`)
-    }
-
-    let projects = collectEntries(res.data.prismic, "p", 5)
-
-    try {
-      receivedNames(projects)
-    } catch (error) {
-      reporter.error("Dithering Failed!")
-      reporter.error(error)
+  //write covernames in array for dithering
+  imageList = []
+  projectData.map(({ node: project }) => {
+    if (project.cover_imageSharp) {
+      imageList.push(project.cover_imageSharp.name)
     }
   })
+
+  //get all Blog Posts
+  while (blogData.length < totalBlogposts) {
+    const cursor = btoa("arrayconnection:" + (blogData.length - 1))
+
+    const bp = await graphql(`
+      query blogSet {
+        prismic {
+          allBlogposts(
+            sortBy: meta_firstPublicationDate_DESC
+            after: "${cursor}"
+          ) {
+            edges {
+              node {
+                blog_post_title
+                body {
+                  ... on PRISMIC_BlogpostBodyText {
+                    type
+                    label
+                    primary {
+                      text
+                    }
+                  }
+                  ... on PRISMIC_BlogpostBodyImage {
+                    type
+                    label
+                    fields {
+                      imageSharp {
+                        id
+                      }
+                      image
+                    }
+                  }
+                }
+                _meta {
+                  firstPublicationDate
+                  uid
+                  id
+                  type
+                }
+              }
+            }
+          }
+        }
+      }
+    `)
+
+    blogData.push(...bp.data.prismic.allBlogposts.edges)
+  }
+  reporter.info("blogData length:" + blogData.length)
+
+  actions.createPage({
+    path: "/",
+    component: require.resolve("./src/templates/home.js"),
+    context: { projectData: projectData, blogData: blogData },
+  })
+}
+
+exports.onPostBuild = async ({ reporter }) => {
+  reporter.info("Starting Dithering...")
+
+  try {
+    imageList.forEach(imageName => {
+      const pathList = find.fileSync(new RegExp(imageName), "./public/static/")
+      pathList.forEach(path => {
+        let file = fs.readFileSync(path)
+        fs.writeFileSync(path, ditherjs.dither(file, options))
+      })
+    })
+    reporter.info("Dithering finished successfully!")
+  } catch (error) {
+    reporter.info("Dithering failed!")
+    reporter.error(error)
+  }
 }
