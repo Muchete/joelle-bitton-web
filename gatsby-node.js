@@ -2,11 +2,11 @@ var DitherJS = require("ditherjs/server")
 var fs = require("fs")
 var find = require("find")
 var btoa = require("btoa")
-let imageList = []
 let projectData = []
 let blogData = []
+let imageList
 
-let options = {
+const options = {
   step: 3, // The step for the pixel quantization n = 1,2,3...
   palette: [
     [0, 0, 0],
@@ -64,9 +64,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
                       base64
                       sizes
                       src
-                      srcWebp
                       srcSet
-                      srcSetWebp
                     }
                   }
                 }
@@ -82,6 +80,14 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     projectData.push(...p.data.prismic.allProjects.edges)
   }
   reporter.info("projectData length:" + projectData.length)
+
+  //write covernames in array for dithering
+  imageList = []
+  projectData.map(({ node: project }) => {
+    if (project.cover_imageSharp) {
+      imageList.push(project.cover_imageSharp.name)
+    }
+  })
 
   //get all Blog Posts
   while (blogData.length < totalBlogposts) {
@@ -138,4 +144,22 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     component: require.resolve("./src/templates/home.js"),
     context: { projectData: projectData, blogData: blogData },
   })
+}
+
+exports.onPostBuild = async ({ reporter }) => {
+  reporter.info("Starting Dithering...")
+
+  try {
+    imageList.forEach(imageName => {
+      const pathList = find.fileSync(new RegExp(imageName), "./public/static/")
+      pathList.forEach(path => {
+        let file = fs.readFileSync(path)
+        fs.writeFileSync(path, ditherjs.dither(file, options))
+      })
+    })
+    reporter.info("Dithering finished successfully!")
+  } catch (error) {
+    reporter.info("Dithering failed!")
+    reporter.error(error)
+  }
 }
