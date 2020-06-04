@@ -60,9 +60,9 @@ class BlogOverview extends Component {
   render() {
     return (
       <div className="posts">
-        {this.props.posts.map(({ node: post }) => {
+        {this.props.posts.map(({ node: post }, i) => {
           return (
-            <div className="post">
+            <div className="post" key={post._meta.uid}>
               <Link to={linkResolver(post._meta)}>
                 <div className="post__wrap">
                   <h2 className="post__title">

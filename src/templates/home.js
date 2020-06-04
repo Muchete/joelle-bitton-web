@@ -67,14 +67,19 @@ export default ({ data, pageContext }) => {
     <Layout>
       <SEO title="Home" site={data.site} />
       <section className="header home">
-        {home.map(({ node: page }) => {
-          return <h1 className="home">{RichText.asText(page.page_title)}</h1>
+        {home.map(({ node: page }, index) => {
+          return (
+            <h1 key={"h1" + index} className="home">
+              {RichText.asText(page.page_title)}
+            </h1>
+          )
         })}
       </section>
       <section className="info">
-        {home.map(({ node: page }) => {
+        {home.map(({ node: page }, index) => {
           return (
             <RichText
+              key={"intro" + index}
               render={page.introduction}
               linkResolver={linkResolver}
               Component="div"
@@ -84,9 +89,13 @@ export default ({ data, pageContext }) => {
         })}
 
         <div className="pagelink">
-          {bio.map(({ node: n }) => {
+          {bio.map(({ node: n }, index) => {
             return (
-              <Link to={linkResolver(n._meta)} className="bio__pagelink">
+              <Link
+                key={"bio" + index}
+                to={linkResolver(n._meta)}
+                className="bio__pagelink"
+              >
                 {RichText.asText(n.title)}
               </Link>
             )

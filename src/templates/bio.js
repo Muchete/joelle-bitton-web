@@ -60,9 +60,9 @@ export default ({ data }) => {
 
   return (
     <Layout>
-      {bio_data.map(({ node: bio }) => {
+      {bio_data.map(({ node: bio }, i) => {
         return (
-          <>
+          <div key={"b" + i}>
             <SEO title={RichText.asText(bio.title)} site={data.site} />
             <section className="header hbio">
               <h1>{RichText.asText(bio.title)}</h1>
@@ -75,9 +75,9 @@ export default ({ data }) => {
                 <RichText render={bio.about_text} linkResolver={linkResolver} />
               </div>
               <div className="bio__links pagelink">
-                {bio.links.map(({ link: l }) => {
+                {bio.links.map(({ link: l }, index) => {
                   return (
-                    <span className="bio__link">
+                    <span className="bio__link" key={"bio-link" + index}>
                       <RichText render={l} linkResolver={linkResolver} />
                     </span>
                   )
@@ -85,20 +85,20 @@ export default ({ data }) => {
               </div>
             </section>
             <section className="bio__images">
-              {bio.images.map(({ imageSharp: i }) => {
-                if (!i.childImageSharp) {
+              {bio.images.map(({ imageSharp: isharp }, index) => {
+                if (!isharp.childImageSharp) {
                   return null
                 } else {
                   return (
-                    <div className="bio__image">
-                      <Img fluid={i.childImageSharp.fluid} />
+                    <div className="bio__image" key={"bio-img" + index}>
+                      <Img fluid={isharp.childImageSharp.fluid} />
                     </div>
                   )
                 }
               })}
             </section>
             <CV data={bio.cv} title={RichText.asText(bio.cv_title)} />
-          </>
+          </div>
         )
       })}
     </Layout>

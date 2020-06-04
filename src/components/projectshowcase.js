@@ -7,6 +7,8 @@ import BlogOverview from "../components/blogOverview"
 import { linkResolver } from "../utils/linkResolver"
 let tagList = []
 const extraTagList = ["News", "Blog"]
+let extraTags = {}
+const showEmptyExtra = true
 let projects
 let posts
 
@@ -14,11 +16,17 @@ class Projectshowcase extends Component {
   constructor(props) {
     super(props)
     this.state = { currentFilter: "Main Works" }
+    extraTagList.forEach(tag => {
+      extraTags[tag] = { exists: showEmptyExtra }
+    })
 
     this.props.data.forEach(({ node: p }) => {
       p._meta.tags.forEach(tag => {
-        if (tagList.indexOf(tag) === -1 && extraTagList.indexOf(tag) === -1)
+        if (tagList.indexOf(tag) === -1 && extraTagList.indexOf(tag) === -1) {
           tagList.push(tag)
+        } else if (extraTagList.indexOf(tag) > -1) {
+          extraTags[tag].exists = true
+        }
       })
     })
 
@@ -30,6 +38,7 @@ class Projectshowcase extends Component {
     })
 
     posts = this.props.posts
+    if (posts.length) extraTags["Blog"].exists = true
   }
 
   setFilter(newFilter) {
@@ -50,43 +59,49 @@ class Projectshowcase extends Component {
     }
 
     let ProjectsList = ({ projects }) => {
-      return (
-        <div className="projects">
-          {projects.map(({ node: project }) => {
-            return (
-              <div className="project" key={project._meta.id}>
-                <Link
-                  className="project__link"
-                  to={linkResolver(project._meta)}
-                >
-                  <div className="project__image">
-                    {project.cover_imageSharp ? (
-                      <div
-                        className="project__image-background"
-                        style={{
-                          backgroundColor: this.props.colors[
-                            project.cover_color
-                          ],
-                        }}
-                      >
-                        <Img
-                          fluid={project.cover_imageSharp.childImageSharp.fluid}
-                          alt={project.cover_image.alt}
-                        />
-                      </div>
-                    ) : (
-                      <div className="project__image-placeholder"></div>
-                    )}
-                    <span className="project__title">
-                      {RichText.asText(project.project_title)}
-                    </span>
-                  </div>
-                </Link>
-              </div>
-            )
-          })}
-        </div>
-      )
+      if (projects.length <= 0) {
+        return null
+      } else {
+        return (
+          <div className="projects">
+            {projects.map(({ node: project }) => {
+              return (
+                <div className="project" key={project._meta.uid}>
+                  <Link
+                    className="project__link"
+                    to={linkResolver(project._meta)}
+                  >
+                    <div className="project__image">
+                      {project.cover_imageSharp ? (
+                        <div
+                          className="project__image-background"
+                          style={{
+                            backgroundColor: this.props.colors[
+                              project.cover_color
+                            ],
+                          }}
+                        >
+                          <Img
+                            fluid={
+                              project.cover_imageSharp.childImageSharp.fluid
+                            }
+                            alt={project.cover_image.alt}
+                          />
+                        </div>
+                      ) : (
+                        <div className="project__image-placeholder"></div>
+                      )}
+                      <span className="project__title">
+                        {RichText.asText(project.project_title)}
+                      </span>
+                    </div>
+                  </Link>
+                </div>
+              )
+            })}
+          </div>
+        )
+      }
     }
 
     return (
@@ -105,15 +120,17 @@ class Projectshowcase extends Component {
           })}
           <div className="extra">
             {extraTagList.map(tag => {
-              return (
-                <button
-                  className={this.activeHandler(tag)}
-                  onClick={() => this.setFilter(tag)}
-                  key={tag + "-button"}
-                >
-                  {tag}
-                </button>
-              )
+              if (extraTags[tag].exists) {
+                return (
+                  <button
+                    className={this.activeHandler(tag)}
+                    onClick={() => this.setFilter(tag)}
+                    key={tag + "-button"}
+                  >
+                    {tag}
+                  </button>
+                )
+              } else return null
             })}
           </div>
         </div>
