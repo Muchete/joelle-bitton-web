@@ -21,7 +21,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   const initialQuery = await graphql(`
     query total {
       prismic {
-        allProjects(sortBy: meta_firstPublicationDate_DESC) {
+        allProjects(sortBy: project_date_DESC) {
           totalCount
         }
         allBlogposts(sortBy: meta_firstPublicationDate_DESC) {
@@ -42,7 +42,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       query projectSet {
         prismic {
           allProjects(
-            sortBy: meta_firstPublicationDate_DESC
+            sortBy: project_date_DESC
             after: "${cursor}"
           ) {
             totalCount
