@@ -70,6 +70,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
                 }
                 cover_color
                 project_title
+                featured
               }
             }
           }

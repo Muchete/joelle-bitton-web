@@ -63,6 +63,13 @@ export default ({ data, pageContext }) => {
     })
   })
 
+  //put featured posts on top
+  projects.sort((a, b) => {
+    if (a.node.featured > b.node.featured) return -1
+    if (b.node.featured > a.node.featured) return 1
+    return 0
+  })
+
   return (
     <Layout>
       <SEO title="Home" site={data.site} />
