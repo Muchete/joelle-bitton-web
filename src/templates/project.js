@@ -73,9 +73,9 @@ export default ({ data }) => {
 
   return (
     <Layout>
-      {project.map(({ node: p }) => {
+      {project.map(({ node: p }, i) => {
         return (
-          <>
+          <div key={"p" + i}>
             <SEO title={RichText.asText(p.project_title)} site={data.site} />
             <section className="header hproject" key={p._meta.id}>
               <h1>{RichText.asText(p.project_title)}</h1>
@@ -85,18 +85,15 @@ export default ({ data }) => {
             </section>
             <section className="slider">
               <div className="slider__images">
-                {p.images.map(({ project_imageSharp: i }) => {
+                {p.images.map(({ project_imageSharp: i }, index) => {
                   if (i && i.childImageSharp) {
                     return (
                       <div
+                        key={"simg" + index}
                         className="slider__image"
                         style={calcWidth(i.childImageSharp.fluid.aspectRatio)}
                       >
-                        {/* <div
-                      style={calcPadding(i.childImageSharp.fluid.aspectRatio)}
-                    > */}
                         <Img fluid={i.childImageSharp.fluid} />
-                        {/* </div> */}
                       </div>
                     )
                   } else {
@@ -107,37 +104,40 @@ export default ({ data }) => {
             </section>
             <section className="proj">
               <div className="proj__description">
-                <RichText
-                  className="rt"
-                  render={p.project_text}
-                  linkResolver={linkResolver}
-                />
+                <RichText render={p.project_text} linkResolver={linkResolver} />
               </div>
               <h2 className="proj__infoTitle">
                 {setInfo(p.info_credits_title)}
               </h2>
               <div className="proj__info">
-                {p.info_credits.map(el => {
+                {p.info_credits.map((el, index) => {
                   return (
-                    <div className="proj__info__entry">
-                      <RichText
-                        render={el.leftColumn}
-                        linkResolver={linkResolver}
-                        className="--left"
-                        Component="span"
-                      />
-                      <RichText
-                        render={el.rightColumn}
-                        linkResolver={linkResolver}
-                        className="--right"
-                        Component="span"
-                      />
+                    <div
+                      className="proj__info__entry"
+                      key={"info-entry" + index}
+                    >
+                      {el.leftColumn && el.rightColumn && (
+                        <>
+                          <RichText
+                            render={el.leftColumn}
+                            linkResolver={linkResolver}
+                            className="--left"
+                            Component="span"
+                          />
+                          <RichText
+                            render={el.rightColumn}
+                            linkResolver={linkResolver}
+                            className="--right"
+                            Component="span"
+                          />
+                        </>
+                      )}
                     </div>
                   )
                 })}
               </div>
             </section>
-          </>
+          </div>
         )
       })}
     </Layout>

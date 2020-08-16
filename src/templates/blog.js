@@ -62,9 +62,9 @@ export default ({ data }) => {
 
   return (
     <Layout>
-      {post.map(({ node: p }) => {
+      {post.map(({ node: p }, i) => {
         return (
-          <>
+          <div key={"bO" + i}>
             <SEO title={RichText.asText(p.blog_post_title)} site={data.site} />
             <section className="header hproject hblog" key={p._meta.id}>
               <h1>{RichText.asText(p.blog_post_title)}</h1>
@@ -78,7 +78,7 @@ export default ({ data }) => {
                   switch (slice.type) {
                     case "text":
                       return (
-                        <div key={index}>
+                        <div key={"slice" + index}>
                           <RichText
                             render={slice.primary.text}
                             linkResolver={linkResolver}
@@ -88,10 +88,10 @@ export default ({ data }) => {
 
                     case "image":
                       return (
-                        <div className="blog-img">
-                          {slice.fields.map((f, i) => {
+                        <div className="blog-img" key={"slice" + index}>
+                          {slice.fields.map((f, k) => {
                             return (
-                              <div className="blog-img__image" key={i + "img"}>
+                              <div className="blog-img__image" key={"img" + k}>
                                 <Img
                                   fluid={f.imageSharp.childImageSharp.fluid}
                                   alt={f.image.alt}
@@ -108,7 +108,7 @@ export default ({ data }) => {
                 })}
               </div>
             </section>
-          </>
+          </div>
         )
       })}
     </Layout>

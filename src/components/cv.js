@@ -61,9 +61,6 @@ class CV extends Component {
         return entry.category.indexOf(this.state.currentFilter) !== -1
       })
     }
-    // else {
-    //   entries = this.props.data
-    // }
 
     return (
       <section className="cv" key="cv-section">
