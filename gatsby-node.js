@@ -24,7 +24,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         allProjects(sortBy: project_date_DESC) {
           totalCount
         }
-        allBlogposts(sortBy: meta_firstPublicationDate_DESC) {
+        allBlogposts(sortBy: date_DESC) {
           totalCount
         }
       }
@@ -98,12 +98,13 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       query blogSet {
         prismic {
           allBlogposts(
-            sortBy: meta_firstPublicationDate_DESC
+            sortBy: date_DESC
             after: "${cursor}"
           ) {
             edges {
               node {
                 blog_post_title
+                date
                 body {
                   ... on PRISMIC_BlogpostBodyText {
                     type

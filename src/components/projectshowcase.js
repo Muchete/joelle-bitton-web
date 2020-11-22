@@ -16,6 +16,7 @@ class Projectshowcase extends Component {
   constructor(props) {
     super(props)
     this.state = { currentFilter: "Main Works" }
+
     extraTagList.forEach(tag => {
       extraTags[tag] = { exists: showEmptyExtra }
     })
@@ -43,6 +44,12 @@ class Projectshowcase extends Component {
 
   setFilter(newFilter) {
     this.setState({ currentFilter: newFilter })
+  }
+
+  componentDidMount() {
+    let url = new URL(window.location.href)
+    let urlTag = url.searchParams.get("tag")
+    if (urlTag) this.setFilter(urlTag)
   }
 
   activeHandler(tag) {
