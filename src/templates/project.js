@@ -23,8 +23,10 @@ export const query = graphql`
           node {
             _meta {
               id
+              tags
             }
             project_title
+            project_date
             project_text
             info_credits_title
             info_credits {

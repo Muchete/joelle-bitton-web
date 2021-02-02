@@ -54,7 +54,6 @@ export default ({ data, pageContext }) => {
   const colors = data.site.siteMetadata.colors
   const home = data.prismic.allHomes.edges
   const bio = data.prismic.allBios.edges
-  const projects = pageContext.projectData
   const posts = pageContext.blogData
 
   home.forEach(site => {
@@ -64,7 +63,7 @@ export default ({ data, pageContext }) => {
   })
 
   //put featured posts on top
-  projects.sort((a, b) => {
+  const projects = pageContext.projectData.sort((a, b) => {
     if (a.node.featured > b.node.featured) return -1
     if (b.node.featured > a.node.featured) return 1
     return 0

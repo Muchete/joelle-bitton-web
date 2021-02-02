@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Link } from "gatsby"
-import { RichText } from "prismic-reactjs"
+import { RichText, Date } from "prismic-reactjs"
 import Img from "gatsby-image"
 import BlogOverview from "../components/blogOverview"
 
@@ -44,6 +44,11 @@ class Projectshowcase extends Component {
 
   setFilter(newFilter) {
     this.setState({ currentFilter: newFilter })
+  }
+
+  convertDate(date) {
+    date = Date(date)
+    return date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
   }
 
   componentDidMount() {
@@ -96,10 +101,16 @@ class Projectshowcase extends Component {
                           />
                         </div>
                       ) : (
-                        <div className="project__image-placeholder"></div>
-                      )}
+                          <div className="project__image-placeholder"></div>
+                        )}
                       <span className="project__title">
                         {RichText.asText(project.project_title)}
+                        {project._meta.tags.indexOf("News") !== -1 &&
+                          <>
+                            <br />
+                            {this.convertDate(project.project_date)}
+                          </>
+                        }
                       </span>
                     </div>
                   </Link>
@@ -144,8 +155,8 @@ class Projectshowcase extends Component {
         {this.state.currentFilter !== "Blog" ? (
           <ProjectsList projects={projects} />
         ) : (
-          <BlogOverview posts={posts} />
-        )}
+            <BlogOverview posts={posts} />
+          )}
       </section>
     )
   }

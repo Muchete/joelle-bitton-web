@@ -70,6 +70,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
                 }
                 cover_color
                 project_title
+                project_date
                 featured
               }
             }
@@ -125,7 +126,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
                   }
                 }
                 _meta {
-                  firstPublicationDate
                   uid
                   id
                   type

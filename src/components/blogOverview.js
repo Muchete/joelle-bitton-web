@@ -71,7 +71,7 @@ class BlogOverview extends Component {
                   <div className="post__excerpt">
                     <span className="post__date">
                       <time>
-                        {this.formatDate(post._meta.firstPublicationDate)}
+                        {this.formatDate(post.date)}
                       </time>
                     </span>
                     {this.firstParagraph(post)}
